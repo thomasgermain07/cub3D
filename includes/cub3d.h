@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/09 21:15:24 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/09 22:29:02 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ typedef struct		s_map
 	char			**plan;
 }					t_map;
 
-void				print_map(t_map *map);
-t_map				*get_map(char *file_name);
+int					check_outline(char *line);
+int					check_last_line(char *line);
 char				*skip_space(char *str);
+void				print_map(t_map *map);
 void				parsing(char *str, t_map *map, t_list **list);
 void				get_plan(char *str, t_list **list);
+t_map				*get_map(char *file_name);
 
 
 #endif
