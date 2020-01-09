@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/09 23:10:07 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/09 23:46:12 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,12 @@ void		convert_lst_to_tab(t_map *map, t_list *lst)
 		exit(0);
 	while (lst)
 	{
-		if (!check_outline(lst->content))
-		{
-			strerror();
-			exit(0);
-		}
+		check_outline(lst->content);
 		map->plan[i] = ft_strdup(lst->content);
 		lst = lst->next;
 		i++;
 	}
-	if (!check_last_line(map->plan[i - 1]))
-		exit(0);
+	check_last_line(map->plan[i - 1]);
 	map->plan[i] = NULL;
 }
 

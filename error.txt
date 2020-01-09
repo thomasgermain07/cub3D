@@ -1,0 +1,3 @@
+"Cub3d: Map error: Wrong parameter in map (line %d: collum %d: char '%c')\n"
+"Cub3d: Map error: Bad outline in map: (line %d: column %d: char '%c')\n"
+"Cub3d: Map error: Bad outline in map: (last line: column %d: char '%c')\n"
