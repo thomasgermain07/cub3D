@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/01/10 16:22:46 by thgermai         ###   ########.fr        #
+#    Updated: 2020/01/10 18:33:20 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,19 @@ SRCS = ./srcs/main.c\
 INCLUDES = ./includes/cub3d.h
 LIB = ./libft/libft.a
 CFLAGS = -Wall -Wextra -Werror
+DEBUG = -g3 -fsanitize=address
+MLX = -lmlx -framework OpenGL -framework AppKit
 LOGFILE=$(LOGPATH) `date +'%y.%m.%d %H:%M:%S'`
 
 all : $(NAME)
 
 $(NAME) :
-	@(gcc $(CFLAGS) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
+	@(gcc $(CFLAGS) $(MLX) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
 	@(echo "")
 	@(./$(NAME) map.cub)
 
 f : $(OBJS)
-	@(gcc $(CFLAGS) -g3 -fsanitize=address $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
+	@(gcc $(CFLAGS) $(MLX) $(DEBUG) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
 	@(./$(NAME) map.cub)
 
 clean :
