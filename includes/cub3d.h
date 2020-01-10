@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomasgermain <thomasgermain@student.42    +#+  +:+       +#+        */
+/*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/10 09:40:43 by thomasgerma      ###   ########.fr       */
+/*   Updated: 2020/01/10 16:22:20 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
+
+typedef struct		s_player
+{
+	int				x;
+	int				y;
+	char			orientation;
+}					t_player;
 
 typedef struct		s_resolution
 {
@@ -38,18 +45,19 @@ typedef struct		s_map
 {
 	t_resolution	resolution;
 	t_texture		texture;
+	t_player		player;
 	char			*ground;
 	char			*ceiling;
 	char			**plan;
 }					t_map;
 
 char				*skip_space(char *str);
-void				check_outline(char *line);
+void				check_line(char *line, t_map *map);
 void				check_last_line(char *line);
 void				print_map(t_map *map);
 void				parsing(char *str, t_map *map, t_list **list);
 void				get_plan(char *str, t_list **list);
 t_map				*get_map(char *file_name);
-
+void				check_map(t_map *map);
 
 #endif

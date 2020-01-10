@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/09 23:46:12 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/10 18:22:18 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void		init_map(t_map *map)
 	map->texture.we = NULL;
 	map->texture.ea = NULL;
 	map->texture.s = NULL;
+	map->player.orientation = '\0';
+	map->player.x = 0;
+	map->player.y = 0;
 	map->ceiling = NULL;
 	map->ground = NULL;
 	map->plan = NULL;
@@ -31,11 +34,16 @@ void		convert_lst_to_tab(t_map *map, t_list *lst)
 	int		i;
 
 	i = 0;
+	if (!lst)
+	{
+		ft_printf(ERR_MAP_MISS);
+		exit(0);
+	}
 	if (!(map->plan = malloc(sizeof(char *) * (ft_lstsize(lst) + 1))))
 		exit(0);
 	while (lst)
 	{
-		check_outline(lst->content);
+		check_line(lst->content, map);
 		map->plan[i] = ft_strdup(lst->content);
 		lst = lst->next;
 		i++;
@@ -79,6 +87,7 @@ t_map		*get_map(char *file_name)
 		return (NULL);
 	init_map(map);
 	read_file(fd, map);
+	check_map(map);
 	close(fd);
 	return (map);
 }

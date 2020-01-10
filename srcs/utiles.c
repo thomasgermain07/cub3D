@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/09 21:29:42 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/10 18:20:05 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,23 @@
 
 void	print_map(t_map *map)
 {
-	ft_printf("resolution.x_res = %i\n", map->resolution.x_res);
-	ft_printf("resolution.y_res = %i\n", map->resolution.y_res);
+	ft_printf("---------------- Map ----------------\n\n");
+	ft_printf("resolution.x_res : %i\n", map->resolution.x_res);
+	ft_printf("resolution.y_res : %i\n", map->resolution.y_res);
 
 	ft_printf("\n");
 
-	ft_printf("texture.no = %s\n", map->texture.no);
-	ft_printf("texture.so = %s\n", map->texture.so);
-	ft_printf("texture.we = %s\n", map->texture.we);
-	ft_printf("texture.ea = %s\n", map->texture.ea);
+	ft_printf("texture.no : %s\n", map->texture.no);
+	ft_printf("texture.so : %s\n", map->texture.so);
+	ft_printf("texture.we : %s\n", map->texture.we);
+	ft_printf("texture.ea : %s\n", map->texture.ea);
 	ft_printf("texture.s : %s\n", map->texture.s);
+
+	ft_printf("\n");
+
+	ft_printf("player.orientation : %c\n", map->player.orientation);
+	ft_printf("player.x : %d\n", map->player.x);
+	ft_printf("player.y : %d\n", map->player.y);
 
 	ft_printf("\n");
 

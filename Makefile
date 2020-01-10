@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/01/09 21:18:41 by thgermai         ###   ########.fr        #
+#    Updated: 2020/01/10 16:22:46 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ SRCS = ./srcs/main.c\
 		./srcs/utiles.c\
 		./srcs/parsing.c\
 		./srcs/get_map.c\
-		./srcs/check_map.c
+		./srcs/check_map.c\
+		./srcs/verify_map.c
 INCLUDES = ./includes/cub3d.h
 LIB = ./libft/libft.a
 CFLAGS = -Wall -Wextra -Werror
@@ -25,6 +26,7 @@ all : $(NAME)
 
 $(NAME) :
 	@(gcc $(CFLAGS) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
+	@(echo "")
 	@(./$(NAME) map.cub)
 
 f : $(OBJS)
