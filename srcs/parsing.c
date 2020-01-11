@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/10 16:19:21 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/11 11:21:51 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void		get_resolution(char *str, t_map *map)
 	map->resolution.y_res = ft_atoi(str);
 	str = temp;
 }
+
 void		get_plan(char *str, t_list **list)
 {
 	t_list	*new_elem;

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/10 16:22:20 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/11 11:36:02 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
+# include <mlx.h>
 # include "error.h"
 # include <stdio.h>
 # include <fcntl.h>
@@ -59,5 +60,6 @@ void				parsing(char *str, t_map *map, t_list **list);
 void				get_plan(char *str, t_list **list);
 t_map				*get_map(char *file_name);
 void				check_map(t_map *map);
+void				open_window(t_map *map);
 
 #endif

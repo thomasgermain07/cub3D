@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/01/10 18:33:20 by thgermai         ###   ########.fr        #
+#    Updated: 2020/01/11 11:37:28 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRCS = ./srcs/main.c\
 		./srcs/parsing.c\
 		./srcs/get_map.c\
 		./srcs/check_map.c\
-		./srcs/verify_map.c
+		./srcs/verify_map.c\
+		./srcs/open_window.c
 INCLUDES = ./includes/cub3d.h
 LIB = ./libft/libft.a
 CFLAGS = -Wall -Wextra -Werror
