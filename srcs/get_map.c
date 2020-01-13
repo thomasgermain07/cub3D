@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/10 18:22:18 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/13 09:22:24 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void		init_map(t_map *map)
 	map->texture.we = NULL;
 	map->texture.ea = NULL;
 	map->texture.s = NULL;
+	map->mlx_param.mlx = NULL;
+	map->mlx_param.window = NULL;
 	map->player.orientation = '\0';
 	map->player.x = 0;
 	map->player.y = 0;
-	map->ceiling = NULL;
-	map->ground = NULL;
+	map->ceiling = 0;
+	map->ground = 0;
 	map->plan = NULL;
 }
 
@@ -62,12 +64,15 @@ void		read_file(int fd, t_map *map)
 		exit(0);
 	*list = NULL;
 	temp = NULL;
-	while ((ret = get_next_line(fd, &temp)) != 0)
+	while ((ret = get_next_line(fd, &temp)))
 	{
 		if (ret == -1)
 			exit(0);
-		parsing(temp, map, list);
-		free(temp);
+		if (temp)
+		{
+			parsing(temp, map, list);
+			free(temp);
+		}
 	}
 	if (temp)
 		free(temp);

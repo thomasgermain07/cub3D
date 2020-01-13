@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/10 18:20:05 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/13 08:48:31 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@ void	print_map(t_map *map)
 
 	ft_printf("\n");
 
-	ft_printf("ground : %s\n", map->ground);
-	ft_printf("ceiling : %s\n", map->ceiling);
+	char *ground = ft_itoa_address(map->ground);
+	char *ceiling = ft_itoa_address(map->ceiling);
+	ft_printf("ground : %i -> %s\n", map->ground, ground);
+	ft_printf("ceiling : %i -> %s\n", map->ceiling, ceiling);
+	free(ground);
+	free(ceiling);
 
 	ft_printf("\n");
 

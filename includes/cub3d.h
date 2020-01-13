@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/11 11:36:02 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/13 09:22:43 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <mlx.h>
+# include <math.h>
 # include "error.h"
 # include <stdio.h>
 # include <fcntl.h>
@@ -42,13 +43,21 @@ typedef struct		s_texture
 	char			*s;
 }					t_texture;
 
+typedef struct		s_mlx_param
+{
+	void	*mlx;
+	void	*window;
+}					t_mlx_param;
+
+
 typedef struct		s_map
 {
 	t_resolution	resolution;
 	t_texture		texture;
 	t_player		player;
-	char			*ground;
-	char			*ceiling;
+	t_mlx_param		mlx_param;
+	int				ground;
+	int				ceiling;
 	char			**plan;
 }					t_map;
 
@@ -61,5 +70,7 @@ void				get_plan(char *str, t_list **list);
 t_map				*get_map(char *file_name);
 void				check_map(t_map *map);
 void				open_window(t_map *map);
+
+unsigned int		get_color(char *str);
 
 #endif
