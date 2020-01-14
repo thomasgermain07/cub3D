@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/13 08:49:00 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/13 14:53:33 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ unsigned int	get_color(char *str)
 	r = (int)pow(256, 2) * r;
 	g = 256 * g;
 	free(str);
-	return (r+ g + b);
+	return (r + g + b);
 }
 
 void			parsing(char *str, t_map *map, t_list **list)

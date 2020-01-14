@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/13 09:22:24 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/13 10:54:26 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_map		*get_map(char *file_name)
 		return (NULL);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		return (NULL);
-	init_map(map);
+	//init_map(map);
 	read_file(fd, map);
 	check_map(map);
 	close(fd);
