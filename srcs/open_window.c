@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/14 09:41:08 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/14 11:15:20 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,67 @@ void		close_window(t_map *map)
 	exit(0);
 }
 
-void		create_image(t_map *map, int x , int y)
+void		create_v_line(float x, t_map *map)
+{
+	int i;
+
+	i = -1;
+	while (++i < map->resolution.y_res)
+		mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, x, i, map->ceiling);
+}
+
+void		create_h_line(t_map *map)
+{
+	int				i;
+	int				map_size;
+	float			case_size;
+	float			current;
+
+	map_size = 0;
+	while (map->plan[map_size])
+		map_size++;
+	case_size = (float)map->resolution.y_res / map_size;
+	current = case_size;
+	while (current < map->resolution.y_res)
+	{
+		i = -1;
+		while (++i < map->resolution.x_res)
+			mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, i, current, map->ground);
+		current += case_size;
+	}
+}
+
+void		create_mapping(t_map *map)
+{
+	int				map_size;
+	float			case_size;
+	float			current;
+
+	map_size = ft_strlen(map->plan[0]);
+	case_size = (float)map->resolution.x_res / map_size;
+	current = case_size;
+	while (current < map->resolution.x_res)
+	{
+		printf("%f\n", current);
+		create_v_line(current, map);
+		current += case_size;
+	}
+	create_h_line(map);
+}
+
+void		create_player(t_map *map, int x, int y)
 {
 	int		i;
 	int		j;
 
-	i = 150;
-	j = 150;
-	map->mlx_param.image = mlx_xpm_file_to_image(map->mlx_param.mlx, map->texture.s , &i, &j);
-	mlx_put_image_to_window(map->mlx_param.mlx, map->mlx_param.window,	map->mlx_param.image, x, y);
-	ft_printf("i -> %d : j -> %d\n", i, j);
+	i = 1;
+	while (i < 15)
+	{
+		j = -1;
+		while (++j < i)
+			mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, x - j, y - i, 1238946);
+		i++;
+	}
 }
 
 void		moving(int *x, int *y, int direction, t_map *map)
@@ -41,27 +92,25 @@ void		moving(int *x, int *y, int direction, t_map *map)
 		*y -= 30;
 	else if (direction == 1)
 		*y += 30;
-	if (map->mlx_param.image)
-		mlx_clear_window(map->mlx_param.mlx, map->mlx_param.window);
-	create_image(map, *x, *y);
+	mlx_clear_window(map->mlx_param.mlx, map->mlx_param.window);
+	create_mapping(map);
+	create_player(map, *x, *y);
 }
-
-
 
 int			key_center(int key, t_map *map)
 {
-	static int x = 0;
-	static int y = 0;
+	static int x = 250;
+	static int y = 250;
 
-	ft_printf("key -> %i\n", key);
-
+	ft_printf("\nkey -> %i\n", key);
 	if (key == 53)
 		close_window(map);
-	if (key == 0 || key == 1 || key == 2 || key == 13)
+	if (key == 13 || key == 0 || key == 1 || key == 2)
 		moving(&x, &y, key, map);
 	if (key == 14)
-		create_image(map, x, y);
-	ft_printf("x = %d : y = %d\n", x, y);
+		create_mapping(map);
+	if (key == 15)
+		create_player(map, x, y);
 	return (0);
 }
 
