@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:13:32 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/13 14:58:47 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/15 14:10:19 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,12 @@ int			main(int ac, char **av)
 	//system("leaks cub3d");
 	return (0);
 }
+
+/*
+**	KEY_MEMO
+** 53	= ESC
+** 0	= Q
+** 1	= S
+** 2	= D
+** 13	= Z
+*/

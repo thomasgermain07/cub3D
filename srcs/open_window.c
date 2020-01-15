@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/14 11:15:20 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/15 20:14:36 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,101 +18,109 @@ void		close_window(t_map *map)
 	mlx_destroy_image(map->mlx_param.mlx, map->mlx_param.window);
 	exit(0);
 }
+// float		vertical(t_map *map)
+// {
+// 	float		case_size;
+// 	float		current;
 
-void		create_v_line(float x, t_map *map)
+// 	case_size = map->resolution.x_res / map->plan.size_x;
+// 	current = case_size;
+// 	while (current < map->player.x)
+// 		current += case_size;
+// 	return (map->player.x - current);
+// }
+
+// float		horizontal(t_map *map)
+// {
+// 	float		case_size;
+// 	float		current;
+
+// 	case_size = map->resolution.y_res / map->plan.size_y;
+// 	current = map->resolution.y_res;
+// 	while (current > map->player.y)
+// 		current -= case_size;
+// 	return (map->player.y - current)
+// }
+
+// void		moving(int *x, int *y, int direction, t_map *map)
+// {
+// 	if (direction == 2)
+
+// 	else if (direction == 0)
+
+// 	else if (direction == 13)
+
+// 	else if (direction == 1)
+
+// 	else if (direction == 123)
+
+// 	else if (direction == 124)
+// }
+
+void		raycasting(t_map *map)
 {
-	int i;
+	float	pos_x;
+	float	pos_y;
 
-	i = -1;
-	while (++i < map->resolution.y_res)
-		mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, x, i, map->ceiling);
-}
+	float	plan_x;
+	float	plan_y;
+	// balayage de bande de pixel
+	int 	x;
 
-void		create_h_line(t_map *map)
-{
-	int				i;
-	int				map_size;
-	float			case_size;
-	float			current;
+	float cam_x;
+	// point d'origine ray
+	float ray_pos_x;
+	float ray_pos_y;
+	// direction ray depuis point d'origine
+	float ray_dir_x;
+	float ray_dir_y;
 
-	map_size = 0;
-	while (map->plan[map_size])
-		map_size++;
-	case_size = (float)map->resolution.y_res / map_size;
-	current = case_size;
-	while (current < map->resolution.y_res)
-	{
-		i = -1;
-		while (++i < map->resolution.x_res)
-			mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, i, current, map->ground);
-		current += case_size;
-	}
-}
+	plan_x = 0;
+	plan_y = 0;
 
-void		create_mapping(t_map *map)
-{
-	int				map_size;
-	float			case_size;
-	float			current;
+	pos_x = map->resolution.x_res / 2;
+	pos_y = map->resolution.y_res / 2;
+	// rendre perpendiculaire la vue et le plan de projection
+	if (map->player.orientation == 'N' || map->player.orientation == 'S')
+		plan_y = 1;
+	else if (map->player.orientation == 'W' || map->player.orientation == 'E')
+		plan_x = 1;
 
-	map_size = ft_strlen(map->plan[0]);
-	case_size = (float)map->resolution.x_res / map_size;
-	current = case_size;
-	while (current < map->resolution.x_res)
-	{
-		printf("%f\n", current);
-		create_v_line(current, map);
-		current += case_size;
-	}
-	create_h_line(map);
-}
+	x = 0;
 
-void		create_player(t_map *map, int x, int y)
-{
-	int		i;
-	int		j;
+	cam_x = (2 * x / map->resolution.x_res) - 1;
 
-	i = 1;
-	while (i < 15)
-	{
-		j = -1;
-		while (++j < i)
-			mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, x - j, y - i, 1238946);
-		i++;
-	}
-}
+	ray_pos_x = pos_x;
+	ray_pos_y = pos_y;
 
-void		moving(int *x, int *y, int direction, t_map *map)
-{
-	if (direction == 2)
-		*x += 30;
-	else if (direction == 0)
-		*x -= 30;
-	else if (direction == 13)
-		*y -= 30;
-	else if (direction == 1)
-		*y += 30;
-	mlx_clear_window(map->mlx_param.mlx, map->mlx_param.window);
-	create_mapping(map);
-	create_player(map, *x, *y);
+	ray_dir_x = map->player.dir_x + (plan_x * cam_x);
+	ray_dir_y = map->player.dir_y + (plan_y * cam_x);
+
+	printf("x = %d\npos_x %f : pos_y %f\ncam_x %f\nray_pos_x %f: ray_pos_y %f\nray_dir_x %f : ray_dir_y %f\n\n", x, pos_x, pos_y, ray_pos_x, ray_pos_y,cam_x, ray_dir_x, ray_dir_y);
+
+	// float	side_dist_x;
+	// float	side_dist_y;
+
+	float	delta_dist_x;
+	float	delta_dist_y;
+
+	delta_dist_x = sqrt(1 + (ray_dir_y * ray_dir_y) / (ray_dir_x * ray_dir_x));
+	delta_dist_y = sqrt(1 + (ray_dir_x * ray_dir_x) / (ray_dir_y * ray_dir_y));
+
+	printf("delta_dist_x %f : delta_dist_y %f\n", delta_dist_x, delta_dist_y);
 }
 
 int			key_center(int key, t_map *map)
 {
-	static int x = 250;
-	static int y = 250;
-
 	ft_printf("\nkey -> %i\n", key);
+	raycasting(map);
 	if (key == 53)
 		close_window(map);
-	if (key == 13 || key == 0 || key == 1 || key == 2)
-		moving(&x, &y, key, map);
 	if (key == 14)
 		create_mapping(map);
-	if (key == 15)
-		create_player(map, x, y);
 	return (0);
 }
+
 
 void		open_window(t_map *map)
 {
@@ -122,3 +130,5 @@ void		open_window(t_map *map)
 	mlx_key_hook(map->mlx_param.window, key_center, map);
 	mlx_loop(map->mlx_param.mlx);
 }
+
+

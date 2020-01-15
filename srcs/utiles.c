@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/13 08:48:31 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/15 14:47:05 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	print_map(t_map *map)
 
 	ft_printf("\n");
 
+	ft_printf("player.dir_x : %d\n", map->player.dir_x);
+	ft_printf("player.dir_y : %d\n", map->player.dir_y);
 	ft_printf("player.orientation : %c\n", map->player.orientation);
 	ft_printf("player.x : %d\n", map->player.x);
 	ft_printf("player.y : %d\n", map->player.y);
@@ -43,8 +45,9 @@ void	print_map(t_map *map)
 
 	ft_printf("\n");
 
-	for (int i = 0; map->plan[i]; i++)
-		ft_printf("plan[%i] :\t%s\n", i, map->plan[i]);
+	ft_printf("plan.size_x = %d : plan.size_y = %d\n", map->plan.size_x, map->plan.size_y);
+	for (int i = 0; map->plan.plan[i]; i++)
+		ft_printf("plan[%i] :\t%s\n", i, map->plan.plan[i]);
 }
 
 char		*skip_space(char *str)

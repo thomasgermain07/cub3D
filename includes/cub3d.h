@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/13 17:11:44 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/15 14:47:29 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct		s_player
 	int				x;
 	int				y;
 	char			orientation;
+	int				dir_x;
+	int				dir_y;
 }					t_player;
 
 typedef struct		s_resolution
@@ -33,6 +35,14 @@ typedef struct		s_resolution
 	int 			x_res;
 	int				y_res;
 }					t_resolution;
+
+typedef struct		s_plan
+{
+	int				size_x;
+	int				size_y;
+	char			**plan;
+}					t_plan;
+
 
 typedef struct		s_texture
 {
@@ -56,9 +66,9 @@ typedef struct		s_map
 	t_texture		texture;
 	t_player		player;
 	t_mlx_param		mlx_param;
+	t_plan			plan;
 	int				ground;
 	int				ceiling;
-	char			**plan;
 }					t_map;
 
 char				*skip_space(char *str);
@@ -70,7 +80,9 @@ void				get_plan(char *str, t_list **list);
 t_map				*get_map(char *file_name);
 void				check_map(t_map *map);
 void				open_window(t_map *map);
-
 unsigned int		get_color(char *str);
+void				create_mapping(t_map *map);
+void				create_h_line(t_map *map);
+void				create_v_line(float x, t_map *map);
 
 #endif

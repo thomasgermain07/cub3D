@@ -6,35 +6,30 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/01/13 13:05:30 by thgermai         ###   ########.fr        #
+#    Updated: 2020/01/15 09:21:40 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
-SRCS = ./srcs/main.c\
-		./srcs/utiles.c\
-		./srcs/parsing.c\
-		./srcs/get_map.c\
-		./srcs/check_map.c\
-		./srcs/verify_map.c\
-		./srcs/open_window.c
+SRCS = ./srcs/*.c
 INCLUDES = ./includes/cub3d.h
 LIB = ./libft/libft.a
 CFLAGS = -Wall -Wextra -Werror
 DEBUG = -g3 -fsanitize=address
 MLX = -lmlx -framework OpenGL -framework AppKit
-LOGFILE=$(LOGPATH) `date +'%y.%m.%d %H:%M:%S'`
+LOGFILE = $(LOGPATH) `date +'%y.%m.%d %H:%M:%S'`
+MAP = maps/map1.cub
 
 all : $(NAME)
 
 $(NAME) :
 	@(gcc $(CFLAGS) $(MLX) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
 	@(echo "")
-	@(./$(NAME) map.cub)
+	@(./$(NAME) $(MAP))
 
 f : $(OBJS)
 	@(gcc $(CFLAGS) $(MLX) $(DEBUG) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
-	@(./$(NAME) map.cub)
+	@(./$(NAME) $(MAP))
 
 clean :
 	@(rm -f $(NAME))
