@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/17 11:33:36 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/17 13:56:02 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,17 @@ void		raycasting(t_map *map)
 				map_y += step_y;
 				side = 1;
 			}
-			if (map->plan.plan[map_x][map_y] != '0') // Ca ne rentre jamais avec side a 1 !!!!!!!!!!!!!!
+			if (map->plan.plan[map_x][map_y] != '0')
 				hit = 1;
 		}
+		printf("map_x = %d\nray_pos_x = %f\nstep_x = %f\nray_dir_x = %f\n", map_x, ray_pos_x, step_x, ray_dir_x);
 		if (!side)
 			perp_wall_dist = fabs(((float)map_x - ray_pos_x + (1.0 - step_x) / 2.0) / ray_dir_x);
 		else
 			perp_wall_dist = fabs(((float)map_y - ray_pos_y + (1.0 - step_y) / 2.0) / ray_dir_y);
 		hauteur_ligne = (int)fabs(map->resolution.y_res / perp_wall_dist);
-		draw_start = (int)(-hauteur_ligne / 2 + map->resolution.y_res / 2);
-		draw_end = (int)(hauteur_ligne / 2 + map->resolution.y_res / 2);
+		draw_start = -hauteur_ligne / 2 + map->resolution.y_res / 2;
+		draw_end = hauteur_ligne / 2 + map->resolution.y_res / 2;
 		if (draw_start < 0)
 			draw_start = 0;
 		if (draw_end >= map->resolution.y_res)

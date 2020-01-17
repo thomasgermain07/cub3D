@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 09:20:10 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/15 13:22:50 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/17 12:36:53 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		create_v_line(float x, t_map *map)
 
 	i = -1;
 	while (++i < map->resolution.y_res)
-		mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, x, i, map->ceiling);
+		mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, x, i, 16777215);
 }
 
 void		create_h_line(t_map *map)
@@ -33,7 +33,7 @@ void		create_h_line(t_map *map)
 	{
 		i = -1;
 		while (++i < map->resolution.x_res)
-			mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, i, current, map->ground);
+			mlx_pixel_put(map->mlx_param.mlx, map->mlx_param.window, i, current, 16777215);
 		current += case_size;
 	}
 }
