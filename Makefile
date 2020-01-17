@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/01/15 09:21:40 by thgermai         ###   ########.fr        #
+#    Updated: 2020/01/17 07:46:29 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ MAP = maps/map1.cub
 all : $(NAME)
 
 $(NAME) :
-	@(gcc $(CFLAGS) $(MLX) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
+	@(gcc $(MLX) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
 	@(echo "")
 	@(./$(NAME) $(MAP))
 

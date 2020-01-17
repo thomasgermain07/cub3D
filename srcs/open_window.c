@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/15 20:14:36 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/17 08:57:30 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,63 +57,11 @@ void		close_window(t_map *map)
 // 	else if (direction == 124)
 // }
 
-void		raycasting(t_map *map)
-{
-	float	pos_x;
-	float	pos_y;
-
-	float	plan_x;
-	float	plan_y;
-	// balayage de bande de pixel
-	int 	x;
-
-	float cam_x;
-	// point d'origine ray
-	float ray_pos_x;
-	float ray_pos_y;
-	// direction ray depuis point d'origine
-	float ray_dir_x;
-	float ray_dir_y;
-
-	plan_x = 0;
-	plan_y = 0;
-
-	pos_x = map->resolution.x_res / 2;
-	pos_y = map->resolution.y_res / 2;
-	// rendre perpendiculaire la vue et le plan de projection
-	if (map->player.orientation == 'N' || map->player.orientation == 'S')
-		plan_y = 1;
-	else if (map->player.orientation == 'W' || map->player.orientation == 'E')
-		plan_x = 1;
-
-	x = 0;
-
-	cam_x = (2 * x / map->resolution.x_res) - 1;
-
-	ray_pos_x = pos_x;
-	ray_pos_y = pos_y;
-
-	ray_dir_x = map->player.dir_x + (plan_x * cam_x);
-	ray_dir_y = map->player.dir_y + (plan_y * cam_x);
-
-	printf("x = %d\npos_x %f : pos_y %f\ncam_x %f\nray_pos_x %f: ray_pos_y %f\nray_dir_x %f : ray_dir_y %f\n\n", x, pos_x, pos_y, ray_pos_x, ray_pos_y,cam_x, ray_dir_x, ray_dir_y);
-
-	// float	side_dist_x;
-	// float	side_dist_y;
-
-	float	delta_dist_x;
-	float	delta_dist_y;
-
-	delta_dist_x = sqrt(1 + (ray_dir_y * ray_dir_y) / (ray_dir_x * ray_dir_x));
-	delta_dist_y = sqrt(1 + (ray_dir_x * ray_dir_x) / (ray_dir_y * ray_dir_y));
-
-	printf("delta_dist_x %f : delta_dist_y %f\n", delta_dist_x, delta_dist_y);
-}
-
 int			key_center(int key, t_map *map)
 {
 	ft_printf("\nkey -> %i\n", key);
-	raycasting(map);
+	if (key == 13)
+		raycasting(map);
 	if (key == 53)
 		close_window(map);
 	if (key == 14)

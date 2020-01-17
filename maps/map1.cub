@@ -1,4 +1,4 @@
-R  700 700
+R  1680 1024
 
 NO /path_to_the_north_texture
 SO ./path_to_the_south_texture
@@ -6,13 +6,13 @@ WE ./path_to_the_west_texture
 EA ./path_to_the_east_texture
 S ./texture/Frfrance.XPM
 
-F 220,100,12
-C 225,30,0
+F 255,0,0
+C 0,255,0
 
 1 1 1 1 1 1 1
+1 1 0 0 0 1 1
 1 0 0 0 0 0 1
 1 0 0 0 0 0 1
-1 0 0 0 0 0 1
-1 0 0 0 0 0 1
-1 0 0 N 0 0 1
+1 1 0 0 0 0 1
+1 0 0 W 0 0 1
 1 1 1 1 1 1 1

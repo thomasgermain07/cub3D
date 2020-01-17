@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/15 14:47:29 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/17 08:57:23 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,6 @@ void				create_mapping(t_map *map);
 void				create_h_line(t_map *map);
 void				create_v_line(float x, t_map *map);
 
+
+void				raycasting(t_map *map);
 #endif
