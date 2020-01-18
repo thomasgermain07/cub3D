@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/17 08:57:30 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/18 18:17:34 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		close_window(t_map *map)
 	mlx_destroy_image(map->mlx_param.mlx, map->mlx_param.window);
 	exit(0);
 }
+
 // float		vertical(t_map *map)
 // {
 // 	float		case_size;
@@ -42,33 +43,34 @@ void		close_window(t_map *map)
 // 	return (map->player.y - current)
 // }
 
-// void		moving(int *x, int *y, int direction, t_map *map)
-// {
-// 	if (direction == 2)
-
-// 	else if (direction == 0)
-
-// 	else if (direction == 13)
-
-// 	else if (direction == 1)
-
-// 	else if (direction == 123)
-
-// 	else if (direction == 124)
-// }
+void		moving(int direction, t_map *map)
+{
+	if (direction == 2)
+		map->player.x++;
+	else if (direction == 0)
+		map->player.x--;
+	else if (direction == 13)
+		map->player.y--;
+	else if (direction == 1)
+		map->player.y++;
+	else if (direction == 123)
+		;
+	else if (direction == 124)
+		;
+	mlx_clear_window(map->mlx_param.mlx, map->mlx_param.window);
+}
 
 int			key_center(int key, t_map *map)
 {
-	ft_printf("\nkey -> %i\n", key);
-	if (key == 13)
-		raycasting(map);
+	raycasting(map);
+	if (key == 2 || key == 0 || key == 1 ||key == 13)
+		moving(key, map);
 	if (key == 53)
 		close_window(map);
 	if (key == 14)
 		create_mapping(map);
 	return (0);
 }
-
 
 void		open_window(t_map *map)
 {
@@ -78,5 +80,3 @@ void		open_window(t_map *map)
 	mlx_key_hook(map->mlx_param.window, key_center, map);
 	mlx_loop(map->mlx_param.mlx);
 }
-
-

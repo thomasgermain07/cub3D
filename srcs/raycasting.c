@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/17 15:33:30 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/18 17:57:53 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void		raycasting(t_map *map)
 		plan_y = 1;
 	else if (dir_y)
 		plan_x = 1;
-	// x est la colonne de pixel actuel
-	int x = 0;
+	// X est la colonne de pixel actuel
+	int x = 1;
 	float camera_x;
 	float ray_pos_x;
 	float ray_pos_y;
@@ -42,14 +42,13 @@ void		raycasting(t_map *map)
 	float delta_dist_y;
 	float step_x;
 	float step_y;
-	int hit = 0; // Savoir si on touche un mur ou pas
+	int hit; // Savoir si on touche un mur ou pas
 	int side; // Savoir quelle face on touche
 	float perp_wall_dist; // Distance corriger du rayon
 	int hauteur_ligne;
 	int draw_start;
 	int draw_end;
 	int color;
-	ft_printf("Start the RayCasting algo... \n");
 	while (x <= map->resolution.x_res)
 	{
 		camera_x = (2.0 * (float)x / (float)map->resolution.x_res) - 1.0;
@@ -60,7 +59,7 @@ void		raycasting(t_map *map)
 		// position sur la map actuel
 		map_x = (int)ray_pos_x;
 		map_y = (int)ray_pos_y;
-		// longueur des rayons
+		// longueurs des rayons
 		delta_dist_x = sqrt(1.0 + (ray_dir_y * ray_dir_y) / (ray_dir_x * ray_dir_x));
 		delta_dist_y = sqrt(1.0 + (ray_dir_x * ray_dir_x) / (ray_dir_y * ray_dir_y));
 		// calcule le vecteur de direction et la longueur entre deux segments
@@ -102,8 +101,6 @@ void		raycasting(t_map *map)
 			if (map->plan.plan[map_x][map_y] != '0')
 				hit = 1;
 		}
-		printf("side == %d\n", side);
-		printf("map_x = %d\nray_pos_x = %f\nstep_x = %f\nray_dir_x = %f\n", map_x, ray_pos_x, step_x, ray_dir_x);
 		if (!side)
 			perp_wall_dist = fabs(((float)map_x - ray_pos_x + (1.0 - step_x) / 2.0) / ray_dir_x);
 		else
@@ -111,9 +108,6 @@ void		raycasting(t_map *map)
 		hauteur_ligne = (int)fabs(map->resolution.y_res / perp_wall_dist);
 		draw_start = -hauteur_ligne / 2 + map->resolution.y_res / 2;
 		draw_end = hauteur_ligne / 2 + map->resolution.y_res / 2;
-		// ft_printf("draw_start = %d\n", draw_start);
-		// if (x == 10)
-		// 	break ;
 		if (draw_start < 0)
 			draw_start = 0;
 		if (draw_end >= map->resolution.y_res)
@@ -127,6 +121,5 @@ void		raycasting(t_map *map)
 			draw_start++;
 		}
 		x++;
-		ft_printf("\n");
 	}
 }
