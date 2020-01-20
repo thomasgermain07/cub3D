@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/15 14:46:22 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/20 09:27:49 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,22 @@ void		check_line(char *line, t_map *map)
 	j = -1;
 	if (!i)
 		check_first_line(line);
-	while (line[++j])
+	else
 	{
-		if (ft_find_in("012NSEW", line[j]) == -1)
+		while (line[++j])
 		{
-			ft_printf(ERR_WRG_PAR, i, j, line[j]);
+			if (ft_find_in("012NSEW", line[j]) == -1)
+			{
+				ft_printf(ERR_WRG_PAR, i, j, line[j]);
+				exit(0);
+			}
+		}
+		check_spawn(line, map, i);
+		if (line[0] != '1' || line[--j] != '1')
+		{
+			ft_printf(ERR_WRG_OUTLINE, i, j, line[j]);
 			exit(0);
 		}
-	}
-	check_spawn(line, map, i);
-	if (line[0] != '1' || line[--j] != '1')
-	{
-		ft_printf(ERR_WRG_OUTLINE, i, j, line[j]);
-		exit(0);
 	}
 	i++;
 }

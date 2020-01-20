@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/13 14:53:33 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/20 09:08:06 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void			parsing(char *str, t_map *map, t_list **list)
 		map->texture.ea = skip_space(str + ft_find_in(str, 'A') + 1);
 	else if (ft_strnstr(str, "R", ft_strlen(str)))
 		get_resolution(str, map);
-	else if (ft_strnstr(str, "S", ft_strlen(str)))
+	else if (ft_strnstr(str, "S", ft_strlen(str)) && !map->texture.s)
 		map->texture.s = skip_space(str + ft_find_in(str, 'S') + 1);
 	else if (ft_strnstr(str, "F", ft_strlen(str)))
 		map->ground = get_color(skip_space(str + ft_find_in(str, 'F') + 1));

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/17 08:57:23 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/20 10:34:52 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct		s_mlx_param
 {
 	void	*mlx;
 	void	*window;
-	void	*image;
+	int		*image;
 }					t_mlx_param;
 
 typedef struct		s_map
@@ -85,6 +85,6 @@ void				create_mapping(t_map *map);
 void				create_h_line(t_map *map);
 void				create_v_line(float x, t_map *map);
 
-
+int					(*get_img_addr(t_map *map))[][1];
 void				raycasting(t_map *map);
 #endif
