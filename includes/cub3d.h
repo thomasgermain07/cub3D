@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/20 14:22:05 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/20 14:58:49 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct		s_mlx_param
 	int				hit;
 	int				side;
 	float			perp_wall_dist;
-	int				hateur_de_ligne;
+	int				hauteur_ligne;
 	int				draw_start;
 	int				draw_end;
  }					t_camera;
@@ -114,6 +114,12 @@ unsigned int		get_color(char *str);
 void				create_mapping(t_map *map);
 void				create_h_line(t_map *map);
 void				create_v_line(float x, t_map *map);
+
+void				set_up_camera(t_map *map);
+void				initiate_algo_value(t_map *map, int x);
+void				get_ray_dir(t_map *map);
+void				check_for_hit(t_map *map);
+void				prepare_for_printing(t_map *map);
 
 int					(*get_img_addr(t_map *map))[][1];
 void				raycasting(t_map *map);

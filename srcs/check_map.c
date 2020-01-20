@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/20 09:27:49 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/20 15:47:01 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,22 @@ void		check_first_line(char *line)
 
 void		complete_orientation(t_map *map)
 {
-	if (map->player.orientation == 'N')
+	if (map->player.orientation == 'E')
 	{
 		map->player.dir_x = 0;
 		map->player.dir_y = -1;
 	}
-	else if (map->player.orientation == 'S')
+	else if (map->player.orientation == 'W')
 	{
 		map->player.dir_x = 0;
 		map->player.dir_y = 1;
 	}
-	else if (map->player.orientation == 'W')
+	else if (map->player.orientation == 'N')
 	{
 		map->player.dir_x = -1;
 		map->player.dir_y = 0;
 	}
-	else if (map->player.orientation == 'E')
+	else if (map->player.orientation == 'S')
 	{
 		map->player.dir_x = 1;
 		map->player.dir_y = 0;

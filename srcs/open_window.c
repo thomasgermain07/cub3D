@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/20 14:04:46 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/20 15:49:18 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int		(*get_img_addr(t_map *map))[][1]
 	int		(*pixel_array)[map->resolution.x_res][1];
 	char	*tmp;
 
-	map->mlx_param.image = mlx_new_image(map->mlx_param.mlx, map->resolution.x_res, map->resolution.y_res);
-	tmp = mlx_get_data_addr(map->mlx_param.image, &bit_per_pixel, &size_line, &endian);
+	map->mlx_param.image = mlx_new_image(map->mlx_param.mlx,
+		map->resolution.x_res, map->resolution.y_res);
+	tmp = mlx_get_data_addr(map->mlx_param.image, &bit_per_pixel,
+		&size_line, &endian);
 	pixel_array = (void *)tmp;
 	return (pixel_array);
 }
@@ -36,13 +38,13 @@ int		(*get_img_addr(t_map *map))[][1]
 void		moving(int direction, t_map *map)
 {
 	/* Need a button pressed and button released */
-	if (direction == 2)
+	if (direction == 1)
 		map->player.x++;
-	else if (direction == 0)
-		map->player.x--;
 	else if (direction == 13)
+		map->player.x--;
+	else if (direction == 0)
 		map->player.y--;
-	else if (direction == 1)
+	else if (direction == 2)
 		map->player.y++;
 	else if (direction == 123)
 		;
@@ -64,8 +66,8 @@ int			key_center(int key, t_map *map)
 void		open_window(t_map *map)
 {
 	map->mlx_param.mlx = mlx_init();
-	map->mlx_param.window = mlx_new_window(map->mlx_param.mlx, map->resolution.x_res,
-		map->resolution.y_res, "Cub3d");
+	map->mlx_param.window = mlx_new_window(map->mlx_param.mlx,
+		map->resolution.x_res, map->resolution.y_res, "Cub3d");
 	raycasting(map);
 	mlx_key_hook(map->mlx_param.window, key_center, map);
 	mlx_loop(map->mlx_param.mlx);
