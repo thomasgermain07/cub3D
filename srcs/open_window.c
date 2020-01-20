@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/20 11:03:10 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/20 14:04:46 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ void		close_window(t_map *map)
 
 int		(*get_img_addr(t_map *map))[][1]
 {
-	int bit_per_pixel;
-	int size_line;
-	int endian;
+	int		bit_per_pixel;
+	int		size_line;
+	int		endian;
+	int		(*pixel_array)[map->resolution.x_res][1];
+	char	*tmp;
 
-	int (*pixel_array)[map->resolution.x_res][1];
 	map->mlx_param.image = mlx_new_image(map->mlx_param.mlx, map->resolution.x_res, map->resolution.y_res);
-	char *tmp = mlx_get_data_addr(map->mlx_param.image, &bit_per_pixel, &size_line, &endian);
+	tmp = mlx_get_data_addr(map->mlx_param.image, &bit_per_pixel, &size_line, &endian);
 	pixel_array = (void *)tmp;
 	return (pixel_array);
 }
