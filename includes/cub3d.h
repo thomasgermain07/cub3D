@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/20 14:58:49 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/21 13:01:26 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+# define MV_SPEED 0.2
+# define ROT_SPEED 0.2
+
 typedef struct		s_player
 {
-	int				x;
-	int				y;
+	float			x;
+	float			y;
 	char			orientation;
-	int				dir_x;
-	int				dir_y;
+	float			dir_x;
+	float			dir_y;
 }					t_player;
 
 typedef struct		s_resolution
@@ -101,6 +104,7 @@ typedef struct		s_map
 	int				ceiling;
 }					t_map;
 
+/* ---- Parsing part ----*/
 char				*skip_space(char *str);
 void				check_line(char *line, t_map *map);
 void				check_last_line(char *line);
@@ -114,13 +118,20 @@ unsigned int		get_color(char *str);
 void				create_mapping(t_map *map);
 void				create_h_line(t_map *map);
 void				create_v_line(float x, t_map *map);
-
+/* ----- Raycasting algo ---- */
 void				set_up_camera(t_map *map);
 void				initiate_algo_value(t_map *map, int x);
 void				get_ray_dir(t_map *map);
 void				check_for_hit(t_map *map);
 void				prepare_for_printing(t_map *map);
-
 int					(*get_img_addr(t_map *map))[][1];
 void				raycasting(t_map *map);
+/* ----- Moving gestion ---- */
+void				move_foward(t_map *map);
+void				move_backward(t_map *map);
+void				move_left(t_map *map);
+void				move_right(t_map *map);
+void				turn_right(t_map *map);
+void				turn_left(t_map *map);
+
 #endif

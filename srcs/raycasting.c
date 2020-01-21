@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/20 17:00:24 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/21 12:59:18 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,22 @@ void	create_background(t_map *map, int size, int (*pixel_array)[size][1])
 			*pixel_array[i][j++] = map->ground;
 		i++;
 	}
+}
+
+int		(*get_img_addr(t_map *map))[][1]
+{
+	int		bit_per_pixel;
+	int		size_line;
+	int		endian;
+	int		(*pixel_array)[map->resolution.x_res][1];
+	char	*tmp;
+
+	map->mlx_param.image = mlx_new_image(map->mlx_param.mlx,
+		map->resolution.x_res, map->resolution.y_res);
+	tmp = mlx_get_data_addr(map->mlx_param.image, &bit_per_pixel,
+		&size_line, &endian);
+	pixel_array = (void *)tmp;
+	return (pixel_array);
 }
 
 void	raycasting(t_map *map)

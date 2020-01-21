@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/20 15:49:18 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/21 13:55:24 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,33 @@
 
 void		close_window(t_map *map)
 {
+	int i;
+
+	i = 0;
 	mlx_clear_window(map->mlx_param.mlx, map->mlx_param.window);
 	mlx_destroy_image(map->mlx_param.mlx, map->mlx_param.window);
+	while (map->plan.plan[i])
+		free(map->plan.plan[i++]);
+	free(map);
 	exit(0);
-}
-
-int		(*get_img_addr(t_map *map))[][1]
-{
-	int		bit_per_pixel;
-	int		size_line;
-	int		endian;
-	int		(*pixel_array)[map->resolution.x_res][1];
-	char	*tmp;
-
-	map->mlx_param.image = mlx_new_image(map->mlx_param.mlx,
-		map->resolution.x_res, map->resolution.y_res);
-	tmp = mlx_get_data_addr(map->mlx_param.image, &bit_per_pixel,
-		&size_line, &endian);
-	pixel_array = (void *)tmp;
-	return (pixel_array);
-}
-
-void		moving(int direction, t_map *map)
-{
-	/* Need a button pressed and button released */
-	if (direction == 1)
-		map->player.x++;
-	else if (direction == 13)
-		map->player.x--;
-	else if (direction == 0)
-		map->player.y--;
-	else if (direction == 2)
-		map->player.y++;
-	else if (direction == 123)
-		;
-	else if (direction == 124)
-		;
 }
 
 int			key_center(int key, t_map *map)
 {
+	ft_printf("here we are bro");
 	mlx_destroy_image(map->mlx_param.mlx, map->mlx_param.image);
-	 if (key == 2 || key == 0 || key == 1 ||key == 13)
-	 	moving(key, map);
+	if (key == 0)
+		move_left(map);
+	else if (key == 1)
+		move_backward(map);
+	else if (key == 2)
+		move_left(map);
+	else if (key == 13)
+		move_foward(map);
+	else if (key == 123)
+		turn_left(map);
+	else if (key == 124)
+		turn_right(map);
 	if (key == 53)
 		close_window(map);
 	raycasting(map);
@@ -69,6 +53,8 @@ void		open_window(t_map *map)
 	map->mlx_param.window = mlx_new_window(map->mlx_param.mlx,
 		map->resolution.x_res, map->resolution.y_res, "Cub3d");
 	raycasting(map);
+	mlx_hook(map->mlx_param.window, 2, (1L<<0), key_push, map);
+	mlx_hook(map->mlx_param.window, 3 (1l<<1), key_release,  )
 	mlx_key_hook(map->mlx_param.window, key_center, map);
 	mlx_loop(map->mlx_param.mlx);
 }
