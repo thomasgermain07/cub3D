@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:38:52 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/21 12:39:26 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/21 14:33:18 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void		move_foward(t_map *map)
 {
+	ft_printf("here i move foward\n");
 	if (map->plan.plan[(int)(map->player.x + map->camera.dir_x * MV_SPEED)][(int)map->player.y] != '1')
 		map->player.x += map->camera.dir_x * MV_SPEED;
 	if (map->plan.plan[(int)map->player.x][(int)(map->player.y + map->camera.dir_y * MV_SPEED)] != '1')
@@ -22,6 +23,7 @@ void		move_foward(t_map *map)
 
 void		move_backward(t_map *map)
 {
+	ft_printf("here i move backward\n");
 	if (map->plan.plan[(int)(map->player.x - map->camera.dir_x * MV_SPEED)][(int)map->player.y] != '1')
 		map->player.x -= map->camera.dir_x * MV_SPEED;
 	if (map->plan.plan[(int)map->player.x][(int)(map->player.y - map->camera.dir_y * MV_SPEED)] != '1')
@@ -30,6 +32,7 @@ void		move_backward(t_map *map)
 
 void		move_left(t_map *map)
 {
+	ft_printf("here i move left\n");
 	if (map->plan.plan[(int)(map->player.x - map->camera.plan_x * MV_SPEED)][(int)map->player.y] != '1')
 		map->player.x -= map->camera.plan_x * MV_SPEED;
 	if (map->plan.plan[(int)map->player.x][(int)(map->player.y - map->camera.plan_y * MV_SPEED)] != '1')
@@ -38,6 +41,7 @@ void		move_left(t_map *map)
 
 void		move_right(t_map *map)
 {
+	ft_printf("here i move right\n");
 	if (map->plan.plan[(int)(map->player.x + map->camera.plan_x * MV_SPEED)][(int)map->player.y] != '1')
 		map->player.x += map->camera.plan_x * MV_SPEED;
 	if (map->plan.plan[(int)map->player.x][(int)(map->player.y + map->camera.plan_y * MV_SPEED)] != '1')
@@ -49,6 +53,7 @@ void		turn_left(t_map *map)
 	float old_dir_x;
 	float old_plan_x;
 
+	ft_printf("here i turn left\n");
 	old_dir_x = map->player.dir_x;
 	map->player.dir_x = map->player.dir_x * cos(-ROT_SPEED) - map->player.dir_y * sin(-ROT_SPEED);
 	map->player.dir_y = old_dir_x * sin(-ROT_SPEED) + map->player.dir_y * cos(-ROT_SPEED);
@@ -62,6 +67,7 @@ void		turn_right(t_map *map)
 	float old_dir_x;
 	float old_plan_x;
 
+	ft_printf("here i turn left\n");
 	old_dir_x = map->player.dir_x;
 	map->player.dir_x = map->player.dir_x * cos(ROT_SPEED) - map->player.dir_y * sin(ROT_SPEED);
 	map->player.dir_y = old_dir_x * sin(ROT_SPEED) + map->player.dir_y * cos(ROT_SPEED);

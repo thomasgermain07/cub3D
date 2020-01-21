@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/21 12:59:18 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:02:31 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	raycasting(t_map *map)
 	set_up_camera(map);
 	pixel_array = get_img_addr(map);
 	create_background(map, map->resolution.x_res, pixel_array);
-	ft_printf("%d %d\n", map->player.x, map->player.y);
 	while (x <= map->resolution.x_res)
 	{
 		initiate_algo_value(map, x);

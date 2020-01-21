@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/21 13:01:26 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/21 15:05:23 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,18 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# define MV_SPEED 0.2
-# define ROT_SPEED 0.2
+# define MV_SPEED 0.1
+# define ROT_SPEED 0.1
+
+typedef struct		s_movement
+{
+	int				foward;
+	int				backward;
+	int				left;
+	int				right;
+	int				turn_left;
+	int				turn_right;
+}					t_movement;
 
 typedef struct		s_player
 {
@@ -31,6 +41,7 @@ typedef struct		s_player
 	char			orientation;
 	float			dir_x;
 	float			dir_y;
+	t_movement		movement;
 }					t_player;
 
 typedef struct		s_resolution
@@ -45,7 +56,6 @@ typedef struct		s_plan
 	int				size_y;
 	char			**plan;
 }					t_plan;
-
 
 typedef struct		s_texture
 {
