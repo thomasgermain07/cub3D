@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/21 15:05:23 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/21 16:24:57 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# define MV_SPEED 0.1
-# define ROT_SPEED 0.1
+# define MV_SPEED 0.08
+# define ROT_SPEED 0.05
 
 typedef struct		s_movement
 {

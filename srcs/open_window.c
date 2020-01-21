@@ -6,13 +6,13 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/21 15:05:09 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/21 16:39:16 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/cub3d.h"
 
-void		close_window(t_map *map)
+int			close_window(t_map *map)
 {
 	int i;
 
@@ -63,7 +63,6 @@ int			key_release(int key, t_map *map)
 
 int			key_center(t_map *map)
 {
-
 	if (map->player.movement.left)
 		move_left(map);
 	else if (map->player.movement.right)
@@ -81,6 +80,7 @@ int			key_center(t_map *map)
 	return (0);
 }
 
+/* Quand spawn E ou W erreur de turn direction */
 void		open_window(t_map *map)
 {
 	map->mlx_param.mlx = mlx_init();
@@ -90,6 +90,7 @@ void		open_window(t_map *map)
 	mlx_do_key_autorepeatoff(map->mlx_param.mlx);
 	mlx_hook(map->mlx_param.window, 2, (1L<<0), &key_push, map);
 	mlx_hook(map->mlx_param.window, 3, (1l<<1), &key_release, map);
+	mlx_hook(map->mlx_param.window, 17, (1l<<1), &close_window, map);
 	mlx_loop_hook(map->mlx_param.mlx, &key_center, map);
 	mlx_loop(map->mlx_param.mlx);
 }
