@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/21 16:39:16 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/22 09:29:19 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int			key_push(int key, t_map *map)
 		map->player.movement.right = 1;
 	else if (key == 13)
 		map->player.movement.foward = 1;
-	else if (key == 124)
-		map->player.movement.turn_left = 1;
 	else if (key == 123)
+		map->player.movement.turn_left = 1;
+	else if (key == 124)
 		map->player.movement.turn_right = 1;
 	if (key == 53)
 		close_window(map);
@@ -46,6 +46,7 @@ int			key_push(int key, t_map *map)
 
 int			key_release(int key, t_map *map)
 {
+	ft_printf("key = %d\n", key);
 	if (key == 0)
 		map->player.movement.left = 0;
 	else if (key == 1)
@@ -54,9 +55,9 @@ int			key_release(int key, t_map *map)
 		map->player.movement.right = 0;
 	else if (key == 13)
 		map->player.movement.foward = 0;
-	else if (key == 124)
-		map->player.movement.turn_left = 0;
 	else if (key == 123)
+		map->player.movement.turn_left = 0;
+	else if (key == 124)
 		map->player.movement.turn_right = 0;
 	return (0);
 }
@@ -80,7 +81,7 @@ int			key_center(t_map *map)
 	return (0);
 }
 
-/* Quand spawn E ou W erreur de turn direction */
+
 void		open_window(t_map *map)
 {
 	map->mlx_param.mlx = mlx_init();

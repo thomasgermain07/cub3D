@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/15 14:47:05 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/22 08:09:24 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	print_map(t_map *map)
 
 	ft_printf("\n");
 
-	ft_printf("player.dir_x : %d\n", map->player.dir_x);
-	ft_printf("player.dir_y : %d\n", map->player.dir_y);
+	printf("player.dir_x : %f\n", map->player.dir_x);
+	printf("player.dir_y : %f\n", map->player.dir_y);
 	ft_printf("player.orientation : %c\n", map->player.orientation);
-	ft_printf("player.x : %d\n", map->player.x);
-	ft_printf("player.y : %d\n", map->player.y);
+	printf("player.x : %f\n", map->player.x);
+	printf("player.y : %f\n", map->player.y);
 
 	ft_printf("\n");
 

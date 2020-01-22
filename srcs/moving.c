@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:38:52 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/21 14:33:18 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/22 08:55:04 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void		turn_left(t_map *map)
 
 	ft_printf("here i turn left\n");
 	old_dir_x = map->player.dir_x;
-	map->player.dir_x = map->player.dir_x * cos(-ROT_SPEED) - map->player.dir_y * sin(-ROT_SPEED);
-	map->player.dir_y = old_dir_x * sin(-ROT_SPEED) + map->player.dir_y * cos(-ROT_SPEED);
+	map->player.dir_x = map->player.dir_x * cos(ROT_SPEED) - map->player.dir_y * sin(ROT_SPEED);
+	map->player.dir_y = old_dir_x * sin(ROT_SPEED) + map->player.dir_y * cos(ROT_SPEED);
 	old_plan_x = map->camera.plan_x;
-	map->camera.plan_x = map->camera.plan_x * cos(-ROT_SPEED) - map->camera.plan_y * sin(-ROT_SPEED);
-	map->camera.plan_y = old_plan_x * sin(-ROT_SPEED) + map->camera.plan_y * cos(-ROT_SPEED);
+	map->camera.plan_x = map->camera.plan_x * cos(ROT_SPEED) - map->camera.plan_y * sin(ROT_SPEED);
+	map->camera.plan_y = old_plan_x * sin(ROT_SPEED) + map->camera.plan_y * cos(ROT_SPEED);
 }
 
 void		turn_right(t_map *map)
@@ -67,11 +67,11 @@ void		turn_right(t_map *map)
 	float old_dir_x;
 	float old_plan_x;
 
-	ft_printf("here i turn left\n");
+	ft_printf("here i turn right\n");
 	old_dir_x = map->player.dir_x;
-	map->player.dir_x = map->player.dir_x * cos(ROT_SPEED) - map->player.dir_y * sin(ROT_SPEED);
-	map->player.dir_y = old_dir_x * sin(ROT_SPEED) + map->player.dir_y * cos(ROT_SPEED);
+	map->player.dir_x = map->player.dir_x * cos(-ROT_SPEED) - map->player.dir_y * sin(-ROT_SPEED);
+	map->player.dir_y = old_dir_x * sin(-ROT_SPEED) + map->player.dir_y * cos(-ROT_SPEED);
 	old_plan_x = map->camera.plan_x;
-	map->camera.plan_x = map->camera.plan_x * cos(-ROT_SPEED) - map->camera.plan_y * sin(ROT_SPEED);
-	map->camera.plan_y = old_plan_x * sin(ROT_SPEED) + map->camera.plan_y * cos(ROT_SPEED);
+	map->camera.plan_x = map->camera.plan_x * cos(-ROT_SPEED) - map->camera.plan_y * sin(-ROT_SPEED);
+	map->camera.plan_y = old_plan_x * sin(-ROT_SPEED) + map->camera.plan_y * cos(-ROT_SPEED);
 }
