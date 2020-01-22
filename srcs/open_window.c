@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/22 09:29:19 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:16:26 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int			close_window(t_map *map)
 
 int			key_push(int key, t_map *map)
 {
+	ft_printf("key = %d\n", key);
 	if (key == 0)
 		map->player.movement.left = 1;
 	else if (key == 1)
@@ -39,6 +40,11 @@ int			key_push(int key, t_map *map)
 		map->player.movement.turn_left = 1;
 	else if (key == 124)
 		map->player.movement.turn_right = 1;
+	if (key == 257)
+	{
+		map->player.movement.mv_speed = map->player.movement.former_mv_speed * 2;
+		map->player.movement.rot_speed = map->player.movement.former_rot_speed * 1.5;
+	}
 	if (key == 53)
 		close_window(map);
 	return (0);
@@ -46,7 +52,6 @@ int			key_push(int key, t_map *map)
 
 int			key_release(int key, t_map *map)
 {
-	ft_printf("key = %d\n", key);
 	if (key == 0)
 		map->player.movement.left = 0;
 	else if (key == 1)
@@ -59,6 +64,11 @@ int			key_release(int key, t_map *map)
 		map->player.movement.turn_left = 0;
 	else if (key == 124)
 		map->player.movement.turn_right = 0;
+	if (key == 257)
+	{
+		map->player.movement.mv_speed = map->player.movement.former_mv_speed;
+		map->player.movement.rot_speed = map->player.movement.former_rot_speed;
+	}
 	return (0);
 }
 
@@ -87,6 +97,10 @@ void		open_window(t_map *map)
 	map->mlx_param.mlx = mlx_init();
 	map->mlx_param.window = mlx_new_window(map->mlx_param.mlx,
 		map->resolution.x_res, map->resolution.y_res, "Cub3d");
+	map->player.movement.former_mv_speed = 0.065;
+	map->player.movement.former_rot_speed = 0.05;
+	map->player.movement.mv_speed = 0.065;
+	map->player.movement.rot_speed = 0.05;
 	raycasting(map);
 	mlx_do_key_autorepeatoff(map->mlx_param.mlx);
 	mlx_hook(map->mlx_param.window, 2, (1L<<0), &key_push, map);

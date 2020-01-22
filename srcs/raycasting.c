@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/22 09:07:17 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/22 13:05:24 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	raycasting(t_map *map)
 		color = 16443110;
 		if (map->camera.side == 1)
 			color = 11119017;
+		if (map->camera.hit == 2)
+			color = 16711680;
 		while (map->camera.draw_start < map->camera.draw_end)
 			*pixel_array[map->camera.draw_start++][x] = color;
 		x++;

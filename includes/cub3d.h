@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/21 16:24:57 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:43:33 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# define MV_SPEED 0.08
-# define ROT_SPEED 0.05
+# define MV_SPEED 0.065
+# define ROT_SPEED 0.045
 
 typedef struct		s_movement
 {
@@ -32,6 +32,10 @@ typedef struct		s_movement
 	int				right;
 	int				turn_left;
 	int				turn_right;
+	float			mv_speed;
+	float			rot_speed;
+	float			former_mv_speed;
+	float			former_rot_speed;
 }					t_movement;
 
 typedef struct		s_player
@@ -55,6 +59,7 @@ typedef struct		s_plan
 	int				size_x;
 	int				size_y;
 	char			**plan;
+	int				sprite_nb;
 }					t_plan;
 
 typedef struct		s_texture
@@ -125,9 +130,6 @@ t_map				*get_map(char *file_name);
 void				check_map(t_map *map);
 void				open_window(t_map *map);
 unsigned int		get_color(char *str);
-void				create_mapping(t_map *map);
-void				create_h_line(t_map *map);
-void				create_v_line(float x, t_map *map);
 /* ----- Raycasting algo ---- */
 void				set_up_camera(t_map *map);
 void				initiate_algo_value(t_map *map, int x);
