@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:57:30 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/22 15:18:17 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/23 18:13:15 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,25 +69,28 @@ void	get_ray_dir(t_map *map)
 
 void	check_for_hit(t_map *map)
 {
-	if (map->camera.side_dist_x < map->camera.side_dist_y)
+	while (!map->camera.hit)
 	{
-		map->camera.side_dist_x += map->camera.delta_dist_x;
-		map->camera.map_x += map->camera.step_x;
-		map->camera.side = 0;
-	}
-	else
-	{
-		map->camera.side_dist_y += map->camera.delta_dist_y;
-		map->camera.map_y += map->camera.step_y;
-		map->camera.side = 1;
-	}
-	if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1'
-		|| map->plan.plan[map->camera.map_x][map->camera.map_y] == '2')
-	{
-		if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1')
-			map->camera.hit = 1;
+		if (map->camera.side_dist_x < map->camera.side_dist_y)
+		{
+			map->camera.side_dist_x += map->camera.delta_dist_x;
+			map->camera.map_x += map->camera.step_x;
+			map->camera.side = 0;
+		}
 		else
-			map->camera.hit = 2;
+		{
+			map->camera.side_dist_y += map->camera.delta_dist_y;
+			map->camera.map_y += map->camera.step_y;
+			map->camera.side = 1;
+		}
+		if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1'
+			|| map->plan.plan[map->camera.map_x][map->camera.map_y] == '2')
+		{
+			if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1')
+				map->camera.hit = 1;
+			else
+				map->camera.hit = 2;
+		}
 	}
 }
 

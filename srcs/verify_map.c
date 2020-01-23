@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 15:05:11 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/20 08:58:27 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/23 10:00:34 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ void		check_resolution(t_map *map)
 
 void		check_texture(t_map *map)
 {
-	if (!map->texture.ea)
+	if (!map->texture.ea.image)
 	{
 		ft_printf(ERR_TEXTURE, "EA");
 		exit(0);
 	}
-	else if (!map->texture.we)
+	else if (!map->texture.we.image)
 	{
 		ft_printf(ERR_TEXTURE, "WE");
 		exit(0);
 	}
-	else if (!map->texture.no)
+	else if (!map->texture.no.image)
 	{
 		ft_printf(ERR_TEXTURE, "NO");
 		exit(0);
 	}
-	else if (!map->texture.so)
+	else if (!map->texture.so.image)
 	{
 		ft_printf(ERR_TEXTURE, "SO");
 		exit(0);

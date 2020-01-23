@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/22 15:16:26 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/23 11:09:03 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int			close_window(t_map *map)
 
 int			key_push(int key, t_map *map)
 {
-	ft_printf("key = %d\n", key);
 	if (key == 0)
 		map->player.movement.left = 1;
 	else if (key == 1)
@@ -91,7 +90,6 @@ int			key_center(t_map *map)
 	return (0);
 }
 
-
 void		open_window(t_map *map)
 {
 	map->mlx_param.mlx = mlx_init();
@@ -100,8 +98,8 @@ void		open_window(t_map *map)
 	map->player.movement.former_mv_speed = 0.065;
 	map->player.movement.former_rot_speed = 0.05;
 	map->player.movement.mv_speed = 0.065;
-	map->player.movement.rot_speed = 0.05;
-	raycasting(map);
+	map->player.movement.rot_speed = 0.035;
+	get_all_texture(map);
 	mlx_do_key_autorepeatoff(map->mlx_param.mlx);
 	mlx_hook(map->mlx_param.window, 2, (1L<<0), &key_push, map);
 	mlx_hook(map->mlx_param.window, 3, (1l<<1), &key_release, map);

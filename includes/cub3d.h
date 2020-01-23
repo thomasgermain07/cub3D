@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/22 14:43:33 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/23 17:01:23 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,20 @@ typedef struct		s_plan
 	int				sprite_nb;
 }					t_plan;
 
+typedef struct		s_image
+{
+	char			*image;
+	int				h;
+	int				w;
+}					t_image;
+
+
 typedef struct		s_texture
 {
-	char			*no;
-	char			*so;
-	char			*we;
-	char			*ea;
+	t_image			no;
+	t_image			so;
+	t_image			we;
+	t_image			ea;
 	char			*s;
 }					t_texture;
 
@@ -130,6 +138,9 @@ t_map				*get_map(char *file_name);
 void				check_map(t_map *map);
 void				open_window(t_map *map);
 unsigned int		get_color(char *str);
+
+void				get_all_texture(t_map *map);
+
 /* ----- Raycasting algo ---- */
 void				set_up_camera(t_map *map);
 void				initiate_algo_value(t_map *map, int x);
@@ -147,3 +158,8 @@ void				turn_right(t_map *map);
 void				turn_left(t_map *map);
 
 #endif
+
+/*
+** system("afplay ./path_to_sound&") -> only mp3 et & important !
+** system("pkill afplay") -> stop le sound
+*/

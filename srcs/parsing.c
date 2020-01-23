@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/20 09:08:06 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/23 10:00:08 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ unsigned int	get_color(char *str)
 void			parsing(char *str, t_map *map, t_list **list)
 {
 	if (ft_strnstr(str, "NO", ft_strlen(str)))
-		map->texture.no = skip_space(str + ft_find_in(str, 'O') + 1);
+		map->texture.no.image = skip_space(str + ft_find_in(str, 'O') + 1);
 	else if (ft_strnstr(str, "SO", ft_strlen(str)))
-		map->texture.so = skip_space(str + ft_find_in(str, 'O') + 1);
+		map->texture.so.image = skip_space(str + ft_find_in(str, 'O') + 1);
 	else if (ft_strnstr(str, "WE", ft_strlen(str)))
-		map->texture.we = skip_space(str + ft_find_in(str, 'E') + 1);
+		map->texture.we.image = skip_space(str + ft_find_in(str, 'E') + 1);
 	else if (ft_strnstr(str, "EA", ft_strlen(str)))
-		map->texture.ea = skip_space(str + ft_find_in(str, 'A') + 1);
+		map->texture.ea.image = skip_space(str + ft_find_in(str, 'A') + 1);
 	else if (ft_strnstr(str, "R", ft_strlen(str)))
 		get_resolution(str, map);
 	else if (ft_strnstr(str, "S", ft_strlen(str)) && !map->texture.s)
