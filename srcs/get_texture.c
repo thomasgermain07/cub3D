@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 08:53:15 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/23 10:04:22 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/25 14:37:52 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void		get_texture_no(t_map *map)
 	int		y;
 	int		bit_per_pixel;
 
-	if (!(image = mlx_xpm_file_to_image(map->mlx_param.mlx, map->texture.no.image, &map->texture.no.w, &map->texture.no.h)))
+	if (!(image = mlx_xpm_file_to_image(map->mlx_param.mlx,
+		map->texture.no.image, &map->texture.no.w, &map->texture.no.h)))
 	{
 		ft_printf("Error\nFile \"%s\" not found\n", map->texture.no.image);
 		exit(0);
@@ -34,13 +35,16 @@ void		get_texture_so(t_map *map)
 	int		y;
 	int		bit_per_pixel;
 
-	if (!(image = mlx_xpm_file_to_image(map->mlx_param.mlx, map->texture.so.image, &map->texture.so.w, &map->texture.so.h)))
+	if (!(image = mlx_xpm_file_to_image(map->mlx_param.mlx,
+		map->texture.so.image, &map->texture.so.w, &map->texture.so.h)))
 	{
 		ft_printf("Error\nFile \"%s\" not found\n", map->texture.so.image);
 		exit(0);
 	}
 	map->texture.so.image = mlx_get_data_addr(image, &bit_per_pixel, &x, &y);
+
 }
+
 void		get_texture_ea(t_map *map)
 {
 	void	*image;
@@ -48,7 +52,8 @@ void		get_texture_ea(t_map *map)
 	int		y;
 	int		bit_per_pixel;
 
-	if (!(image = mlx_xpm_file_to_image(map->mlx_param.mlx, map->texture.ea.image, &map->texture.ea.w, &map->texture.ea.h)))
+	if (!(image = mlx_xpm_file_to_image(map->mlx_param.mlx,
+		map->texture.ea.image, &map->texture.ea.w, &map->texture.ea.h)))
 	{
 		ft_printf("Error\nFile \"%s\" not found\n", map->texture.ea.image);
 		exit(0);
@@ -62,7 +67,8 @@ void		get_texture_we(t_map *map)
 	int		y;
 	int		bit_per_pixel;
 
-	if (!(image = mlx_xpm_file_to_image(map->mlx_param.mlx, map->texture.we.image, &map->texture.we.w, &map->texture.we.h)))
+	if (!(image = mlx_xpm_file_to_image(map->mlx_param.mlx,
+		map->texture.we.image, &map->texture.we.w, &map->texture.we.h)))
 	{
 		ft_printf("Error\nFile \"%s\" not found\n", map->texture.we.image);
 		exit(0);

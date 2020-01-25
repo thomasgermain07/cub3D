@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/01/20 08:38:36 by thgermai         ###   ########.fr        #
+#    Updated: 2020/01/25 14:04:17 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ DEBUG = -g3 -fsanitize=address
 MLX = -lmlx -framework OpenGL -framework AppKit
 LOGFILE = $(LOGPATH) `date +'%y.%m.%d %H:%M:%S'`
 MAP = maps/map1.cub
+MSG = rien a preciser
 
 all : $(NAME)
 
@@ -37,10 +38,9 @@ clean :
 
 fclean : clean
 
-
 git : fclean
 	git add *
-	git commit -m "$(LOGFILE)"
+	git commit -m "$(LOGFILE) : $(MSG)"
 	git push
 
 re : fclean all

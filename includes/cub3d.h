@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/23 17:01:23 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/25 16:42:54 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct		s_image
 	int				w;
 }					t_image;
 
-
 typedef struct		s_texture
 {
 	t_image			no;
@@ -86,8 +85,8 @@ typedef struct		s_mlx_param
 	int				*image;
 }					t_mlx_param;
 
- typedef struct		s_camera
- {
+typedef struct		s_camera
+{
 	float			pos_x;
 	float			pos_y;
 	float			dir_x;
@@ -113,7 +112,8 @@ typedef struct		s_mlx_param
 	int				hauteur_ligne;
 	int				draw_start;
 	int				draw_end;
- }					t_camera;
+	float			wall_x;
+}					t_camera;
 
 typedef struct		s_map
 {

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/23 18:07:31 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/25 16:08:10 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int		(*get_img_addr(t_map *map))[][1]
 	return (pixel_array);
 }
 
-
-
 void	raycasting(t_map *map)
 {
 	int		(*pixel_array)[map->resolution.x_res][1];
@@ -85,18 +83,19 @@ void	raycasting(t_map *map)
 		while (map->camera.draw_start < map->camera.draw_end)
 		{
 			tex_y = (map->camera.draw_start * 2 - map->resolution.y_res + map->camera.hauteur_ligne) * (map->texture.no.h / 2) / map->camera.hauteur_ligne;
-			if (map->camera.hit == 2)
-				color = 16711680;
-			else if (map->camera.hit == 1)
+			if (map->camera.side == 0 && map->camera.ray_dir_x > 0 && map->camera.hit == 1) // mur orientation nord
 			{
 				tex_array = (void *)map->texture.no.image;
 				color = *tex_array[(int)tex_y][(int)tex_x];
 			}
-			else if (map->camera.hit == 1)
-			{
-				tex_array = (void *)map->texture.so.image;
-				color = *tex_array[(int)tex_y][(int)tex_x];
-			}
+			else if (map->camera.side == 0 && map->camera.ray_dir_x < 0 && map->camera.hit == 1) // sud
+				color = 16777215; // -> blanc
+			else if (map->camera.side == 1 && map->camera.ray_dir_y > 0 && map->camera.hit == 1)
+				color = 255;
+			else
+				color = 255*255;
+			if (map->camera.hit == 2)
+				color = 16711680;
 			*pixel_array[map->camera.draw_start++][x] = color;
 		}
 		x++;
