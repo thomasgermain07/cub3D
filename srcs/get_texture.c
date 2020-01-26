@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 08:53:15 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/25 14:37:52 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:23:12 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void		get_texture_no(t_map *map)
 		ft_printf("Error\nFile \"%s\" not found\n", map->texture.no.image);
 		exit(0);
 	}
-	map->texture.no.image = mlx_get_data_addr(image, &bit_per_pixel, &x, &y);
+	map->texture.no.mapping = (int *)mlx_get_data_addr(image, &bit_per_pixel, &x, &y);
+
 }
 
 void		get_texture_so(t_map *map)
@@ -41,8 +42,7 @@ void		get_texture_so(t_map *map)
 		ft_printf("Error\nFile \"%s\" not found\n", map->texture.so.image);
 		exit(0);
 	}
-	map->texture.so.image = mlx_get_data_addr(image, &bit_per_pixel, &x, &y);
-
+	map->texture.so.mapping = (int *)mlx_get_data_addr(image, &bit_per_pixel, &x, &y);
 }
 
 void		get_texture_ea(t_map *map)
@@ -58,7 +58,7 @@ void		get_texture_ea(t_map *map)
 		ft_printf("Error\nFile \"%s\" not found\n", map->texture.ea.image);
 		exit(0);
 	}
-	map->texture.ea.image = mlx_get_data_addr(image, &bit_per_pixel, &x, &y);
+	map->texture.ea.mapping = (int *)mlx_get_data_addr(image, &bit_per_pixel, &x, &y);
 }
 void		get_texture_we(t_map *map)
 {
@@ -73,14 +73,13 @@ void		get_texture_we(t_map *map)
 		ft_printf("Error\nFile \"%s\" not found\n", map->texture.we.image);
 		exit(0);
 	}
-	map->texture.we.image = mlx_get_data_addr(image, &bit_per_pixel, &x, &y);
+	map->texture.we.mapping = (int *)mlx_get_data_addr(image, &bit_per_pixel, &x, &y);
 }
 
 void		get_all_texture(t_map *map)
 {
-
 	get_texture_no(map);
 	get_texture_so(map);
-//	get_texture_ea(map);
-//	get_texture_we(map);
+	get_texture_ea(map);
+	get_texture_we(map);
 }

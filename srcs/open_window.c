@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/23 11:09:03 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/25 17:06:58 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ void		open_window(t_map *map)
 	map->mlx_param.mlx = mlx_init();
 	map->mlx_param.window = mlx_new_window(map->mlx_param.mlx,
 		map->resolution.x_res, map->resolution.y_res, "Cub3d");
-	map->player.movement.former_mv_speed = 0.065;
-	map->player.movement.former_rot_speed = 0.05;
-	map->player.movement.mv_speed = 0.065;
-	map->player.movement.rot_speed = 0.035;
+	map->player.movement.former_mv_speed = MV_SPEED;
+	map->player.movement.former_rot_speed = ROT_SPEED;
+	map->player.movement.mv_speed = MV_SPEED;
+	map->player.movement.rot_speed = ROT_SPEED;
 	get_all_texture(map);
 	mlx_do_key_autorepeatoff(map->mlx_param.mlx);
 	mlx_hook(map->mlx_param.window, 2, (1L<<0), &key_push, map);

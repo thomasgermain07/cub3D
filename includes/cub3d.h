@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/25 16:42:54 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:21:40 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct		s_plan
 typedef struct		s_image
 {
 	char			*image;
+	int				*mapping;
 	int				h;
 	int				w;
 }					t_image;
@@ -113,6 +114,9 @@ typedef struct		s_camera
 	int				draw_start;
 	int				draw_end;
 	float			wall_x;
+	int				color;
+	float			tex_x;
+	float			tex_y;
 }					t_camera;
 
 typedef struct		s_map
@@ -137,7 +141,7 @@ void				get_plan(char *str, t_list **list);
 t_map				*get_map(char *file_name);
 void				check_map(t_map *map);
 void				open_window(t_map *map);
-unsigned int		get_color(char *str);
+unsigned int		convert_color(char *str);
 
 void				get_all_texture(t_map *map);
 
@@ -149,6 +153,8 @@ void				check_for_hit(t_map *map);
 void				prepare_for_printing(t_map *map);
 int					(*get_img_addr(t_map *map))[][1];
 void				raycasting(t_map *map);
+void				prepare_the_texture(t_map *map);
+void				get_the_color(t_map *map);
 /* ----- Moving gestion ---- */
 void				move_foward(t_map *map);
 void				move_backward(t_map *map);

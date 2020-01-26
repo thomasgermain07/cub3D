@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/01/25 14:04:17 by thgermai         ###   ########.fr        #
+#    Updated: 2020/01/25 16:50:53 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,12 @@ DEBUG = -g3 -fsanitize=address
 MLX = -lmlx -framework OpenGL -framework AppKit
 LOGFILE = $(LOGPATH) `date +'%y.%m.%d %H:%M:%S'`
 MAP = maps/map1.cub
-MSG = rien a preciser
+MSG = ---
 
 all : $(NAME)
 
 $(NAME) :
 	@(gcc $(MLX) $(CFLAGS) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
-	@(echo "")
 	@(./$(NAME) $(MAP))
 
 f : $(OBJS)
