@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 10:48:50 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/26 15:24:38 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/27 09:41:18 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,14 @@ void	get_color_no(t_map *map)
 
 void	get_the_color(t_map *map)
 {
-	if (!map->camera.side && map->camera.ray_dir_x > 0 && map->camera.hit == 1) // mur orientation nord
+	if (!map->camera.side && map->camera.ray_dir_x > 0 &&
+		map->camera.hit == 1) // Orientation nord
 		get_color_no(map);
-	else if (!map->camera.side && map->camera.ray_dir_x < 0 && map->camera.hit == 1) // sud
+	else if (!map->camera.side && map->camera.ray_dir_x < 0 &&
+		 map->camera.hit == 1) // Orientation sud
 		get_color_so(map);
-	else if (map->camera.side && map->camera.ray_dir_y > 0 && map->camera.hit == 1) // Orientation west
+	else if (map->camera.side && map->camera.ray_dir_y > 0 &&
+		map->camera.hit == 1) // Orientation west
 		get_color_we(map);
 	else
 		get_color_ea(map);

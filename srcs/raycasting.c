@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/26 15:54:06 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/27 11:44:14 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	raycasting(t_map *map)
 	int		(*pixel_array)[map->resolution.x_res][1];
 	int		x;
 
-	x = 0;
+	x = -1;
 	set_up_camera(map);
 	pixel_array = get_img_addr(map);
-	while (x <= map->resolution.x_res)
+	while (++x < map->resolution.x_res)
 	{
 		initiate_algo_value(map, x);
 		get_ray_dir(map);
@@ -63,9 +63,7 @@ void	raycasting(t_map *map)
 				map->camera.color = 16711680; // -> rouge
 			*pixel_array[map->camera.draw_start++][x] = map->camera.color;
 		}
-		x++;
 	}
 	mlx_put_image_to_window(map->mlx_param.mlx, map->mlx_param.window,
 		map->mlx_param.image, 0, 0);
 }
-

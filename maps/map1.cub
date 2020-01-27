@@ -1,8 +1,8 @@
 R  1500 900
 NO ./texture/Mur_big.XPM
-SO ./texture/Wall.XPM
-WE ./texture/Wall.XPM
-EA ./texture/Mur2.XPM
+SO ./texture/Mur_big.XPM
+WE ./texture/wood_wall.XPM
+EA ./texture/wood_wall.XPM
 S ./texture/Frfrance.XPM
 
 F 86,125,70
