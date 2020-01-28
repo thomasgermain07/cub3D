@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/26 15:21:40 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/28 13:28:51 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ typedef struct		s_movement
 	float			former_mv_speed;
 	float			former_rot_speed;
 }					t_movement;
+
+typedef struct		s_sprite
+{
+
+}					t_spite;
+
 
 typedef struct		s_player
 {
@@ -130,7 +136,6 @@ typedef struct		s_map
 	int				ground;
 	int				ceiling;
 }					t_map;
-
 /* ---- Parsing part ----*/
 char				*skip_space(char *str);
 void				check_line(char *line, t_map *map);
@@ -144,7 +149,6 @@ void				open_window(t_map *map);
 unsigned int		convert_color(char *str);
 
 void				get_all_texture(t_map *map);
-
 /* ----- Raycasting algo ---- */
 void				set_up_camera(t_map *map);
 void				initiate_algo_value(t_map *map, int x);

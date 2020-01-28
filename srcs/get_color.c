@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 10:48:50 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/27 09:41:18 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/28 15:24:41 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ void	get_the_color(t_map *map)
 	else if (map->camera.side && map->camera.ray_dir_y > 0 &&
 		map->camera.hit == 1) // Orientation west
 		get_color_we(map);
-	else
+	else // Orientation east
 		get_color_ea(map);
 }

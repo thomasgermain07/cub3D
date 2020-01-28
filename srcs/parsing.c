@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/26 10:41:44 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/28 14:19:16 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void			get_plan(char *str, t_list **list)
 	ft_lstadd_back(list, new_elem);
 }
 
-unsigned int	convert_color(char *str)
+unsigned int	conv_color(char *str)
 {
 	int				i;
 	unsigned int	r;
@@ -100,9 +100,9 @@ void			parsing(char *str, t_map *map, t_list **list)
 	else if (ft_strnstr(str, "S", ft_strlen(str)) && !map->texture.s)
 		map->texture.s = skip_space(str + ft_find_in(str, 'S') + 1);
 	else if (ft_strnstr(str, "F", ft_strlen(str)))
-		map->ground = convert_color(skip_space(str + ft_find_in(str, 'F') + 1));
+		map->ground = conv_color(skip_space(str + ft_find_in(str, 'F') + 1));
 	else if (ft_strnstr(str, "C", ft_strlen(str)))
-		map->ceiling = convert_color(skip_space(str + ft_find_in(str, 'C') + 1));
+		map->ceiling = conv_color(skip_space(str + ft_find_in(str, 'C') + 1));
 	else if (ft_strlen(str))
 		get_plan(str, list);
 }

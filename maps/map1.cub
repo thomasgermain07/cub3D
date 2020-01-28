@@ -1,9 +1,9 @@
 R  1500 900
-NO ./texture/Mur_big.XPM
-SO ./texture/Mur_big.XPM
+NO ./texture/brick_wall.XPM
+SO ./texture/brick_wall.XPM
 WE ./texture/wood_wall.XPM
 EA ./texture/wood_wall.XPM
-S ./texture/Frfrance.XPM
+S ./texture/sprite.XPM
 
 F 86,125,70
 C 135,206,235
