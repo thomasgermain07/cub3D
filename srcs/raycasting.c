@@ -6,13 +6,14 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/27 11:44:14 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/29 15:10:42 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	create_background(t_map *map, int x, int (*pixel_array)[map->resolution.x_res][1])
+void	create_background(t_map *map, int x,
+	int (*pixel_array)[map->resolution.x_res][1])
 {
 	int i;
 
@@ -59,8 +60,6 @@ void	raycasting(t_map *map)
 		while (map->camera.draw_start < map->camera.draw_end)
 		{
 			get_the_color(map);
-			if (map->camera.hit == 2) // -> hit a sprite
-				map->camera.color = 16711680; // -> rouge
 			*pixel_array[map->camera.draw_start++][x] = map->camera.color;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/28 13:28:51 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/29 15:13:26 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ typedef struct		s_movement
 
 typedef struct		s_sprite
 {
-
+	int				test;
 }					t_spite;
-
 
 typedef struct		s_player
 {
@@ -56,7 +55,7 @@ typedef struct		s_player
 
 typedef struct		s_resolution
 {
-	int 			x_res;
+	int				x_res;
 	int				y_res;
 }					t_resolution;
 
@@ -82,7 +81,7 @@ typedef struct		s_texture
 	t_image			so;
 	t_image			we;
 	t_image			ea;
-	char			*s;
+	t_image			s;
 }					t_texture;
 
 typedef struct		s_mlx_param
@@ -136,7 +135,9 @@ typedef struct		s_map
 	int				ground;
 	int				ceiling;
 }					t_map;
-/* ---- Parsing part ----*/
+/*
+** ---- Parsing part ----
+*/
 char				*skip_space(char *str);
 void				check_line(char *line, t_map *map);
 void				check_last_line(char *line);
@@ -146,20 +147,22 @@ void				get_plan(char *str, t_list **list);
 t_map				*get_map(char *file_name);
 void				check_map(t_map *map);
 void				open_window(t_map *map);
-unsigned int		convert_color(char *str);
-
+unsigned int		conv_color(char *str);
 void				get_all_texture(t_map *map);
-/* ----- Raycasting algo ---- */
+/*
+** ----- Raycasting algo ----
+*/
 void				set_up_camera(t_map *map);
 void				initiate_algo_value(t_map *map, int x);
 void				get_ray_dir(t_map *map);
 void				check_for_hit(t_map *map);
 void				prepare_for_printing(t_map *map);
-int					(*get_img_addr(t_map *map))[][1];
 void				raycasting(t_map *map);
 void				prepare_the_texture(t_map *map);
 void				get_the_color(t_map *map);
-/* ----- Moving gestion ---- */
+/*
+** ----- Moving gestion ----
+*/
 void				move_foward(t_map *map);
 void				move_backward(t_map *map);
 void				move_left(t_map *map);

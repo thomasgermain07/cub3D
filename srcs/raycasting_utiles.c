@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:57:30 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/26 10:48:48 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/29 10:23:49 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,12 @@ void	check_for_hit(t_map *map)
 		{
 			if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1')
 				map->camera.hit = 1;
-			else
+			else if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '2')
 				map->camera.hit = 2;
 		}
 	}
 }
+
 // Correct the fish eye and calculate where we start to draw in the column
 void	prepare_for_printing(t_map *map)
 {

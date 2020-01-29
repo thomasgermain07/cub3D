@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 15:05:11 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/23 10:00:34 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/29 10:10:13 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		check_texture(t_map *map)
 		ft_printf(ERR_TEXTURE, "SO");
 		exit(0);
 	}
-	else if (!map->texture.s)
+	else if (!map->texture.s.image)
 	{
 		ft_printf(ERR_TEXTURE, "S");
 		exit(0);
