@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:57:30 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/29 10:23:49 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/29 16:00:08 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	check_for_hit(t_map *map)
 		}
 	}
 }
-
 // Correct the fish eye and calculate where we start to draw in the column
 void	prepare_for_printing(t_map *map)
 {
