@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/27 11:42:23 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/30 11:37:09 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ t_map		*get_map(char *file_name)
 		return (NULL);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		return (NULL);
+	if (!(map->sprite = malloc(sizeof(t_list *) * 1)))
+		exit(0);
+	*map->sprite = NULL;
 	read_file(fd, map);
 	check_map(map);
 	close(fd);

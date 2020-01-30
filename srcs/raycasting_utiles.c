@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:57:30 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/29 16:00:08 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/30 11:13:03 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,8 @@ void	check_for_hit(t_map *map)
 			map->camera.map_y += map->camera.step_y;
 			map->camera.side = 1;
 		}
-		if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1'
-			|| map->plan.plan[map->camera.map_x][map->camera.map_y] == '2')
-		{
-			if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1')
-				map->camera.hit = 1;
-			else if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '2')
-				map->camera.hit = 2;
-		}
+		if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1')
+			map->camera.hit = 1;
 	}
 }
 // Correct the fish eye and calculate where we start to draw in the column

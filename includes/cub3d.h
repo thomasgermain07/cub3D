@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/29 15:13:26 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:21:42 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ typedef struct		s_movement
 
 typedef struct		s_sprite
 {
-	int				test;
-}					t_spite;
+	int				x;
+	int				y;
+	float			distance;
+	int				order;
+}					t_sprite;
 
 typedef struct		s_player
 {
@@ -132,6 +135,7 @@ typedef struct		s_map
 	t_mlx_param		mlx_param;
 	t_plan			plan;
 	t_camera		camera;
+	t_list			**sprite;
 	int				ground;
 	int				ceiling;
 }					t_map;
@@ -169,7 +173,12 @@ void				move_left(t_map *map);
 void				move_right(t_map *map);
 void				turn_right(t_map *map);
 void				turn_left(t_map *map);
-
+/*
+** ----- Sprite handling -----
+*/
+void				calcul_sprite_dist(t_map *map);
+void				print_sprite(t_map *map);
+void				sort_sprite(t_map *map);
 #endif
 
 /*

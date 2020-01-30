@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/29 15:10:42 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:41:43 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	raycasting(t_map *map)
 	x = -1;
 	set_up_camera(map);
 	pixel_array = get_img_addr(map);
+	calcul_sprite_dist(map);
+	sort_sprite(map);
 	while (++x < map->resolution.x_res)
 	{
 		initiate_algo_value(map, x);

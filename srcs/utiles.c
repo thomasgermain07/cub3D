@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/22 08:09:24 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:24:16 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,21 @@ void	print_map(t_map *map)
 	ft_printf("plan.size_x = %d : plan.size_y = %d\n", map->plan.size_x, map->plan.size_y);
 	for (int i = 0; map->plan.plan[i]; i++)
 		ft_printf("plan[%i] :\t%s\n", i, map->plan.plan[i]);
+}
+
+void		print_sprite(t_map *map)
+{
+	t_list		*lst;
+	t_sprite	*current = NULL;
+
+	lst = *map->sprite;
+	while (lst)
+	{
+		current = (t_sprite *)lst->content;
+		printf("sprite[%i] : x = %i : y = %i : distance = %f\n", current->order, current->x, current->y, current->distance);
+		lst = lst->next;
+	}
+	printf("\n");
 }
 
 char		*skip_space(char *str)

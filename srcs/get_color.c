@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 10:48:50 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/29 16:19:02 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/01/30 11:21:44 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,14 @@ void	get_color_s(t_map *map)
 void	get_the_color(t_map *map)
 {
 	map->camera.color = 0;
-	if (map->camera.hit == 2) // THIS IS A FUCKIIIIING SPRITE
-		get_color_s(map);
-	else if (!map->camera.side && map->camera.ray_dir_x > 0 &&
-		map->camera.hit == 1 && !map->camera.color) // Orientation nord
+	if (!map->camera.side && map->camera.ray_dir_x > 0 &&
+		map->camera.hit == 1) // Orientation nord
 		get_color_no(map);
 	else if (!map->camera.side && map->camera.ray_dir_x < 0 &&
-		 map->camera.hit == 1 && !map->camera.color) // Orientation sud
+		 map->camera.hit == 1) // Orientation sud
 		get_color_so(map);
 	else if (map->camera.side && map->camera.ray_dir_y > 0 &&
-		map->camera.hit == 1 && !map->camera.color) // Orientation west
+		map->camera.hit == 1) // Orientation west
 		get_color_we(map);
 	else // Orientation east
 		get_color_ea(map);
