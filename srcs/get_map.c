@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/30 11:37:09 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/01 09:46:13 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_map		*get_map(char *file_name)
 	*map->sprite = NULL;
 	read_file(fd, map);
 	check_map(map);
+	map->plan.sprite_nb = ft_lstsize(*map->sprite);
 	close(fd);
 	return (map);
 }
