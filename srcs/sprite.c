@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/01 15:51:47 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/02 14:38:55 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,35 +85,42 @@ void		render_sprite(t_map *map, int (*pixel_array)[map->resolution.x_res][1], fl
 	while (i < map->plan.sprite_nb)
 	{
 		sprite = (t_sprite *)lst->content;
-		sprite_x = sprite->x - map->camera.pos_x;
-		sprite_y = sprite->y - map->camera.pos_y;
+		sprite_x = (float)sprite->x - map->camera.pos_x;
+		sprite_y = (float)sprite->y - map->camera.pos_y;
+
 		inv_det = 1.0 / (map->camera.plan_x * map->camera.dir_y - map->camera.dir_x * map->camera.plan_y);
+
 		trans_x = inv_det * (map->camera.dir_y * sprite_x - map->camera.dir_x * sprite_y);
 		trans_y = inv_det * (-map->camera.plan_y * sprite_x - map->camera.plan_x * sprite_y);
-		sprite_tex_x = (int)((map->resolution.x_res / 2) * (1.0 + trans_x / trans_y));
-		sprite_height = abs((int)(map->resolution.y_res / trans_y));
+
+		sprite_tex_x = (int)(((float)map->resolution.x_res / 2.0) * (1.0 + trans_x / trans_y));
+
+		sprite_height = abs((int)((float)map->resolution.y_res / trans_y));
 		if ((draw_start_y = -sprite_height / 2 + map->resolution.y_res / 2) < 0)
 			draw_start_y = 0;
 		if ((draw_end_y = sprite_height / 2 + map->resolution.x_res / 2) >= map->resolution.y_res)
 			draw_end_y = map->resolution.y_res - 1;
-		sprite_width = abs((int)(map->resolution.y_res / trans_y));
-		if ((draw_start_x = -sprite_width / 2 + sprite_tex_x) < 0)
+
+		sprite_width = abs((int)((float)map->resolution.y_res / trans_y));
+		draw_start_x = -sprite_width / 2 + sprite_tex_x;
+		if (draw_start_x < 0)
 			draw_start_x = 0;
-		if ((draw_end_x = sprite_width / 2 + sprite_tex_x) >= map->resolution.x_res)
+		draw_end_x = sprite_width / 2 + sprite_tex_x;
+		if (draw_end_x >= map->resolution.x_res)
 			draw_end_x = map->resolution.x_res - 1;
+
 		x = draw_start_x;
-	//	ft_printf("%i %i\n", draw_start_y ,draw_end_y);
 		while (x < draw_end_x)
 		{
-			tex_x = (int)((256.0 * (draw_start_x - (-sprite_width / 2 + sprite_tex_x)) * map->texture.s.w / sprite_width) / 256.0);
-			if (trans_y > 0 && x > 0 && x < map->resolution.y_res && trans_y < zbuffer[x])
+			tex_x = (int)((256 * (draw_start_x - (-sprite_width / 2 + sprite_tex_x)) * map->texture.s.w / sprite_width) / 256);
+			if (trans_y > 0 && x > 0 && x < map->resolution.x_res && trans_y < zbuffer[x])
 			{
 				y = draw_start_y;
 				while (y < draw_end_y)
 				{
 					d = y * 256 - map->resolution.y_res * 128 + sprite_height * 128;
 					tex_y = ((d * map->texture.s.h) / sprite_height) / 256;
-					*pixel_array[draw_start_y][draw_start_x] = map->texture.s.mapping[(tex_y * map->texture.s.w) + tex_x];
+					*pixel_array[y][x] = map->texture.s.mapping[(tex_y * map->texture.s.w) + tex_x];
 					y++;
 				}
 			}
