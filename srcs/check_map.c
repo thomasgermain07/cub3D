@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/30 15:22:07 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/03 16:00:23 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void		check_spawn(char *line, t_map *map, int i)
 		if (ft_find_in("NSEW", line[j]) != -1)
 		{
 			map->player.orientation = line[j];
-			map->player.x = i + 0.1;
-			map->player.y = j + 0.1;
+			map->player.x = i + 0.5;
+			map->player.y = j + 0.5;
 			complete_orientation(map);
 			if (spawn)
 			{

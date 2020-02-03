@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/30 15:24:16 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/03 15:22:07 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	print_map(t_map *map)
 
 	ft_printf("\n");
 
-	ft_printf("texture.no : %s\n", map->texture.no);
-	ft_printf("texture.so : %s\n", map->texture.so);
-	ft_printf("texture.we : %s\n", map->texture.we);
-	ft_printf("texture.ea : %s\n", map->texture.ea);
-	ft_printf("texture.s : %s\n", map->texture.s);
+	ft_printf("texture.no : %s\n", map->texture.no.image);
+	ft_printf("texture.so : %s\n", map->texture.so.image);
+	ft_printf("texture.we : %s\n", map->texture.we.image);
+	ft_printf("texture.ea : %s\n", map->texture.ea.image);
+	ft_printf("texture.s : %s\n", map->texture.s.image);
 
 	ft_printf("\n");
 

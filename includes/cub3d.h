@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/02 14:16:56 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/03 15:51:55 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ void				calcul_sprite_dist(t_map *map);
 void				print_sprite(t_map *map);
 void				sort_sprite(t_map *map);
 void				render_sprite(t_map *map, int (*pixel_array)[map->resolution.x_res][1], float zbuffer[map->resolution.x_res]);
+
 #endif
 
 /*

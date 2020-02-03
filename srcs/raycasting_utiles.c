@@ -6,12 +6,11 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:57:30 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/02 12:54:06 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/03 09:55:18 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 // Place the camera in the map
 void	set_up_camera(t_map *map)
 {
