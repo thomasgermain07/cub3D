@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/03 15:22:07 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/08 11:18:07 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		print_sprite(t_map *map)
 	while (lst)
 	{
 		current = (t_sprite *)lst->content;
-		printf("sprite[%i] : x = %i : y = %i : distance = %f\n", current->order, current->x, current->y, current->distance);
+		printf("sprite[%i] : x = %f : y = %f : distance = %f : visible = %i\n", current->order, current->x, current->y, current->distance, current->visible);
 		lst = lst->next;
 	}
 	printf("\n");

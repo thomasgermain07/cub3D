@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/03 16:06:38 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/08 11:10:44 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ void	calcul_sprite_dist(t_map *map)
 	while (lst)
 	{
 		sprite = (t_sprite *)lst->content;
-		x = fabs(powf(map->player.x - (float)sprite->x, 2.0));
-		y = fabs(powf(map->player.y - (float)sprite->y, 2.0));
-		sprite->distance = sqrtf(x + y);
+		x = powf(map->player.x - (float)sprite->x, 2.0);
+		y = powf(map->player.y - (float)sprite->y, 2.0);
+		sprite->distance = x + y;
+		sprite->visible = 0;
 		lst = lst->next;
 	}
 }
@@ -57,86 +58,17 @@ void		sort_sprite(t_map *map)
 	}
 }
 
-void		render_sprite(t_map *map, int (*pixel_array)[map->resolution.x_res][1], float zbuffer[map->resolution.x_res])
+void		complete_sprite(t_map *map)
 {
-	int			i;
-	int			y;
-	int 		x;
-	int			d;
-	float		sprite_x;
-	float		sprite_y;
-	float		inv_det;
-	float		trans_x;
-	float		trans_y;
-	int			sprite_height;
-	int			sprite_width;
-	int			sprite_tex_x;
-	int			draw_start_x;
-	int			draw_start_y;
-	int			draw_end_x;
-	int			draw_end_y;
-	int			tex_x;
-	int			tex_y;
-	t_sprite	*sprite;
 	t_list		*lst;
-	int			color;
+	t_sprite	*sprite;
 
-	int			u_div = 1;
-	int			v_div = 1;
-	float		v_move = 0.0;
-	int			v_move_screen;
-
-	i = 0;
 	lst = *map->sprite;
-	while (i < map->plan.sprite_nb)
+	while (lst)
 	{
-		sprite = (t_sprite *)lst->content;
-		sprite_x = (float)sprite->x - map->player.x;
-		sprite_y = (float)sprite->y - map->player.y;
-
-		inv_det = 1.0 / (map->camera.plan_x * map->camera.dir_y - map->camera.dir_x * map->camera.plan_y);
-
-		trans_x = inv_det * (map->camera.dir_y * sprite_x - map->camera.dir_x * sprite_y);
-		trans_y = inv_det * (-map->camera.plan_y * sprite_x - map->camera.plan_x * sprite_y);
-
-		sprite_tex_x = (int)(((float)map->resolution.x_res / 2.0) * (1.0 + trans_x / trans_y));
-
-		v_move_screen = (int)(v_move / trans_y);
-
-		sprite_height = (int)fabs((float)map->resolution.y_res / trans_y) / v_div;
-		if ((draw_start_y = -sprite_height / 2 + map->resolution.y_res / 2 + v_move_screen) < 0)
-			draw_start_y = 0;
-		if ((draw_end_y = sprite_height / 2 + map->resolution.x_res / 2 + v_move_screen) >= map->resolution.y_res)
-			draw_end_y = map->resolution.y_res - 1;
-
-		sprite_width = (int)fabs(((float)map->resolution.y_res / trans_y) / u_div);
-
-		if ((draw_start_x = -sprite_width / 2 + sprite_tex_x) < 0)
-			draw_start_x = 0;
-		if ((draw_end_x = sprite_width / 2 + sprite_tex_x) >= map->resolution.x_res)
-			draw_end_x = map->resolution.x_res - 1;
-
-		x = draw_start_x;
-		while (x < draw_end_x)
-		{
-			tex_x = ((256 * (x - (-sprite_width / 2 + sprite_tex_x)) * map->texture.s.w / sprite_width) / 256);
-			if (trans_y > 0 && x > 0 && x < map->resolution.x_res)
-			{
-				(void)zbuffer;
-				y = draw_start_y;
-				while (y < draw_end_y)
-				{
-					d = (y - v_move_screen) * 256 - map->resolution.y_res * 128 + sprite_height * 128;
-			   		tex_y = ((d * map->texture.s.h) / sprite_height) / 256;
-					color = map->texture.s.mapping[(tex_y * map->texture.s.w) + tex_x];
-					if (color)
-						*pixel_array[y][x] = color;
-					y++;
-				}
-			}
-			x++;
-		}
-		i++;
+		sprite = lst->content;
+		if (sprite->x == map->camera.map_x && sprite->y == map->camera.map_y)
+			sprite->visible = 1;
 		lst = lst->next;
 	}
 }

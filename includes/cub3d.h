@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/03 15:51:55 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/09 18:14:35 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,30 @@ typedef struct		s_movement
 
 typedef struct		s_sprite
 {
-	int				x;
-	int				y;
+	float			x;
+	float			y;
 	float			distance;
 	int				order;
+	int				visible;
+	float			sprite_x;
+	float			sprite_y;
+	float			inv_det;
+	float			trans_x;
+	float			trans_y;
+	int				screen_x;
+	int				height;
+	int				width;
+	int				draw_start_x;
+	int				draw_start_y;
+	int				draw_end_x;
+	int				draw_end_y;
+	float			tex_x;
+	float			tex_y;
+	float			wall_x;
+	float			wall_y;
+	int				stripe;
+	int				pix;
+	unsigned int	color;
 }					t_sprite;
 
 typedef struct		s_player
@@ -92,14 +112,11 @@ typedef struct		s_mlx_param
 	void			*mlx;
 	void			*window;
 	int				*image;
+	char			*mapping;
 }					t_mlx_param;
 
 typedef struct		s_camera
 {
-	float			pos_x;
-	float			pos_y;
-	float			dir_x;
-	float			dir_y;
 	float			plan_x;
 	float			plan_y;
 	float			camera_x;
@@ -139,6 +156,7 @@ typedef struct		s_map
 	int				ground;
 	int				ceiling;
 }					t_map;
+
 /*
 ** ---- Parsing part ----
 */
@@ -165,7 +183,7 @@ void				raycasting(t_map *map);
 void				prepare_the_texture(t_map *map);
 void				get_the_color(t_map *map);
 /*
-** ----- Moving gestion ----
+** ----- Moving gestion -----
 */
 void				move_foward(t_map *map);
 void				move_backward(t_map *map);
@@ -179,7 +197,10 @@ void				turn_left(t_map *map);
 void				calcul_sprite_dist(t_map *map);
 void				print_sprite(t_map *map);
 void				sort_sprite(t_map *map);
-void				render_sprite(t_map *map, int (*pixel_array)[map->resolution.x_res][1], float zbuffer[map->resolution.x_res]);
+void				complete_sprite(t_map *map);
+void				get_sprite_color(t_map *map, t_image *texture, t_sprite *sprite);
+
+int					close_window(t_map *map);
 
 #endif
 

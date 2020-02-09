@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:57:30 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/03 09:55:18 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/09 15:48:16 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 // Place the camera in the map
 void	set_up_camera(t_map *map)
 {
-	map->camera.pos_x = map->player.x;
-	map->camera.pos_y = map->player.y;
-	map->camera.dir_x = map->player.dir_x;
-	map->camera.dir_y = map->player.dir_y;
-	if (map->camera.dir_x == -1.0)
+	if (map->player.dir_x == -1.0)
 		map->camera.plan_y = 1.0;
-	else if (map->camera.dir_y == -1.0)
+	else if (map->player.dir_y == -1.0)
 		map->camera.plan_x = -1.0;
-	else if (map->camera.dir_x == 1.0)
+	else if (map->player.dir_x == 1.0)
 		map->camera.plan_y = -1.0;
-	else if (map->camera.dir_y == 1.0)
+	else if (map->player.dir_y == 1.0)
 		map->camera.plan_x = 1.0;
 }
 // Initiate value needed by the algo
@@ -32,11 +28,11 @@ void	initiate_algo_value(t_map *map, int x)
 {
 	map->camera.camera_x = (2.0 * (float)x /
 		(float)map->resolution.x_res) - 1.0;
-	map->camera.ray_pos_x = map->camera.pos_x;
-	map->camera.ray_pos_y = map->camera.pos_y;
-	map->camera.ray_dir_x = map->camera.dir_x + map->camera.plan_x *
+	map->camera.ray_pos_x = map->player.x;
+	map->camera.ray_pos_y = map->player.y;
+	map->camera.ray_dir_x = map->player.dir_x + map->camera.plan_x *
 		map->camera.camera_x;
-	map->camera.ray_dir_y = map->camera.dir_y + map->camera.plan_y *
+	map->camera.ray_dir_y = map->player.dir_y + map->camera.plan_y *
 		map->camera.camera_x;
 	map->camera.map_x = (int)map->camera.ray_pos_x;
 	map->camera.map_y = (int)map->camera.ray_pos_y;
@@ -47,8 +43,9 @@ void	initiate_algo_value(t_map *map, int x)
 		map->camera.ray_dir_x) / (map->camera.ray_dir_y *
 		map->camera.ray_dir_y));
 	map->camera.hit = 0;
+	map->camera.side = 0;
 }
-// Find where the ray is looking at
+// Find where is going to move
 void	get_ray_dir(t_map *map)
 {
 	if (map->camera.ray_dir_x < 0)
@@ -95,6 +92,8 @@ void	check_for_hit(t_map *map)
 		}
 		if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1')
 			map->camera.hit = 1;
+		else if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '2')
+			complete_sprite(map);
 	}
 }
 // Correct the fisheye effect and calculate where we start to draw in the column
@@ -122,7 +121,7 @@ void	prepare_for_printing(t_map *map)
 // Find the ratio needed to find the tex_x and tex_y
 void	prepare_the_texture(t_map *map)
 {
-	if (map->camera.side == 1)
+	if (map->camera.side)
 		map->camera.wall_x = map->camera.ray_pos_x + (((float)map->camera.map_y -
 			map->camera.ray_pos_y + (1.0 - map->camera.step_y) / 2.0) /
 			map->camera.ray_dir_y) * map->camera.ray_dir_x;
