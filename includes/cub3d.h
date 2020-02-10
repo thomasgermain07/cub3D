@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 11:29:11 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 16:38:46 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct		s_plan
 	int				size_y;
 	char			**plan;
 	int				sprite_nb;
+	int				sprite_collected;
 }					t_plan;
 
 typedef struct		s_image
