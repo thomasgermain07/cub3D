@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/08 11:19:06 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 09:57:00 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,6 @@ void		check_spawn(char *line, t_map *map, int i)
 		}
 		j++;
 	}
-}
-
-void		register_sprite(t_map *map, int x, int y)
-{
-	static int	order = 0;
-	t_sprite	*new_sprite;
-	t_list		*new_elem;
-
-	if (!(new_sprite = malloc(sizeof(t_sprite))))
-		exit(0);
-	new_sprite->x = (float)x;
-	new_sprite->y = (float)y;
-	new_sprite->visible = 0;
-	new_sprite->order = order;
-	new_elem = ft_lstnew(new_sprite);
-	ft_lstadd_back(map->sprite, new_elem);
-	order++;
 }
 
 void		check_line(char *line, t_map *map)

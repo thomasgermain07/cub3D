@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/09 18:14:35 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 10:51:27 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct		s_sprite
 	float			x;
 	float			y;
 	float			distance;
-	int				order;
 	int				visible;
 	float			sprite_x;
 	float			sprite_y;
@@ -60,7 +59,6 @@ typedef struct		s_sprite
 	float			tex_x;
 	float			tex_y;
 	float			wall_x;
-	float			wall_y;
 	int				stripe;
 	int				pix;
 	unsigned int	color;
@@ -139,7 +137,7 @@ typedef struct		s_camera
 	int				draw_start;
 	int				draw_end;
 	float			wall_x;
-	int				color;
+	unsigned int	color;
 	float			tex_x;
 	float			tex_y;
 }					t_camera;
@@ -199,8 +197,9 @@ void				print_sprite(t_map *map);
 void				sort_sprite(t_map *map);
 void				complete_sprite(t_map *map);
 void				get_sprite_color(t_map *map, t_image *texture, t_sprite *sprite);
-
+void				register_sprite(t_map *map, int x, int y);
 int					close_window(t_map *map);
+void				sprite_render(t_map *map);
 
 #endif
 

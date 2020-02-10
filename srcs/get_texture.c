@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 08:53:15 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/09 16:11:49 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 10:37:48 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	get_sprite_color(t_map *map, t_image *texture, t_sprite *sprite)
 {
 	int x;
 
+	sprite->wall_x = (float)(sprite->stripe - sprite->draw_start_x) /
+		(float)(sprite->draw_end_x - sprite->draw_start_x);
 	sprite->tex_y = (sprite->pix * 2 - map->resolution.y_res +
 		sprite->height) * (texture->h / 2) / sprite->height;
 	sprite->tex_x = (int)(sprite->wall_x * texture->w);

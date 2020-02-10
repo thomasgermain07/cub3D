@@ -5,60 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/08 11:10:44 by thgermai         ###   ########.fr       */
+/*   Created: 2020/02/10 10:35:18 by thgermai          #+#    #+#             */
+/*   Updated: 2020/02/10 10:53:04 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	calcul_sprite_dist(t_map *map)
+void	initiate_value(t_map *map, t_sprite *sprite)
 {
-	float		x;
-	float		y;
-	t_sprite	*sprite;
-	t_list		*lst;
-
-	sprite = NULL;
-	lst = *map->sprite;
-	while (lst)
-	{
-		sprite = (t_sprite *)lst->content;
-		x = powf(map->player.x - (float)sprite->x, 2.0);
-		y = powf(map->player.y - (float)sprite->y, 2.0);
-		sprite->distance = x + y;
-		sprite->visible = 0;
-		lst = lst->next;
-	}
+	sprite->sprite_x = sprite->x - map->player.x;
+	sprite->sprite_y = sprite->y - map->player.y;
+	sprite->inv_det = 1.0 / (map->camera.plan_x * map->player.dir_y -
+		map->player.dir_x * map->camera.plan_y);
+	sprite->trans_x = sprite->inv_det * (map->player.dir_y *
+		sprite->sprite_x - map->player.dir_x * sprite->sprite_y);
+	sprite->trans_y = sprite->inv_det * (-map->camera.plan_y *
+		sprite->sprite_x + map->camera.plan_x * sprite->sprite_y);
+	sprite->screen_x = (map->resolution.x_res / 2) * (1.0 +
+		sprite->trans_x / sprite->trans_y);
+	sprite->height = (int)fabs(map->resolution.x_res / sprite->trans_y);
+	if ((sprite->draw_start_y = -sprite->height / 2 +
+		map->resolution.y_res / 2) < 0)
+		sprite->draw_start_y = 0;
+	if ((sprite->draw_end_y = sprite->height / 2 + map->resolution.y_res / 2)
+		>= map->resolution.y_res)
+		sprite->draw_end_y = map->resolution.y_res - 1;
+	sprite->width = (int)fabs(map->resolution.x_res / sprite->trans_y);
+	sprite->draw_start_x = -sprite->width / 2 + sprite->screen_x;
+	sprite->draw_end_x = sprite->width / 2 + sprite->screen_x;
 }
 
-void		sort_sprite(t_map *map)
-{
-	void		*temp;
-	t_list		*current;
-	t_list		*origin;
-	t_sprite	*first;
-	t_sprite	*second;
+// void	print_sprite(t_map *map, t_sprite *sprite)
+// {
 
-	origin = *map->sprite;
-	current = *map->sprite;
-	while (current && current->next)
-	{
-		first = current->content;
-		second = (current->next)->content;
-		if (first->distance >= second->distance)
-			current = current->next;
-		else
-		{
-			temp = current->content;
-			current->content = (current->next)->content;
-			(current->next)->content = temp;
-			current = origin;
-		}
-	}
-}
+// }
 
-void		complete_sprite(t_map *map)
+void	sprite_render(t_map *map)
 {
 	t_list		*lst;
 	t_sprite	*sprite;
@@ -67,8 +50,10 @@ void		complete_sprite(t_map *map)
 	while (lst)
 	{
 		sprite = lst->content;
-		if (sprite->x == map->camera.map_x && sprite->y == map->camera.map_y)
-			sprite->visible = 1;
+		if (sprite->visible)
+		{
+			initiate_value(map, sprite);
+		}
 		lst = lst->next;
 	}
 }

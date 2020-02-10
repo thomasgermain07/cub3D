@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/06 15:44:50 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 09:37:22 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			close_window(t_map *map)
 	free(map->texture.ea.image);
 	free(map->texture.s.image);
 	free(map);
-	system("leaks cub3d");
+	//system("leaks cub3d");
 	exit(0);
 }
 
