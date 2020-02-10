@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:35:18 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 10:53:04 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:49:57 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,34 @@ void	initiate_value(t_map *map, t_sprite *sprite)
 	sprite->draw_end_x = sprite->width / 2 + sprite->screen_x;
 }
 
-// void	print_sprite(t_map *map, t_sprite *sprite)
-// {
+void	print_sprite(t_map *map, t_sprite *sprite,
+	float buffer[map->resolution.x_res])
+{
+	sprite->stripe = sprite->draw_start_x - 1;
+	while (++sprite->stripe < sprite->draw_end_x)
+	{
+		sprite->pix = sprite->draw_start_y - 1;
+		if (sprite->stripe >= 0 && sprite->stripe < map->resolution.x_res && sprite->trans_y < buffer[sprite->stripe])
+		{
+			while (++sprite->pix < sprite->draw_end_y)
+			{
+				if (sprite->pix >= 0 && sprite->pix <= map->resolution.y_res)
+				{
+					get_sprite_color(map, &map->texture.s, sprite);
+					if (sprite->color != 0xff000000)
+						ft_put_pixel(map, sprite->pix, sprite->stripe, sprite->color);
+				}
+			}
+		}
+	}
+}
 
-// }
-
-void	sprite_render(t_map *map)
+void	sprite_render(t_map *map, float buffer[map->resolution.x_res])
 {
 	t_list		*lst;
 	t_sprite	*sprite;
 
+	(void)buffer;
 	lst = *map->sprite;
 	while (lst)
 	{
@@ -53,6 +71,7 @@ void	sprite_render(t_map *map)
 		if (sprite->visible)
 		{
 			initiate_value(map, sprite);
+			print_sprite(map, sprite, buffer);
 		}
 		lst = lst->next;
 	}

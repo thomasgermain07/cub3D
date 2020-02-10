@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite.c                                           :+:      :+:    :+:   */
+/*   sprite_utiles.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 10:02:23 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 12:54:23 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void		complete_sprite(t_map *map)
 	while (lst)
 	{
 		sprite = lst->content;
-		if (sprite->x == map->camera.map_x + 0.5 && sprite->y == map->camera.map_y + 0.5)
+		if (sprite->x == map->camera.map_x + 0.5 &&
+			sprite->y == map->camera.map_y + 0.5)
 			sprite->visible = 1;
 		lst = lst->next;
 	}

@@ -6,11 +6,11 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 09:37:22 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:23:09 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 int			close_window(t_map *map)
 {
@@ -51,8 +51,10 @@ int			key_push(int key, t_map *map)
 		map->player.movement.turn_right = 1;
 	if (key == 257)
 	{
-		map->player.movement.mv_speed = map->player.movement.former_mv_speed * 2;
-		map->player.movement.rot_speed = map->player.movement.former_rot_speed * 1.5;
+		map->player.movement.mv_speed = map->player.movement.former_mv_speed *
+			2;
+		map->player.movement.rot_speed = map->player.movement.former_rot_speed *
+			1.5;
 	}
 	if (key == 53)
 		close_window(map);
@@ -112,9 +114,9 @@ void		open_window(t_map *map)
 	get_all_texture(map);
 	raycasting(map);
 	mlx_do_key_autorepeatoff(map->mlx_param.mlx);
-	mlx_hook(map->mlx_param.window, 2, (1L<<0), &key_push, map);
-	mlx_hook(map->mlx_param.window, 3, (1l<<1), &key_release, map);
-	mlx_hook(map->mlx_param.window, 17, (1l<<1), &close_window, map);
+	mlx_hook(map->mlx_param.window, 2, (1L << 0), &key_push, map);
+	mlx_hook(map->mlx_param.window, 3, (1l << 1), &key_release, map);
+	mlx_hook(map->mlx_param.window, 17, (1l << 1), &close_window, map);
 	mlx_loop_hook(map->mlx_param.mlx, &key_center, map);
 	mlx_loop(map->mlx_param.mlx);
 }

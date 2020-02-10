@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 15:05:11 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/29 10:10:13 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:25:03 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,4 @@ void		check_map(t_map *map)
 	check_resolution(map);
 	check_texture(map);
 	check_player(map);
-	/* reste a check les couleurs mais il faut les convertires avant */
 }

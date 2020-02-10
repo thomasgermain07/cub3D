@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 10:51:27 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:29:11 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ typedef struct		s_map
 	int				ground;
 	int				ceiling;
 }					t_map;
-
 /*
 ** ---- Parsing part ----
 */
@@ -180,6 +179,9 @@ void				prepare_for_printing(t_map *map);
 void				raycasting(t_map *map);
 void				prepare_the_texture(t_map *map);
 void				get_the_color(t_map *map);
+void				map_render(t_map *map, float buffer[map->resolution.x_res],
+	int x);
+void				create_background(t_map *map, int x);
 /*
 ** ----- Moving gestion -----
 */
@@ -193,13 +195,13 @@ void				turn_left(t_map *map);
 ** ----- Sprite handling -----
 */
 void				calcul_sprite_dist(t_map *map);
-void				print_sprite(t_map *map);
 void				sort_sprite(t_map *map);
 void				complete_sprite(t_map *map);
 void				get_sprite_color(t_map *map, t_image *texture, t_sprite *sprite);
 void				register_sprite(t_map *map, int x, int y);
 int					close_window(t_map *map);
-void				sprite_render(t_map *map);
+void				sprite_render(t_map *map, float buffer[map->resolution.x_res]);
+void				ft_put_pixel(t_map *map, int x, int y, unsigned int color);
 
 #endif
 

@@ -6,12 +6,12 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:57:30 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/09 15:48:16 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:27:00 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-// Place the camera in the map
+
 void	set_up_camera(t_map *map)
 {
 	if (map->player.dir_x == -1.0)
@@ -23,7 +23,7 @@ void	set_up_camera(t_map *map)
 	else if (map->player.dir_y == 1.0)
 		map->camera.plan_x = 1.0;
 }
-// Initiate value needed by the algo
+
 void	initiate_algo_value(t_map *map, int x)
 {
 	map->camera.camera_x = (2.0 * (float)x /
@@ -45,7 +45,7 @@ void	initiate_algo_value(t_map *map, int x)
 	map->camera.hit = 0;
 	map->camera.side = 0;
 }
-// Find where is going to move
+
 void	get_ray_dir(t_map *map)
 {
 	if (map->camera.ray_dir_x < 0)
@@ -73,7 +73,7 @@ void	get_ray_dir(t_map *map)
 			map->camera.ray_pos_y) * map->camera.delta_dist_y;
 	}
 }
-// Send ray to find a wall
+
 void	check_for_hit(t_map *map)
 {
 	while (!map->camera.hit)
@@ -96,7 +96,7 @@ void	check_for_hit(t_map *map)
 			complete_sprite(map);
 	}
 }
-// Correct the fisheye effect and calculate where we start to draw in the column
+
 void	prepare_for_printing(t_map *map)
 {
 	if (!map->camera.side)
@@ -118,7 +118,7 @@ void	prepare_for_printing(t_map *map)
 	if (map->camera.draw_end >= map->resolution.y_res)
 		map->camera.draw_end = map->resolution.y_res - 1;
 }
-// Find the ratio needed to find the tex_x and tex_y
+
 void	prepare_the_texture(t_map *map)
 {
 	if (map->camera.side)
@@ -130,4 +130,15 @@ void	prepare_the_texture(t_map *map)
 			map->camera.ray_pos_x + (1.0 - map->camera.step_x) / 2.0) /
 			map->camera.ray_dir_x) * map->camera.ray_dir_y;
 	map->camera.wall_x -= floor(map->camera.wall_x);
+}
+
+void	map_render(t_map *map, float buffer[map->resolution.x_res], int x)
+{
+		initiate_algo_value(map, x);
+		get_ray_dir(map);
+		check_for_hit(map);
+		prepare_for_printing(map);
+		prepare_the_texture(map);
+		create_background(map, x);
+		buffer[x] = map->camera.perp_wall_dist;
 }

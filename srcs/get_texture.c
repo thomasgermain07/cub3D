@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 08:53:15 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 10:37:48 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:24:14 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	get_tex_color(t_map *map, t_image *texture)
 	int	x;
 
 	map->camera.tex_y = (map->camera.draw_start * 2 - map->resolution.y_res +
-		map->camera.hauteur_ligne) * (texture->h / 2) / map->camera.hauteur_ligne;
+		map->camera.hauteur_ligne) * (texture->h / 2) /
+		map->camera.hauteur_ligne;
 	map->camera.tex_x = (int)(map->camera.wall_x * texture->w);
 	map->camera.tex_x = texture->w - map->camera.tex_x - 1.0;
 	x = (texture->w * map->camera.tex_y) + map->camera.tex_x;
@@ -51,7 +52,7 @@ void	get_the_color(t_map *map)
 		get_tex_color(map, &map->texture.ea);
 }
 
-void		get_texture(t_image *texture, t_map	*map)
+void		get_texture(t_image *texture, t_map *map)
 {
 	void	*image;
 	int		x;
