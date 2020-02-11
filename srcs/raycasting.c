@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/11 13:37:43 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:19:21 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,6 @@ void		raycasting(t_map *map)
 	float		buffer[map->resolution.x_res];
 	int			x;
 
-	static int i = 0;
-	ft_printf("raycastin [%i]\n", i++);
-
 	x = -1;
 	set_up_camera(map);
 	create_image(map);
@@ -96,6 +93,4 @@ void		raycasting(t_map *map)
 	}
 	sprite_render(map, buffer);
 	hud_render(map);
-	mlx_put_image_to_window(map->mlx_param.mlx, map->mlx_param.window,
-		map->mlx_param.image, 0, 0);
 }

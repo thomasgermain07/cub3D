@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/11 13:42:12 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:07:22 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ typedef struct		s_map
 	int				ceiling;
 }					t_map;
 /*
-** ---- Parsing part ----
+** ---- Parsing ----
 */
 char				*skip_space(char *str);
 void				check_line(char *line, t_map *map);
@@ -183,7 +183,7 @@ void				open_window(t_map *map);
 unsigned int		conv_color(char *str);
 void				get_all_texture(t_map *map);
 /*
-** ----- Raycasting algo ----
+** ----- Raycasting ----
 */
 void				set_up_camera(t_map *map);
 void				initiate_algo_value(t_map *map, int x);
@@ -197,7 +197,7 @@ void				map_render(t_map *map, float buffer[map->resolution.x_res],
 	int x);
 void				create_background(t_map *map, int x);
 /*
-** ----- Moving gestion -----
+** ----- Movement gestion -----
 */
 void				move_foward(t_map *map);
 void				move_backward(t_map *map);
@@ -206,7 +206,7 @@ void				move_right(t_map *map);
 void				turn_right(t_map *map);
 void				turn_left(t_map *map);
 /*
-** ----- Sprite handling -----
+** ----- Sprite  -----
 */
 void				calcul_sprite_dist(t_map *map);
 void				sort_sprite(t_map *map);
@@ -223,7 +223,3 @@ void				respaw_sprite(t_map *map);
 
 #endif
 
-/*
-** system("afplay ./path_to_sound&") -> only mp3 et & important !
-** system("pkill afplay") -> stop le sound
-*/

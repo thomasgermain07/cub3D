@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:35:18 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/11 12:57:44 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:01:40 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	sprite_render(t_map *map, float buffer[map->resolution.x_res])
 	t_list		*lst;
 	t_sprite	*sprite;
 
-	(void)buffer;
 	lst = *map->sprite;
 	while (lst)
 	{

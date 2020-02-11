@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:57:30 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 11:27:00 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:05:01 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,23 +122,23 @@ void	prepare_for_printing(t_map *map)
 void	prepare_the_texture(t_map *map)
 {
 	if (map->camera.side)
-		map->camera.wall_x = map->camera.ray_pos_x + (((float)map->camera.map_y -
-			map->camera.ray_pos_y + (1.0 - map->camera.step_y) / 2.0) /
+		map->camera.wall_x = map->camera.ray_pos_x + (((float)map->camera.map_y
+			- map->camera.ray_pos_y + (1.0 - map->camera.step_y) / 2.0) /
 			map->camera.ray_dir_y) * map->camera.ray_dir_x;
- 	else
-		map->camera.wall_x = map->camera.ray_pos_y + (((float)map->camera.map_x -
-			map->camera.ray_pos_x + (1.0 - map->camera.step_x) / 2.0) /
+	else
+		map->camera.wall_x = map->camera.ray_pos_y + (((float)map->camera.map_x
+			- map->camera.ray_pos_x + (1.0 - map->camera.step_x) / 2.0) /
 			map->camera.ray_dir_x) * map->camera.ray_dir_y;
 	map->camera.wall_x -= floor(map->camera.wall_x);
 }
 
 void	map_render(t_map *map, float buffer[map->resolution.x_res], int x)
 {
-		initiate_algo_value(map, x);
-		get_ray_dir(map);
-		check_for_hit(map);
-		prepare_for_printing(map);
-		prepare_the_texture(map);
-		create_background(map, x);
-		buffer[x] = map->camera.perp_wall_dist;
+	initiate_algo_value(map, x);
+	get_ray_dir(map);
+	check_for_hit(map);
+	prepare_for_printing(map);
+	prepare_the_texture(map);
+	create_background(map, x);
+	buffer[x] = map->camera.perp_wall_dist;
 }

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/11 13:47:48 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:21:00 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int			key_center(t_map *map)
 	else if (map->player.movement.turn_right)
 		turn_right(map);
 	raycasting(map);
+	mlx_put_image_to_window(map->mlx_param.mlx, map->mlx_param.window,
+		map->mlx_param.image, 0, 0);
 	return (0);
 }
 

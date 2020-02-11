@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/11 13:19:31 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:07:37 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	pick_up_sprite(t_map *map)
 {
 	map->plan.sprite_collected ++;
 	map->plan.plan[(int)map->player.x][(int)map->player.y] = '0';
-	// play sound;
-
+	/*
+	** system("afplay ./path_to_sound&") -> only mp3 et & important !
+	** system("pkill afplay") -> stop le sound
+	*/
 }
