@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 12:54:23 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:19:31 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,27 @@ void		register_sprite(t_map *map, int x, int y)
 	new_sprite->visible = 0;
 	new_elem = ft_lstnew(new_sprite);
 	ft_lstadd_back(map->sprite, new_elem);
+}
+
+void	respaw_sprite(t_map *map)
+{
+	t_list 		*lst;
+	t_sprite	*sprite;
+
+	lst = *map->sprite;
+	while (lst)
+	{
+		sprite = lst->content;
+		map->plan.plan[(int)sprite->x][(int)sprite->y] = '2';
+		lst = lst->next;
+	}
+	map->plan.sprite_collected = 0;
+}
+
+void	pick_up_sprite(t_map *map)
+{
+	map->plan.sprite_collected ++;
+	map->plan.plan[(int)map->player.x][(int)map->player.y] = '0';
+	// play sound;
+
 }

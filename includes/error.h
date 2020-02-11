@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 09:27:17 by thomasgerma       #+#    #+#             */
-/*   Updated: 2020/01/29 15:04:14 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 12:52:08 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*
 ** line %d, column %d, char %c
 */
-# define ERR_WRG_PAR "Error\nWrong parameter in map: \(l %d: c %d: '%c')\n"
+# define ERR_WRG_PAR "Error\nWrong parameter in map: (l %d: c %d: '%c')\n"
 /*
 ** line %d, column %d, char %c
 */

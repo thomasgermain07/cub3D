@@ -6,11 +6,12 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:35:18 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 15:05:54 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 12:57:44 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
 
 void	initiate_value(t_map *map, t_sprite *sprite)
 {
@@ -24,14 +25,14 @@ void	initiate_value(t_map *map, t_sprite *sprite)
 		sprite->sprite_x + map->camera.plan_x * sprite->sprite_y);
 	sprite->screen_x = (map->resolution.x_res / 2) * (1.0 +
 		sprite->trans_x / sprite->trans_y);
-	sprite->height = (int)fabs(map->resolution.x_res / sprite->trans_y) / 2;
+	sprite->height = (int)fabs(map->resolution.x_res / sprite->trans_y) / 1.8;
 	if ((sprite->draw_start_y = -sprite->height / 2 +
 		map->resolution.y_res / 2) < 0)
 		sprite->draw_start_y = 0;
 	if ((sprite->draw_end_y = sprite->height / 2 + map->resolution.y_res / 2)
 		>= map->resolution.y_res)
 		sprite->draw_end_y = map->resolution.y_res - 1;
-	sprite->width = (int)fabs(map->resolution.x_res / sprite->trans_y) / 1.3;
+	sprite->width = (int)fabs(map->resolution.x_res / sprite->trans_y) / 1.5;
 	sprite->draw_start_x = -sprite->width / 2 + sprite->screen_x;
 	sprite->draw_end_x = sprite->width / 2 + sprite->screen_x;
 }
@@ -52,7 +53,8 @@ void	print_sprite(t_map *map, t_sprite *sprite,
 				{
 					get_sprite_color(map, &map->texture.s, sprite);
 					if (sprite->color != 0xff000000)
-						ft_put_pixel(map, sprite->pix, sprite->stripe, sprite->color);
+						ft_put_pixel(map, sprite->pix, sprite->stripe,
+							sprite->color);
 				}
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 16:38:46 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:42:12 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,18 @@ typedef struct		s_movement
 	float			former_mv_speed;
 	float			former_rot_speed;
 }					t_movement;
+
+typedef struct		s_hud
+{
+	float			x;
+	float			y;
+	float			height;
+	float			width;
+	float			start_x;
+	float			end_x;
+	float			start_y;
+	float			end_y;
+}					t_hud;
 
 typedef struct		s_sprite
 {
@@ -152,6 +164,7 @@ typedef struct		s_map
 	t_plan			plan;
 	t_camera		camera;
 	t_list			**sprite;
+	t_hud			hud;
 	int				ground;
 	int				ceiling;
 }					t_map;
@@ -198,11 +211,15 @@ void				turn_left(t_map *map);
 void				calcul_sprite_dist(t_map *map);
 void				sort_sprite(t_map *map);
 void				complete_sprite(t_map *map);
-void				get_sprite_color(t_map *map, t_image *texture, t_sprite *sprite);
+void				get_sprite_color(t_map *map, t_image *texture,
+	t_sprite *sprite);
 void				register_sprite(t_map *map, int x, int y);
 int					close_window(t_map *map);
-void				sprite_render(t_map *map, float buffer[map->resolution.x_res]);
+void				sprite_render(t_map *map,
+	float buffer[map->resolution.x_res]);
 void				ft_put_pixel(t_map *map, int x, int y, unsigned int color);
+void				pick_up_sprite(t_map *map);
+void				respaw_sprite(t_map *map);
 
 #endif
 

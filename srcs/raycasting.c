@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 16:47:38 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:37:43 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,35 +46,28 @@ void		create_image(t_map *map)
 
 void		hud_render(t_map *map)
 {
-	float		x;
-	float		y;
-	float		height;
-	float		width;
-	float		start_x;
-	float		end_x;
-	float		start_y;
-	float		end_y;
-
-	start_x = (map->resolution.x_res / 16) * 5;
-	start_y = (map->resolution.y_res / 16) * 15;
-
-	width = (map->resolution.x_res / 16) * 6;
-	height = (map->resolution.y_res / 16) * 1;
-
-	end_x = start_x + width;
-	end_y = start_y + height;
-
-	x = start_x - 1;
-	while (++x < end_x)
+	map->hud.start_x = (map->resolution.x_res / 16) * 5;
+	map->hud.start_y = (map->resolution.y_res / 16) * 15;
+	map->hud.width = (map->resolution.x_res / 16) * 6;
+	map->hud.height = (map->resolution.y_res / 16) * 1;
+	map->hud.end_x = map->hud.start_x + map->hud.width;
+	map->hud.end_y = map->hud.start_y + map->hud.height;
+	map->hud.x = map->hud.start_x - 1;
+	while (++map->hud.x <= map->hud.end_x)
 	{
-		y = start_y - 1;
-		while (++y < end_y)
+		map->hud.y = map->hud.start_y - 1;
+		while (++map->hud.y <= map->hud.end_y)
 		{
-			if (map->plan.sprite_nb && (x - start_x) / (end_x - start_x) >
+			if (map->hud.x == map->hud.start_x || map->hud.x == map->hud.end_x
+				|| map->hud.y == map->hud.start_y ||
+				map->hud.y == map->hud.end_y)
+				ft_put_pixel(map, map->hud.y, map->hud.x, 0);
+			else if (map->plan.sprite_nb && (map->hud.x - map->hud.start_x) /
+				(map->hud.end_x - map->hud.start_x) >
 				(float)map->plan.sprite_collected / (float)map->plan.sprite_nb)
-				ft_put_pixel(map, y, x, 0xFFFFFF);
+				ft_put_pixel(map, map->hud.y, map->hud.x, 0xFFFFFF);
 			else
-				ft_put_pixel(map, y, x, 0xFFFFF);
+				ft_put_pixel(map, map->hud.y, map->hud.x, 0xFF0000);
 		}
 	}
 }
@@ -83,6 +76,9 @@ void		raycasting(t_map *map)
 {
 	float		buffer[map->resolution.x_res];
 	int			x;
+
+	static int i = 0;
+	ft_printf("raycastin [%i]\n", i++);
 
 	x = -1;
 	set_up_camera(map);

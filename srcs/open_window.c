@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 11:23:09 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:47:48 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ int			close_window(t_map *map)
 	int i;
 
 	i = 0;
-	if (map->mlx_param.image)
 		mlx_destroy_image(map->mlx_param.mlx, map->mlx_param.image);
-	mlx_clear_window(map->mlx_param.mlx, map->mlx_param.window);
+	mlx_destroy_window(map->mlx_param.mlx, map->mlx_param.window);
 	ft_lstclear(map->sprite, free);
 	free(map->sprite);
 	while (map->plan.plan[i])
@@ -31,7 +30,7 @@ int			close_window(t_map *map)
 	free(map->texture.ea.image);
 	free(map->texture.s.image);
 	free(map);
-	//system("leaks cub3d");
+	system("leaks cub3d");
 	exit(0);
 }
 
@@ -56,6 +55,8 @@ int			key_push(int key, t_map *map)
 		map->player.movement.rot_speed = map->player.movement.former_rot_speed *
 			1.5;
 	}
+	if (key == 15)
+		respaw_sprite(map);
 	if (key == 53)
 		close_window(map);
 	return (0);
