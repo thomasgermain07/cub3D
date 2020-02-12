@@ -1,13 +1,13 @@
-R 1024 720
+R  1200 700
 
-NO /path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-S ./texture/Frfrance.XPM
+NO ./texture/brick_wall.XPM
+SO ./texture/brick_wall.XPM
+WE ./texture/wood_wall.XPM
+EA ./texture/wood_wall.XPM
+S ./texture/frfrance.XPM
 
-F 220,100,12
-C 225,30,0
+F 86,125,70
+C 0,191,235
 
 11111111111111111111111111111
 10000001001100000000000000001

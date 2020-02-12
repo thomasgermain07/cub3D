@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/11 15:07:22 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/12 13:07:29 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ void				check_map(t_map *map);
 void				open_window(t_map *map);
 unsigned int		conv_color(char *str);
 void				get_all_texture(t_map *map);
+void				free_struct(t_map *map);
 /*
 ** ----- Raycasting ----
 */

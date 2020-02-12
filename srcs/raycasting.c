@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/11 15:19:21 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:22:00 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ void		hud_render(t_map *map)
 	map->hud.end_x = map->hud.start_x + map->hud.width;
 	map->hud.end_y = map->hud.start_y + map->hud.height;
 	map->hud.x = map->hud.start_x - 1;
-	while (++map->hud.x <= map->hud.end_x)
+	while (++map->hud.x < map->hud.end_x)
 	{
 		map->hud.y = map->hud.start_y - 1;
-		while (++map->hud.y <= map->hud.end_y)
+		while (++map->hud.y < map->hud.end_y)
 		{
-			if (map->hud.x == map->hud.start_x || map->hud.x == map->hud.end_x
+			if (map->hud.x == map->hud.start_x || map->hud.x == map->hud.end_x - 1
 				|| map->hud.y == map->hud.start_y ||
-				map->hud.y == map->hud.end_y)
+				map->hud.y == map->hud.end_y - 1)
 				ft_put_pixel(map, map->hud.y, map->hud.x, 0);
 			else if (map->plan.sprite_nb && (map->hud.x - map->hud.start_x) /
 				(map->hud.end_x - map->hud.start_x) >
