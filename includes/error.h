@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 09:27:17 by thomasgerma       #+#    #+#             */
-/*   Updated: 2020/02/11 12:52:08 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/13 11:23:06 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@
 ** %s
 */
 # define ERR_TEXTURE_PATH "Error\nFile \"%s\" not found\n"
+# define ERR_NO_ARG "Error\nExpected at least 2 arguments\n"
 #endif
