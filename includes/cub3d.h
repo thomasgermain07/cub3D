@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/13 16:59:32 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/14 10:27:50 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct		s_mlx_param
 	void			*window;
 	int				*image;
 	char			*mapping;
+	int				bpp;
 }					t_mlx_param;
 
 typedef struct		s_camera
