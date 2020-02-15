@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 10:28:33 by thgermai          #+#    #+#             */
-/*   Updated: 2020/01/09 16:13:44 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:29:27 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct		s_param
 	int				justify;
 	char			fill;
 }					t_param;
+
+typedef struct		s_ptrlst
+{
+	void			*ptr;
+	void			(*fptr)(void *);
+}					t_ptrlst;
 
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
@@ -124,5 +130,10 @@ char				*fill_width_right(char *str, t_param *param);
 char				*check_width_num(char *str, t_param *param);
 char				*check_precision_num(char *str, t_param *param);
 char				*fill_precision(char *str, t_param *param);
+
+void				ft_free_ptrlst(t_list **lst);
+void				ft_del_ptr(t_list **lst, void *to_del);
+void				*ft_add_ptr(void *ptr, t_list **lst, void (*fptr)(void *));
+void				ft_print_add_lst(t_list **lst);
 
 #endif

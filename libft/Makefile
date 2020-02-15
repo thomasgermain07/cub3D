@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/03 14:34:05 by thgermai          #+#    #+#              #
-#    Updated: 2020/01/09 21:31:06 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/15 18:18:57 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,8 @@ SRCS = ./get_next_line.c\
 	./ft_printf/pf_fill_6_9.c\
 	./ft_printf/pf_parsing.c\
 	./ft_printf/pf_precision.c\
-	./ft_printf/pf_width.c
+	./ft_printf/pf_width.c\
+	./ft_ptr_lst.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = ./libft.h
 CFLAGS = -Wall -Wextra -Werror

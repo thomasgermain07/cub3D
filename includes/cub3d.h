@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/15 15:52:08 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/15 18:21:00 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
-# include "ptr.h"
 # include <mlx.h>
 # include <math.h>
 # include "error.h"
