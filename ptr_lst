@@ -1,0 +1,136 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/15 15:44:31 by thgermai          #+#    #+#             */
+/*   Updated: 2020/02/15 18:10:38 by thgermai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "includes/cub3d.h"
+#include "includes/ptr.h"
+
+void	ft_free_ptrlst(t_list **lst)
+{
+	t_list		*current;
+	t_ptrlst	*ptr;
+
+	ptr = NULL;
+	current = *lst;
+	while (current)
+	{
+		ptr = current->content;
+		(ptr->fptr)(ptr->ptr);
+		ptr->ptr = NULL;
+		current = current->next;
+	}
+	ft_lstclear(lst, free);
+	free(lst);
+}
+
+void	ft_del_ptr(t_list **lst, void *to_del)
+{
+	t_list		*last;
+	t_list		*current;
+	t_ptrlst	*ptr;
+
+	current = *lst;
+	last = NULL;
+	while (current)
+	{
+		ptr = current->content;
+		if (ptr->ptr == to_del)
+		{
+			(ptr->fptr)(ptr->ptr);
+			if (last)
+			{
+				last->next = current->next;
+				ft_lstdelone(current, free);
+				current = last->next;
+			}
+			else
+			{
+				*lst = current->next;
+				ft_lstdelone(current, free);
+			}
+			return ;
+		}
+		last = current;
+		current = current->next;
+	}
+}
+
+void	*add_to_lst(void *ptr, t_list **lst, void (*fptr)(void *))
+{
+	t_ptrlst	*new_ptr;
+	t_list		*new_elem;
+
+	if (!(new_ptr = ft_calloc(sizeof(t_ptrlst), 1)))
+		return (NULL);
+	new_ptr->ptr = ptr;
+	new_ptr->fptr = fptr;
+	new_elem = ft_lstnew(new_ptr);
+	ft_lstadd_back(lst, new_elem);
+	return (ptr);
+}
+
+void	print_list(t_list **lst)
+{
+	t_ptrlst *ptr;
+	t_list *current;
+
+	current = *lst;
+	while (current)
+	{
+		ptr = current->content;
+		printf("->%p\n", current->content);
+		current = current->next;
+	}
+}
+
+
+int 	main(void)
+{
+	t_list		**lst;
+
+	lst = malloc(sizeof(t_list *) * 1);
+	*lst = NULL;
+
+	char	*str;
+	char	*str2;
+	char	*str3;
+
+	str = add_to_lst(ft_strdup("salut"), lst, &free);
+	str2 = add_to_lst(ft_strdup("les"), lst, &free);
+	str3 = add_to_lst(ft_strdup("gens"), lst, &free);
+
+	char **tab;
+
+	tab = add_to_lst(malloc(sizeof(char *) * 5), lst, free);
+
+	tab[0] = add_to_lst(ft_strdup("J'aime pas ce que je vois la"), lst, free);
+	tab[1] = add_to_lst(ft_strdup("fasfasfas"), lst, free);
+	tab[2] = add_to_lst(ft_strdup("Jhgkhgkhgkgla"), lst, free);
+	tab[3] = add_to_lst(ft_strdup("J'ytiytiyiyti"), lst, free);
+	tab[4] = NULL;
+
+	print_list(lst);
+	printf("\n\n");
+	ft_del_ptr(lst, str2);
+	ft_del_ptr(lst, tab[4]);
+	print_list(lst);
+	printf("\n\n");
+
+	ft_free_ptrlst(lst);
+
+	str = NULL;
+	str2 = NULL;
+	str3 = NULL;
+	lst = NULL;
+	system("leaks a.out");
+	return (0);
+}
+

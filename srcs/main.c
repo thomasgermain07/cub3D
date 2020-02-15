@@ -6,11 +6,19 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:13:32 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/14 16:49:39 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/15 15:24:37 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	moving_bits(unsigned char *str, int value)
+{
+	str[0] = (unsigned char)(value);
+	str[1] = (unsigned char)(value >> 8);
+	str[2] = (unsigned char)(value >> 16);
+	str[3] = (unsigned char)(value >> 24);
+}
 
 int		get_image(t_map *map)
 {
@@ -21,17 +29,53 @@ int		get_image(t_map *map)
 
 	fd = open("image.bmp", O_RDWR | O_CREAT , S_IRWXU);
 
+	int size;
+	size = 3 * (map->resolution.x_res * map->resolution.y_res);
+
 	unsigned char	file_header[14];
 	ft_memset(&file_header, 0, 14);
+
 	file_header[0] = 'B';
 	file_header[1] = 'M';
+	moving_bits(&file_header[2], size + 54);
 	file_header[10] = 54;
 
 	unsigned char	image_header[40];
 	ft_memset(&image_header, 0, 40);
 
 	image_header[0] = 40;
+	moving_bits(&image_header[4], map->resolution.x_res);
+	moving_bits(&image_header[8], map->resolution.y_res);
+	image_header[12] = 1;
+	image_header[14] = 24;
+	image_header[20] = size;
 
+	write(fd, file_header, 14);
+	write(fd, image_header, 40);
+
+	int j;
+	int i;
+	int color;
+
+	int (*array)[map->resolution.x_res][1];
+	array = (void *)map->mlx_param.mapping;
+
+	unsigned char pad[3];
+	ft_memset(&pad, 0, 3);
+
+	j = map->resolution.y_res;
+	while (--j >= 0)
+	{
+		i = -1;
+		while (++i < map->resolution.x_res)
+		{
+			color = *array[j][i];
+			write(fd, &color, 3);
+		}
+		i = -1;
+		while (++i < (4 - (map->resolution.x_res * 3) % 4) % 4)
+            write(fd, &pad, 3);
+	}
 
 	close(fd);
 	return (1);
@@ -52,7 +96,7 @@ int			main(int ac, char **av)
 		open_window(map);
 	else if (ac == 3)
 	{
-		if (!ft_strncmp("--screen", av[2], ft_strlen(av[2])))
+		if (!ft_strncmp("--save", av[2], ft_strlen(av[2])))
 			get_image(map);
 		else
 			ft_printf("Error\nOption %s unkown\n", av[2]);
