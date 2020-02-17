@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/15 18:21:00 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 10:27:23 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,7 @@ void				sprite_render(t_map *map,
 void				ft_put_pixel(t_map *map, int x, int y, unsigned int color);
 void				pick_up_sprite(t_map *map);
 void				respaw_sprite(t_map *map);
+int					get_image(t_map *map);
 
 #endif
 
