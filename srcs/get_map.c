@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/01 09:46:13 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:07:52 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,21 @@ void		convert_lst_to_tab(t_map *map, t_list *lst)
 	if (!lst)
 	{
 		ft_printf(ERR_MAP_MISS);
-		exit(0);
+		exit_prog(map);
 	}
-	if (!(map->plan.plan = malloc(sizeof(char *) * (ft_lstsize(lst) + 1))))
-		exit(0);
+	if (!(map->plan.plan = ft_add_ptr(malloc(sizeof(char *) *
+		(ft_lstsize(lst) + 1)), map->ptr_lst, &free)))
+		exit_prog(map);
 	while (lst)
 	{
 		check_line(lst->content, map);
-		map->plan.plan[i] = ft_strdup(lst->content);
+		map->plan.plan[i] = ft_add_ptr(ft_strdup(lst->content),
+			map->ptr_lst, &free);
 		lst = lst->next;
 		i++;
 	}
-	check_last_line(map->plan.plan[i - 1]);
-	map->plan.size_x = ft_strlen(map->plan.plan[i - 1]);
-	map->plan.size_y = i;
+	if (!check_last_line(map->plan.plan[i - 1]))
+		exit_prog(map);
 	map->plan.plan[i] = NULL;
 }
 
@@ -44,13 +45,13 @@ void		read_file(int fd, t_map *map)
 	t_list	**list;
 
 	if (!(list = malloc(sizeof(t_list *) * 1)))
-		exit(0);
+		exit_prog(map);
 	*list = NULL;
 	temp = NULL;
 	while ((ret = get_next_line(fd, &temp)))
 	{
 		if (ret == -1)
-			exit(0);
+			exit_prog(map);
 		if (temp)
 		{
 			parsing(temp, map, list);
@@ -73,8 +74,12 @@ t_map		*get_map(char *file_name)
 		return (NULL);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		return (NULL);
-	if (!(map->sprite = malloc(sizeof(t_list *) * 1)))
-		exit(0);
+	if (!(map->ptr_lst = malloc(sizeof(t_list *) * 1)))
+		return (NULL);
+	*map->ptr_lst = NULL;
+	if (!(map->sprite = ft_add_ptr(malloc(sizeof(t_list *) * 1),
+		map->ptr_lst, &free)))
+		exit_prog(map);
 	*map->sprite = NULL;
 	read_file(fd, map);
 	check_map(map);

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/12 14:11:38 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:13:44 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		register_sprite(t_map *map, int x, int y)
 	t_list		*new_elem;
 
 	if (!(new_sprite = malloc(sizeof(t_sprite))))
-		exit(0);
+		exit_prog(map);
 	new_sprite->x = (float)x + 0.5;
 	new_sprite->y = (float)y + 0.5;
 	new_sprite->visible = 0;

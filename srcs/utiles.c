@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/12 13:13:32 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:21:09 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,15 @@ char		*skip_space(char *str)
 	while (str[i] == ' ')
 		i++;
 	temp = ft_strdup(str + i);
-	return (ft_exit_ptr(temp, 0));
+	return (temp);
+}
+
+void		exit_prog(t_map *map)
+{
+	if (*map->sprite)
+		ft_lstclear(map->sprite, free);
+	ft_free_ptrlst(map->ptr_lst);
+	free(map);
+	system("leaks cub3d");
+	exit(0);
 }

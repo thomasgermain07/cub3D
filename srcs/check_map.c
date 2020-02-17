@@ -6,13 +6,13 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/12 13:12:53 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:04:39 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void		check_last_line(char *line)
+int			check_last_line(char *line)
 {
 	int				i;
 
@@ -22,12 +22,13 @@ void		check_last_line(char *line)
 		if (line[i] != '1')
 		{
 			ft_printf(ERR_WRG_LST_LINE, i, line[i]);
-			exit(0);
+			return (0);
 		}
 	}
+	return (1);
 }
 
-void		check_first_line(char *line)
+int			check_first_line(char *line)
 {
 	int		j;
 
@@ -37,9 +38,10 @@ void		check_first_line(char *line)
 		if (line[j] != '1')
 		{
 			ft_printf(ERR_WRG_OUTLINE, 0, j, line[j]);
-			exit(0);
+			return (0);
 		}
 	}
+	return (1);
 }
 
 void		complete_orientation(t_map *map)
@@ -83,7 +85,7 @@ void		check_spawn(char *line, t_map *map, int i)
 			if (spawn)
 			{
 				ft_printf(ERR_SPAWN_EXIST, i, j, line[j]);
-				exit(0);
+				exit_prog(map);
 			}
 			spawn++;
 		}
@@ -97,8 +99,8 @@ void		check_line(char *line, t_map *map)
 	int				j;
 
 	j = -1;
-	if (!i)
-		check_first_line(line);
+	if (!i && !check_first_line(line))
+		exit_prog(map);
 	else
 	{
 		while (line[++j])
@@ -106,7 +108,7 @@ void		check_line(char *line, t_map *map)
 			if (ft_find_in("012NSEW", line[j]) == -1)
 			{
 				ft_printf(ERR_WRG_PAR, i, j, line[j]);
-				exit(0);
+				exit_prog(map);
 			}
 			if (line[j] == '2')
 				register_sprite(map, i, j);
@@ -115,7 +117,7 @@ void		check_line(char *line, t_map *map)
 		if (line[0] != '1' || line[--j] != '1')
 		{
 			ft_printf(ERR_WRG_OUTLINE, i, j, line[j]);
-			exit(0);
+			exit_prog(map);
 		}
 	}
 	i++;

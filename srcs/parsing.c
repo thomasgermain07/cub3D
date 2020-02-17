@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/10 12:44:49 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:18:47 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char			*del_plan_space(char *str)
 		if (str[i] == ' ')
 			j++;
 	if (!(temp = ft_calloc(sizeof(char), i - j + 1)))
-		exit(0);
+		return (NULL);
 	i = -1;
 	j = 0;
 	while (str[++i])
@@ -55,12 +55,16 @@ char			*del_plan_space(char *str)
 	return (temp);
 }
 
-void			get_plan(char *str, t_list **list)
+int				get_plan(char *str, t_list **list)
 {
 	t_list	*new_elem;
+	char	*temp;
 
-	new_elem = ft_lstnew(del_plan_space(str));
+	if (!(temp = del_plan_space(str)))
+		return (0);
+	new_elem = ft_lstnew(temp);
 	ft_lstadd_back(list, new_elem);
+	return (1);
 }
 
 unsigned int	conv_color(char *str)
@@ -88,21 +92,27 @@ unsigned int	conv_color(char *str)
 void			parsing(char *str, t_map *map, t_list **list)
 {
 	if (ft_strnstr(str, "NO", ft_strlen(str)))
-		map->texture.no.image = skip_space(str + ft_find_in(str, 'O') + 1);
+		map->texture.no.image = ft_add_ptr(skip_space(str +
+			ft_find_in(str, 'O') + 1), map->ptr_lst, &free);
 	else if (ft_strnstr(str, "SO", ft_strlen(str)))
-		map->texture.so.image = skip_space(str + ft_find_in(str, 'O') + 1);
+		map->texture.so.image = ft_add_ptr(skip_space(str +
+			ft_find_in(str, 'O') + 1), map->ptr_lst, &free);
 	else if (ft_strnstr(str, "WE", ft_strlen(str)))
-		map->texture.we.image = skip_space(str + ft_find_in(str, 'E') + 1);
+		map->texture.we.image = ft_add_ptr(skip_space(str +
+			 ft_find_in(str, 'E') + 1), map->ptr_lst, &free);
 	else if (ft_strnstr(str, "EA", ft_strlen(str)))
-		map->texture.ea.image = skip_space(str + ft_find_in(str, 'A') + 1);
+		map->texture.ea.image = ft_add_ptr(skip_space(str +
+			ft_find_in(str, 'A') + 1), map->ptr_lst, &free);
+	else if (ft_strnstr(str, "S", ft_strlen(str)) && !map->texture.s.image)
+		map->texture.s.image = ft_add_ptr(skip_space(str +
+			ft_find_in(str, 'S') + 1), map->ptr_lst, &free);
 	else if (ft_strnstr(str, "R", ft_strlen(str)))
 		get_resolution(str, map);
-	else if (ft_strnstr(str, "S", ft_strlen(str)) && !map->texture.s.image)
-		map->texture.s.image = skip_space(str + ft_find_in(str, 'S') + 1);
 	else if (ft_strnstr(str, "F", ft_strlen(str)))
 		map->ground = conv_color(skip_space(str + ft_find_in(str, 'F') + 1));
 	else if (ft_strnstr(str, "C", ft_strlen(str)))
 		map->ceiling = conv_color(skip_space(str + ft_find_in(str, 'C') + 1));
 	else if (ft_strlen(str))
-		get_plan(str, list);
+		if (!get_plan(str, list))
+			exit_prog(map);
 }

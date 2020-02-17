@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 10:27:23 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:19:10 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ typedef struct		s_resolution
 
 typedef struct		s_plan
 {
-	int				size_x;
-	int				size_y;
 	char			**plan;
 	int				sprite_nb;
 	int				sprite_collected;
@@ -168,16 +166,16 @@ typedef struct		s_map
 	t_hud			hud;
 	int				ground;
 	int				ceiling;
+	t_list			**ptr_lst;
 }					t_map;
 /*
 ** ---- Parsing ----
 */
 char				*skip_space(char *str);
 void				check_line(char *line, t_map *map);
-void				check_last_line(char *line);
+int					check_last_line(char *line);
 void				print_map(t_map *map);
 void				parsing(char *str, t_map *map, t_list **list);
-void				get_plan(char *str, t_list **list);
 t_map				*get_map(char *file_name);
 void				check_map(t_map *map);
 void				open_window(t_map *map);
@@ -222,7 +220,11 @@ void				sprite_render(t_map *map,
 void				ft_put_pixel(t_map *map, int x, int y, unsigned int color);
 void				pick_up_sprite(t_map *map);
 void				respaw_sprite(t_map *map);
-int					get_image(t_map *map);
+/*
+** ----- Other -----
+*/
+void				get_image(t_map *map);
+void				exit_prog(t_map *map);
 
 #endif
 

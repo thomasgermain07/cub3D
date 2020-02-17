@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:20:16 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 10:46:37 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:11:44 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,20 @@ void	get_image_mapping(t_map *map, int fd)
 	}
 }
 
-int		get_image(t_map *map)
+void	get_image(t_map *map)
 {
 	int		fd;
 
 	map->mlx_param.mlx = mlx_init();
 	get_all_texture(map);
 	raycasting(map);
-	fd = open("image.bmp", O_RDWR | O_CREAT, S_IRWXU);
+	if ((fd = open("image.bmp", O_RDWR | O_CREAT, S_IRWXU)) == -1)
+	{
+		ft_printf(ERR_CRT_IMG);
+		exit_prog(map);
+	}
 	get_file_header(map, fd);
 	get_image_header(map, fd);
 	get_image_mapping(map, fd);
 	close(fd);
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/15 15:10:44 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:21:12 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,10 @@
 
 int			close_window(t_map *map)
 {
-	int i;
-
-	i = 0;
 	mlx_destroy_image(map->mlx_param.mlx, map->mlx_param.image);
 	mlx_destroy_window(map->mlx_param.mlx, map->mlx_param.window);
 	ft_lstclear(map->sprite, free);
-	free(map->sprite);
-	while (map->plan.plan[i])
-		free(map->plan.plan[i++]);
-	free(map->plan.plan);
-	free(map->texture.no.image);
-	free(map->texture.so.image);
-	free(map->texture.we.image);
-	free(map->texture.ea.image);
-	free(map->texture.s.image);
+	ft_free_ptrlst(map->ptr_lst);
 	free(map);
 	system("leaks cub3d");
 	exit(0);

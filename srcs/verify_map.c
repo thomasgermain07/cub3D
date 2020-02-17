@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 15:05:11 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/12 15:11:04 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:14:07 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void		check_resolution(t_map *map)
 	if (error && (map->resolution.x_res < 0 || map->resolution.y_res < 0))
 	{
 		ft_printf(ERR_NEG_RES, map->resolution.x_res, map->resolution.y_res);
-		exit (0);
+		exit_prog(map);
 	}
 	else if (error)
 	{
 		ft_printf(ERR_RES, map->resolution.x_res, map->resolution.y_res);
-		exit(0);
+		exit_prog(map);
 	}
 }
 
@@ -40,27 +40,27 @@ void		check_texture(t_map *map)
 	if (!map->texture.ea.image)
 	{
 		ft_printf(ERR_TEXTURE, "EA");
-		exit(0);
+		exit_prog(map);
 	}
 	else if (!map->texture.we.image)
 	{
 		ft_printf(ERR_TEXTURE, "WE");
-		exit(0);
+		exit_prog(map);
 	}
 	else if (!map->texture.no.image)
 	{
 		ft_printf(ERR_TEXTURE, "NO");
-		exit(0);
+		exit_prog(map);
 	}
 	else if (!map->texture.so.image)
 	{
 		ft_printf(ERR_TEXTURE, "SO");
-		exit(0);
+		exit_prog(map);
 	}
 	else if (!map->texture.s.image)
 	{
 		ft_printf(ERR_TEXTURE, "S");
-		exit(0);
+		exit_prog(map);
 	}
 }
 
@@ -69,7 +69,7 @@ void		check_player(t_map *map)
 	if (!map->player.orientation)
 	{
 		ft_printf(ERR_PLAY_MISS);
-		exit(0);
+		exit_prog(map);
 	}
 }
 

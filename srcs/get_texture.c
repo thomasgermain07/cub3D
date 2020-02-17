@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 08:53:15 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/14 16:35:05 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:12:39 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		get_texture(t_image *texture, t_map *map)
 		texture->image, &texture->w, &texture->h)))
 	{
 		ft_printf(ERR_TEXTURE_PATH, texture->image);
-		exit(0);
+		exit_prog(map);
 	}
 	texture->mapping = (int *)mlx_get_data_addr(image, &x, &y, &bit_per_pixel);
 }
