@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 14:21:12 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:40:55 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int			close_window(t_map *map)
 {
-	mlx_destroy_image(map->mlx_param.mlx, map->mlx_param.image);
-	mlx_destroy_window(map->mlx_param.mlx, map->mlx_param.window);
+	del_mlx_data(map);
 	ft_lstclear(map->sprite, free);
 	ft_free_ptrlst(map->ptr_lst);
 	free(map);

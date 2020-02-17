@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 14:19:10 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:54:12 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ typedef struct		s_plan
 
 typedef struct		s_image
 {
-	char			*image;
+	char			*name;
+	void			*image;
 	int				*mapping;
 	int				h;
 	int				w;
@@ -122,7 +123,6 @@ typedef struct		s_mlx_param
 	void			*window;
 	int				*image;
 	char			*mapping;
-	int				bpp;
 }					t_mlx_param;
 
 typedef struct		s_camera
@@ -225,6 +225,6 @@ void				respaw_sprite(t_map *map);
 */
 void				get_image(t_map *map);
 void				exit_prog(t_map *map);
+void				del_mlx_data(t_map *map);
 
 #endif
-

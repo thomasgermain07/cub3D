@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/14 10:28:20 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:32:39 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ void		create_image(t_map *map)
 {
 	int		size_line;
 	int		endian;
+	int		bpp;
 
 	map->mlx_param.image = mlx_new_image(map->mlx_param.mlx,
 		map->resolution.x_res, map->resolution.y_res);
 	map->mlx_param.mapping = mlx_get_data_addr(map->mlx_param.image,
-		&map->mlx_param.bpp, &size_line, &endian);
+		&bpp, &size_line, &endian);
 }
 
 void		hud_render(t_map *map)
