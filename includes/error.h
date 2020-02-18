@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 09:27:17 by thomasgerma       #+#    #+#             */
-/*   Updated: 2020/02/17 14:11:21 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:17:24 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@
 # define ERR_TEXTURE_PATH "Error\nFile \"%s\" not found\n"
 # define ERR_NO_ARG "Error\nExpected at least 2 arguments\n"
 # define ERR_CRT_IMG "Error\nFailed to create image\n"
+# define ERR_MAP_NAME "Error\n%s does not exist\n"
 #endif

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 08:53:15 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 16:41:24 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:39:02 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	get_tex_color(t_map *map, t_image *texture)
 
 void	get_the_color(t_map *map)
 {
-	map->camera.color = 0;
 	if (!map->camera.side && map->camera.ray_dir_x > 0)
 		get_tex_color(map, &map->texture.no);
 	else if (!map->camera.side && map->camera.ray_dir_x < 0)
@@ -52,7 +51,7 @@ void	get_the_color(t_map *map)
 		get_tex_color(map, &map->texture.ea);
 }
 
-void		get_texture(t_image *texture, t_map *map)
+void	get_texture(t_image *texture, t_map *map)
 {
 	int		x;
 	int		y;
@@ -62,14 +61,13 @@ void		get_texture(t_image *texture, t_map *map)
 		texture->name, &texture->w, &texture->h)))
 	{
 		ft_printf(ERR_TEXTURE_PATH, texture->name);
-		del_mlx_data(map);
-		exit_prog(map);
+		close_window(map);
 	}
 	texture->mapping = (int *)mlx_get_data_addr(texture->image,
 		&x, &y, &bit_per_pixel);
 }
 
-void		get_all_texture(t_map *map)
+void	get_all_texture(t_map *map)
 {
 	get_texture(&map->texture.no, map);
 	get_texture(&map->texture.so, map);

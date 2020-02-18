@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 15:54:12 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 14:59:31 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct		s_player
 {
 	float			x;
 	float			y;
+	int				spawn;
 	char			orientation;
 	float			dir_x;
 	float			dir_y;

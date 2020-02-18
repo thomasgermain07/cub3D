@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 15:35:40 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:39:13 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void			parsing(char *str, t_map *map, t_list **list)
 			ft_find_in(str, 'O') + 1), map->ptr_lst, &free);
 	else if (ft_strnstr(str, "WE", ft_strlen(str)))
 		map->texture.we.name = ft_add_ptr(skip_space(str +
-			 ft_find_in(str, 'E') + 1), map->ptr_lst, &free);
+			ft_find_in(str, 'E') + 1), map->ptr_lst, &free);
 	else if (ft_strnstr(str, "EA", ft_strlen(str)))
 		map->texture.ea.name = ft_add_ptr(skip_space(str +
 			ft_find_in(str, 'A') + 1), map->ptr_lst, &free);

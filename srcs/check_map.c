@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 14:04:39 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:26:02 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void		complete_orientation(t_map *map)
 
 void		check_spawn(char *line, t_map *map, int i)
 {
-	static int		spawn = 0;
 	int				j;
 
 	j = 0;
@@ -82,12 +81,12 @@ void		check_spawn(char *line, t_map *map, int i)
 			map->player.x = i + 0.5;
 			map->player.y = j + 0.5;
 			complete_orientation(map);
-			if (spawn)
+			if (map->player.spawn)
 			{
 				ft_printf(ERR_SPAWN_EXIST, i, j, line[j]);
 				exit_prog(map);
 			}
-			spawn++;
+			map->player.spawn++;
 		}
 		j++;
 	}
@@ -98,10 +97,9 @@ void		check_line(char *line, t_map *map)
 	static int		i = 0;
 	int				j;
 
-	j = -1;
 	if (!i && !check_first_line(line))
 		exit_prog(map);
-	else
+	else if ((j = -1))
 	{
 		while (line[++j])
 		{

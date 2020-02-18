@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 16:40:55 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:35:50 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			close_window(t_map *map)
 	del_mlx_data(map);
 	ft_lstclear(map->sprite, free);
 	ft_free_ptrlst(map->ptr_lst);
-	free(map);
 	system("leaks cub3d");
 	exit(0);
 }
@@ -96,15 +95,14 @@ int			key_center(t_map *map)
 void		open_window(t_map *map)
 {
 	map->mlx_param.mlx = mlx_init();
-	map->mlx_param.window = mlx_new_window(map->mlx_param.mlx,
-		map->resolution.x_res, map->resolution.y_res, "Cub3d");
+	get_all_texture(map);
 	map->player.movement.former_mv_speed = MV_SPEED;
 	map->player.movement.former_rot_speed = ROT_SPEED;
 	map->player.movement.mv_speed = MV_SPEED;
 	map->player.movement.rot_speed = ROT_SPEED;
-	get_all_texture(map);
+	map->mlx_param.window = mlx_new_window(map->mlx_param.mlx,
+	map->resolution.x_res, map->resolution.y_res, "Cub3d");
 	raycasting(map);
-	mlx_do_key_autorepeatoff(map->mlx_param.mlx);
 	mlx_hook(map->mlx_param.window, 2, (1L << 0), &key_push, map);
 	mlx_hook(map->mlx_param.window, 3, (1l << 1), &key_release, map);
 	mlx_hook(map->mlx_param.window, 17, (1l << 1), &close_window, map);

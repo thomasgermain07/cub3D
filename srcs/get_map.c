@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/17 14:07:52 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:38:33 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,11 @@ t_map		*get_map(char *file_name)
 	if (!(map = ft_calloc(sizeof(t_map), 1)))
 		return (NULL);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
+	{
+		ft_printf(ERR_MAP_NAME, file_name);
+		free(map);
 		return (NULL);
+	}
 	if (!(map->ptr_lst = malloc(sizeof(t_list *) * 1)))
 		return (NULL);
 	*map->ptr_lst = NULL;
