@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:35:18 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 16:08:15 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 17:38:45 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	initiate_value(t_map *map, t_sprite *sprite)
 	if ((sprite->draw_start_y = -sprite->height / 2 +
 		map->resolution.y_res / 2) < 0)
 		sprite->draw_start_y = 0;
-	if ((sprite->draw_end_y = sprite->height / 2 + map->resolution.y_res / 2)
-		>= map->resolution.y_res)
+	if ((sprite->draw_end_y = sprite->height / 2 +
+		map->resolution.y_res / 2) >= map->resolution.y_res)
 		sprite->draw_end_y = map->resolution.y_res - 1;
 	sprite->width = (int)fabs(map->resolution.x_res / sprite->trans_y) / 1.5;
 	sprite->draw_start_x = -sprite->width / 2 + sprite->screen_x;

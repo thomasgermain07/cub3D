@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 08:56:48 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 10:40:52 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 16:27:38 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void		raycasting(t_map *map)
 		}
 	}
 	sprite_render(map, buffer);
-	hud_render(map);
+	if (map->plan.sprite_nb)
+		hud_render(map);
 }

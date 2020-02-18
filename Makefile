@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/02/17 18:37:02 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/18 18:37:56 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,11 @@ all : $(NAME)
 
 $(NAME) :
 	@(gcc $(MLX) $(CFLAGS) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
-	#@(./$(NAME) $(MAP))
 
 f : $(OBJS)
 	@(gcc $(CFLAGS) $(MLX) $(DEBUG) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
-	@(./$(NAME) $(MAP))
 
 clean :
-	@(rm -f $(NAME))
 	@(rm -f image.bmp)
 	@(rm -rf cub3d.dSYM)
 

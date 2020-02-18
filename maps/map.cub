@@ -1,10 +1,10 @@
 R  1200 700
 
-NO ./texture/brick_wall.XPM
-SO ./texture/brick_wall.XPM
-WE ./texture/wood_wall.XPM
-EA ./texture/wood_wall.XPM
-S ./texture/frfrance.XPM
+NO ./texture/red_wall.XPM
+SO ./texture/red_wall.XPM
+WE ./texture/red_wall.XPM
+EA ./texture/red_wall.XPM
+S ./texture/sprite.XPM
 
 F 86,125,70
 C 0,191,235

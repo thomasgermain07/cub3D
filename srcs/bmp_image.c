@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:20:16 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 14:30:05 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 17:47:00 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	get_image(t_map *map)
 	get_file_header(map, fd);
 	get_image_header(map, fd);
 	get_image_mapping(map, fd);
-	del_mlx_data(map);
-	exit_prog(map);
+	close_window(map);
 	close(fd);
 }

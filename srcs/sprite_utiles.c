@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 16:08:09 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/18 19:53:14 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ void	pick_up_sprite(t_map *map)
 {
 	map->plan.sprite_collected++;
 	map->plan.plan[(int)map->player.x][(int)map->player.y] = '0';
+	if (map->plan.sprite_nb &&
+		map->plan.sprite_collected == map->plan.sprite_nb)
+	{
+
+	}
 }
 
 /*
