@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:12:44 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 16:13:17 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:02:21 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	check_for_hit(t_map *map)
 		}
 		if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '1')
 			map->camera.hit = 1;
+		else if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '3')
+			map->camera.hit = 2;
 		else if (map->plan.plan[map->camera.map_x][map->camera.map_y] == '2')
 			complete_sprite(map);
 	}

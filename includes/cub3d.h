@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 14:59:31 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:39:02 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct		s_player
 {
 	float			x;
 	float			y;
+	int				origin_x;
+	int				origin_y;
 	int				spawn;
 	char			orientation;
 	float			dir_x;
@@ -98,6 +100,7 @@ typedef struct		s_plan
 	char			**plan;
 	int				sprite_nb;
 	int				sprite_collected;
+	int				current_line;
 }					t_plan;
 
 typedef struct		s_image
@@ -167,6 +170,7 @@ typedef struct		s_map
 	t_hud			hud;
 	int				ground;
 	int				ceiling;
+	char			*next_map;
 	t_list			**ptr_lst;
 }					t_map;
 /*
@@ -177,10 +181,10 @@ void				check_line(char *line, t_map *map);
 int					check_last_line(char *line);
 void				print_map(t_map *map);
 void				parsing(char *str, t_map *map, t_list **list);
-t_map				*get_map(char *file_name);
+int					get_map(char *file_name, t_map *map);
 void				check_map(t_map *map);
 void				open_window(t_map *map);
-unsigned int		conv_color(char *str);
+unsigned int		conv_color(char *str, t_map *map);
 void				get_all_texture(t_map *map);
 void				free_struct(t_map *map);
 /*
@@ -226,6 +230,7 @@ void				respaw_sprite(t_map *map);
 */
 void				get_image(t_map *map);
 void				exit_prog(t_map *map);
-void				del_mlx_data(t_map *map);
+void				del_mlx_data(t_map *map, int option);
+void				change_map(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:13:32 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 15:36:22 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/19 10:52:35 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ int			main(int ac, char **av)
 {
 	t_map	*map;
 
+	if (!(map = ft_calloc(sizeof(t_map), 1)))
+		return (0);
 	if (ac == 1)
 	{
 		ft_printf(ERR_NO_ARG);
 		return (0);
 	}
-	if (!(map = get_map(av[1])))
+	if (!get_map(av[1], map))
 		return (0);
 	if (ac == 2)
 		open_window(map);

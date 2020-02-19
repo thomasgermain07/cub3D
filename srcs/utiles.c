@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 15:27:32 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:16:51 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char		*skip_space(char *str)
 	int			i;
 
 	i = 0;
+	if (!ft_strlen(str))
+		return (NULL);
 	while (str[i] == ' ')
 		i++;
 	temp = ft_strdup(str + i);
@@ -35,7 +37,7 @@ void		exit_prog(t_map *map)
 	exit(0);
 }
 
-void		del_mlx_data(t_map *map)
+void		del_mlx_data(t_map *map, int option)
 {
 	if (map->texture.ea.image)
 		mlx_destroy_image(map->mlx_param.mlx, map->texture.ea.image);
@@ -47,11 +49,11 @@ void		del_mlx_data(t_map *map)
 		mlx_destroy_image(map->mlx_param.mlx, map->texture.we.image);
 	if (map->texture.s.image)
 		mlx_destroy_image(map->mlx_param.mlx, map->texture.s.image);
-	if (map->mlx_param.window)
+	if (map->mlx_param.window && option == 1)
 	{
 		mlx_clear_window(map->mlx_param.mlx, map->mlx_param.window);
 		mlx_destroy_window(map->mlx_param.mlx, map->mlx_param.window);
 	}
-	if (map->mlx_param.image)
+	if (map->mlx_param.image && option == 1)
 		mlx_destroy_image(map->mlx_param.mlx, map->mlx_param.image);
 }

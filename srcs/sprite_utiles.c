@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 19:53:14 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:22:59 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,39 @@ void	respaw_sprite(t_map *map)
 		lst = lst->next;
 	}
 	map->plan.sprite_collected = 0;
+	map->plan.plan[(int)map->player.origin_x][(int)map->player.origin_y] = '0';
+}
+
+void	change_map(t_map *map)
+{
+	t_mlx_param		save;
+	char			*next;
+	int				res_x;
+	int				res_y;
+
+	res_x = map->resolution.x_res;
+	res_y = map->resolution.y_res;
+	save = map->mlx_param;
+	next = ft_strdup(map->next_map);
+	ft_lstclear(map->sprite, &free);
+	ft_free_ptrlst(map->ptr_lst);
+	ft_bzero(map, sizeof(t_map));
+	del_mlx_data(map, 0);
+	map->mlx_param = save;
+	get_map(next, map);
+	free(next);
+	map->resolution.x_res = res_x;
+	map->resolution.y_res = res_y;
+	open_window(map);
 }
 
 void	pick_up_sprite(t_map *map)
 {
 	map->plan.sprite_collected++;
 	map->plan.plan[(int)map->player.x][(int)map->player.y] = '0';
-	if (map->plan.sprite_nb &&
+	if (map->plan.sprite_nb && map->next_map &&
 		map->plan.sprite_collected == map->plan.sprite_nb)
-	{
-
-	}
+		map->plan.plan[(int)map->player.origin_x][(int)map->player.origin_y] = '3';
 }
 
 /*

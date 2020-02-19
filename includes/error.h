@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 09:27:17 by thomasgerma       #+#    #+#             */
-/*   Updated: 2020/02/18 15:17:24 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:41:55 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,6 @@
 # define ERR_NO_ARG "Error\nExpected at least 2 arguments\n"
 # define ERR_CRT_IMG "Error\nFailed to create image\n"
 # define ERR_MAP_NAME "Error\n%s does not exist\n"
+# define ERR_COLOR "Error\nColor unvalid in .cub\n"
+
 #endif

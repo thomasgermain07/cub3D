@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/02/18 18:37:56 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/18 22:10:34 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ f : $(OBJS)
 	@(gcc $(CFLAGS) $(MLX) $(DEBUG) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
 
 clean :
+	@(rm -f $(NAME))
 	@(rm -f image.bmp)
 	@(rm -rf cub3d.dSYM)
 

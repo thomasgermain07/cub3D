@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 15:26:02 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:52:29 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void		check_spawn(char *line, t_map *map, int i)
 			map->player.orientation = line[j];
 			map->player.x = i + 0.5;
 			map->player.y = j + 0.5;
+			map->player.origin_x = i;
+			map->player.origin_y = j;
 			complete_orientation(map);
 			if (map->player.spawn)
 			{
@@ -94,29 +96,24 @@ void		check_spawn(char *line, t_map *map, int i)
 
 void		check_line(char *line, t_map *map)
 {
-	static int		i = 0;
 	int				j;
 
-	if (!i && !check_first_line(line))
+	j = -1;
+	if (!map->plan.current_line && !check_first_line(line))
 		exit_prog(map);
-	else if ((j = -1))
+	else
 	{
 		while (line[++j])
 		{
-			if (ft_find_in("012NSEW", line[j]) == -1)
-			{
-				ft_printf(ERR_WRG_PAR, i, j, line[j]);
-				exit_prog(map);
-			}
 			if (line[j] == '2')
-				register_sprite(map, i, j);
+				register_sprite(map, map->plan.current_line, j);
 		}
-		check_spawn(line, map, i);
+		check_spawn(line, map, map->plan.current_line);
 		if (line[0] != '1' || line[--j] != '1')
 		{
-			ft_printf(ERR_WRG_OUTLINE, i, j, line[j]);
+			ft_printf(ERR_WRG_OUTLINE, map->plan.current_line, j, line[j]);
 			exit_prog(map);
 		}
 	}
-	i++;
+	map->plan.current_line++;
 }

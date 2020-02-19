@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 15:38:33 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:08:40 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,24 @@ void		read_file(int fd, t_map *map)
 	}
 	if (temp)
 		free(temp);
+	map->plan.current_line = 0;
 	convert_lst_to_tab(map, *list);
 	ft_lstclear(list, free);
 	free(list);
 }
 
-t_map		*get_map(char *file_name)
+int		get_map(char *file_name, t_map *map)
 {
 	int		fd;
-	t_map	*map;
 
-	if (!(map = ft_calloc(sizeof(t_map), 1)))
-		return (NULL);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 	{
 		ft_printf(ERR_MAP_NAME, file_name);
 		free(map);
-		return (NULL);
+		return (0);
 	}
 	if (!(map->ptr_lst = malloc(sizeof(t_list *) * 1)))
-		return (NULL);
+		return (0);
 	*map->ptr_lst = NULL;
 	if (!(map->sprite = ft_add_ptr(malloc(sizeof(t_list *) * 1),
 		map->ptr_lst, &free)))
@@ -89,5 +87,5 @@ t_map		*get_map(char *file_name)
 	check_map(map);
 	map->plan.sprite_nb = ft_lstsize(*map->sprite);
 	close(fd);
-	return (map);
+	return (1);
 }
