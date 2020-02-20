@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/19 18:39:02 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:15:47 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 typedef struct		s_movement
 {
-	int				foward;
+	int				forward;
 	int				backward;
 	int				left;
 	int				right;

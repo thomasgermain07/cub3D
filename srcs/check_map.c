@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/19 14:52:29 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/20 18:49:42 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void		check_spawn(char *line, t_map *map, int i)
 {
 	int				j;
 
-	j = 0;
-	while (line[j])
+	j = -1;
+	while (line[++j])
 	{
 		if (ft_find_in("NSEW", line[j]) != -1)
 		{
@@ -90,7 +90,6 @@ void		check_spawn(char *line, t_map *map, int i)
 			}
 			map->player.spawn++;
 		}
-		j++;
 	}
 }
 
@@ -104,16 +103,40 @@ void		check_line(char *line, t_map *map)
 	else
 	{
 		while (line[++j])
-		{
-			if (line[j] == '2')
+				if (line[j] == '2')
 				register_sprite(map, map->plan.current_line, j);
-		}
 		check_spawn(line, map, map->plan.current_line);
 		if (line[0] != '1' || line[--j] != '1')
 		{
 			ft_printf(ERR_WRG_OUTLINE, map->plan.current_line, j, line[j]);
 			exit_prog(map);
-		}
+		} // condition if a delete
 	}
 	map->plan.current_line++;
+}
+
+void		check_outline(t_map *map, char **plan)
+{
+	int i;
+	int j;
+	int diff;
+
+	i = 1;
+	while (plan[i])
+	{
+		j = ft_strlen(plan[i]) - 1;
+		diff = j - ft_strlen(plan[i - 1]);
+		while (diff != 0 && plan[i][j + diff])
+		{
+			if (plan[i][j + diff] != '1')
+			{
+				ft_printf(ERR_WRG_OUTLINE, i, j + diff, plan[i][j + diff]);
+				exit_prog(map);
+			}
+			if (diff < 0)
+				diff++;
+			else
+				diff--;
+		}
+	}
 }

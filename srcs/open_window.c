@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/19 18:49:31 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:14:59 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			key_push(int key, t_map *map)
 	else if (key == 2)
 		map->player.movement.right = 1;
 	else if (key == 13)
-		map->player.movement.foward = 1;
+		map->player.movement.forward = 1;
 	else if (key == 123)
 		map->player.movement.turn_left = 1;
 	else if (key == 124)
@@ -58,7 +58,7 @@ int			key_release(int key, t_map *map)
 	else if (key == 2)
 		map->player.movement.right = 0;
 	else if (key == 13)
-		map->player.movement.foward = 0;
+		map->player.movement.forward = 0;
 	else if (key == 123)
 		map->player.movement.turn_left = 0;
 	else if (key == 124)
@@ -78,7 +78,7 @@ int			key_center(t_map *map)
 		move_left(map);
 	else if (map->player.movement.right)
 		move_right(map);
-	if (map->player.movement.foward)
+	if (map->player.movement.forward)
 		move_foward(map);
 	else if (map->player.movement.backward)
 		move_backward(map);

@@ -6,11 +6,24 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 15:05:11 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/19 19:02:17 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:26:53 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void		correct_resolution(int *res)
+{
+	int		r;
+
+	if (*res % 2)
+		*res += 1;
+	r = *res % 100;
+    if (r == 14 || r == 50 || r == 70 || r == 90 || r == 26
+	    || r == 66 || r == 86 || r == 6 || r == 30 || r == 18
+    	|| r == 38 || r == 78 || r == 98 || r == 58)
+		*res += 2;
+}
 
 void		check_resolution(t_map *map)
 {
@@ -19,6 +32,8 @@ void		check_resolution(t_map *map)
 	error = 0;
 	if (map->resolution.x_res <= 0 || map->resolution.y_res <= 0)
 		error = 1;
+	correct_resolution(&map->resolution.x_res);
+	correct_resolution(&map->resolution.y_res);
 	if (map->resolution.x_res > 2560)
 		map->resolution.x_res = 2560;
 	if (map->resolution.y_res > 1440)
@@ -64,18 +79,13 @@ void		check_texture(t_map *map)
 	}
 }
 
-void		check_player(t_map *map)
+void		check_map(t_map *map)
 {
+	check_resolution(map);
+	check_texture(map);
 	if (!map->player.orientation)
 	{
 		ft_printf(ERR_PLAY_MISS);
 		exit_prog(map);
 	}
-}
-
-void		check_map(t_map *map)
-{
-	check_resolution(map);
-	check_texture(map);
-	check_player(map);
 }

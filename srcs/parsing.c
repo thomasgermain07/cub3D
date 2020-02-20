@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/19 18:38:27 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:26:15 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,10 @@ void			parsing(char *str, t_map *map, t_list **list)
 			if (!get_plan(str + i, list))
 				exit_prog(map);
 		}
+	}
+	else if (*list)
+	{
+		ft_printf(ERR_PAR_AFTER_MAP);
+		exit_prog(map);
 	}
 }
