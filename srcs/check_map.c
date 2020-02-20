@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/20 18:49:42 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/20 20:08:16 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,21 +117,23 @@ void		check_line(char *line, t_map *map)
 
 void		check_outline(t_map *map, char **plan)
 {
-	int i;
-	int j;
-	int diff;
+	int 	i;
+	int 	j;
+	int 	diff;
 
-	i = 1;
-	while (plan[i])
+	i = 0;
+	while (plan[++i])
 	{
 		j = ft_strlen(plan[i]) - 1;
-		diff = j - ft_strlen(plan[i - 1]);
-		while (diff != 0 && plan[i][j + diff])
+		diff = j - (ft_strlen(plan[i - 1]) - 1);
+		ft_printf("diff = %i\n", diff);
+		while (diff && plan[i][j + diff])
 		{
+			printf("diff : %i\n", diff);
 			if (plan[i][j + diff] != '1')
 			{
-				ft_printf(ERR_WRG_OUTLINE, i, j + diff, plan[i][j + diff]);
-				exit_prog(map);
+				ft_printf("error %i %i %c\n", i, j + diff, plan[i][j + diff]);
+				//exit_prog(map);
 			}
 			if (diff < 0)
 				diff++;
@@ -139,4 +141,5 @@ void		check_outline(t_map *map, char **plan)
 				diff--;
 		}
 	}
+	(void)map;
 }

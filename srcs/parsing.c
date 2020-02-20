@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/20 16:26:15 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/20 20:09:38 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char			*del_plan_space(char *str)
 			j++;
 		}
 	}
+	temp[j] = '\0';
 	return (temp);
 }
 

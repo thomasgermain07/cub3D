@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/20 15:09:46 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/20 22:53:21 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,12 @@ void	change_map(t_map *map)
 	ft_bzero(map, sizeof(t_map));
 	del_mlx_data(map, 0);
 	map->mlx_param = save;
-	get_map(next, map);
+	if (!get_map(next, map))
+	{
+		free(next);
+		system("leaks cub3d");
+		exit(0);
+	}
 	free(next);
 	map->resolution.x_res = res_x;
 	map->resolution.y_res = res_y;

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/20 16:15:47 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/20 19:00:17 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,5 +232,6 @@ void				get_image(t_map *map);
 void				exit_prog(t_map *map);
 void				del_mlx_data(t_map *map, int option);
 void				change_map(t_map *map);
+void				check_outline(t_map *map, char **plan);
 
 #endif
