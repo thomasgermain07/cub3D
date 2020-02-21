@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 16:26:37 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/21 16:39:51 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:49:09 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ void		check_outline(t_map *map, char **plan)
 		{
 			while (diff)
 			{
-				if (plan[i][j + diff] != '1')
+				if (plan[i][j + diff + 1] != '1')
 				{
 					error = 1;
-					plan[i][j + diff] = 'X';
+					plan[i][j + diff + 1] = 'X';
 				}
 				diff++;
 			}
