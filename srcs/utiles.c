@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/20 20:47:06 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:42:00 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char		*skip_space(char *str)
 
 void		exit_prog(t_map *map)
 {
+	ft_printf("Leaving program\n");
 	if (*map->sprite)
 		ft_lstclear(map->sprite, free);
 	ft_free_ptrlst(map->ptr_lst);
@@ -56,4 +57,13 @@ void		del_mlx_data(t_map *map, int option)
 	}
 	if (map->mlx_param.image && option == 1)
 		mlx_destroy_image(map->mlx_param.mlx, map->mlx_param.image);
+}
+
+void		print_map(t_map *map)
+{
+	int		i;
+
+	i = -1;
+	while (map->plan.plan[++i])
+		ft_printf("[%i]\t-> %s\n", i, map->plan.plan[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/20 22:48:44 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:40:07 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,11 @@ void		convert_lst_to_tab(t_map *map, t_list *lst)
 		exit_prog(map);
 	while (lst)
 	{
-		check_line(lst->content, map);
 		map->plan.plan[i] = ft_add_ptr(ft_strdup(lst->content),
 			map->ptr_lst, &free);
 		lst = lst->next;
 		i++;
 	}
-	if (!check_last_line(map->plan.plan[i - 1]))
-		exit_prog(map);
 	map->plan.plan[i] = NULL;
 	check_outline(map, map->plan.plan);
 }
@@ -67,10 +64,12 @@ void		read_file(int fd, t_map *map)
 	free(list);
 }
 
-int		get_map(char *file_name, t_map *map)
+int			get_map(char *file_name, t_map *map)
 {
 	int		fd;
+	int		i;
 
+	i = -1;
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 	{
 		ft_printf(ERR_MAP_NAME, file_name);
@@ -84,6 +83,8 @@ int		get_map(char *file_name, t_map *map)
 		exit_prog(map);
 	*map->sprite = NULL;
 	read_file(fd, map);
+	while (map->plan.plan[++i])
+		check_line(map->plan.plan[i], map);
 	check_map(map);
 	map->plan.sprite_nb = ft_lstsize(*map->sprite);
 	close(fd);

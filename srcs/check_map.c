@@ -6,43 +6,11 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/20 20:08:16 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:40:20 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int			check_last_line(char *line)
-{
-	int				i;
-
-	i = -1;
-	while (line[++i])
-	{
-		if (line[i] != '1')
-		{
-			ft_printf(ERR_WRG_LST_LINE, i, line[i]);
-			return (0);
-		}
-	}
-	return (1);
-}
-
-int			check_first_line(char *line)
-{
-	int		j;
-
-	j = -1;
-	while (line[++j])
-	{
-		if (line[j] != '1')
-		{
-			ft_printf(ERR_WRG_OUTLINE, 0, j, line[j]);
-			return (0);
-		}
-	}
-	return (1);
-}
 
 void		complete_orientation(t_map *map)
 {
@@ -98,48 +66,12 @@ void		check_line(char *line, t_map *map)
 	int				j;
 
 	j = -1;
-	if (!map->plan.current_line && !check_first_line(line))
-		exit_prog(map);
-	else
+	if (map)
 	{
 		while (line[++j])
-				if (line[j] == '2')
+			if (line[j] == '2')
 				register_sprite(map, map->plan.current_line, j);
 		check_spawn(line, map, map->plan.current_line);
-		if (line[0] != '1' || line[--j] != '1')
-		{
-			ft_printf(ERR_WRG_OUTLINE, map->plan.current_line, j, line[j]);
-			exit_prog(map);
-		} // condition if a delete
 	}
 	map->plan.current_line++;
-}
-
-void		check_outline(t_map *map, char **plan)
-{
-	int 	i;
-	int 	j;
-	int 	diff;
-
-	i = 0;
-	while (plan[++i])
-	{
-		j = ft_strlen(plan[i]) - 1;
-		diff = j - (ft_strlen(plan[i - 1]) - 1);
-		ft_printf("diff = %i\n", diff);
-		while (diff && plan[i][j + diff])
-		{
-			printf("diff : %i\n", diff);
-			if (plan[i][j + diff] != '1')
-			{
-				ft_printf("error %i %i %c\n", i, j + diff, plan[i][j + diff]);
-				//exit_prog(map);
-			}
-			if (diff < 0)
-				diff++;
-			else
-				diff--;
-		}
-	}
-	(void)map;
 }

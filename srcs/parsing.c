@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/20 20:09:38 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:43:51 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int				define_param(t_map *map, char *str)
 	else if (str[0] == 'E' && str[1] == 'A')
 		register_texture(map, &map->texture.ea, str + 2);
 	else if (str[0] == 'S' && str[1] == ' ')
-		register_texture(map, &map->texture.s, str +  1);
+		register_texture(map, &map->texture.s, str + 1);
 	else if (str[0] == 'F' && str[1] == ' ')
 		map->ground = conv_color(str + 1, map);
 	else if (str[0] == 'C' && str[1] == ' ')
