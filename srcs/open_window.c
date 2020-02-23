@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 11:29:27 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/20 16:14:59 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 14:32:59 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int			close_window(t_map *map)
 {
+	ft_printf("Leaving program\n");
 	del_mlx_data(map, 1);
 	ft_lstclear(map->sprite, free);
 	ft_free_ptrlst(map->ptr_lst);
@@ -103,7 +104,7 @@ void		open_window(t_map *map)
 	map->player.movement.rot_speed = ROT_SPEED;
 	if (!map->mlx_param.window)
 		map->mlx_param.window = mlx_new_window(map->mlx_param.mlx,
-		map->resolution.x_res, map->resolution.y_res, "Cub3d");
+		map->resolution.x_res, map->resolution.y_res, "cub3D");
 	raycasting(map);
 	mlx_hook(map->mlx_param.window, 2, (1L << 0), &key_push, map);
 	mlx_hook(map->mlx_param.window, 3, (1l << 1), &key_release, map);

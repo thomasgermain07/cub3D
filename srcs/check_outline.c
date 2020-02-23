@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 16:26:37 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/21 16:49:09 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:03:02 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,40 +48,31 @@ int			check_first_line(char *line)
 	return (error);
 }
 
-void		ask_for_perm(t_map *map)
+int			check_diff(char **plan, int i, int j, int diff)
 {
-	char	*answer;
-	int		i;
-	int		j;
+	int error;
 
-	printf("\nDo you want to correct the map : 'yes' or 'no'\n");
-	get_next_line(0, &answer);
-	ft_add_ptr(answer, map->ptr_lst, &free);
-	if ((i = -1) && !ft_strncmp(answer, "yes", 3))
+	error = 0;
+	if (diff < 0 && (diff--))
 	{
-		while (map->plan.plan[++i])
-		{
-			j = -1;
-			while (map->plan.plan[i][++j])
-				if (map->plan.plan[i][j] == 'X')
-					map->plan.plan[i][j] = '1';
-		}
-		ft_printf("Map changed\n");
+		while (++diff)
+			if (plan[i][j + diff + 1] != '1')
+				mark_error(plan, i, j + diff + 1, &error);
 	}
-	else if (!ft_strncmp(answer, "no", 2))
-		exit_prog(map);
-	else
+	else if (diff > 0 && (diff++))
 	{
-		ft_printf("'yes' or 'no' only\n");
-		ask_for_perm(map);
+		while (--diff)
+			if (plan[i - 1][j + diff] != '1')
+				mark_error(plan, i - 1, j + diff, &error);
 	}
+	return (error);
 }
 
 void		check_outline(t_map *map, char **plan)
 {
-	int 	i;
-	int 	j;
-	int 	diff;
+	int		i;
+	int		j;
+	int		diff;
 	int		error;
 
 	error = check_first_line(plan[0]);
@@ -95,37 +86,11 @@ void		check_outline(t_map *map, char **plan)
 			exit_prog(map);
 		}
 		diff = (ft_strlen(plan[i - 1]) - 1) - j;
-		if (diff < 0)
-		{
-			while (diff)
-			{
-				if (plan[i][j + diff + 1] != '1')
-				{
-					error = 1;
-					plan[i][j + diff + 1] = 'X';
-				}
-				diff++;
-			}
-		}
-		else if (diff > 0)
-		{
-			while (diff)
-			{
-				if (plan[i - 1][j + diff] != '1')
-				{
-					error = 1;
-					plan[i - 1][j + diff] = 'X';
-				}
-				diff--;
-			}
-		}
+		if (check_diff(plan, i, j, diff))
+			error = 1;
 	}
 	if (check_last_line(plan[i - 1]))
 		error = 1;
 	if (error)
-	{
-		ft_printf("Error\nMap has leaks\n\n");
-		print_map(map);
-		ask_for_perm(map);
-	}
+		handle_map_error(map);
 }

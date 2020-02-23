@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/21 11:19:06 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:05:33 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct		s_mlx_param
 	void			*window;
 	int				*image;
 	char			*mapping;
+	int				auto_correction;
 }					t_mlx_param;
 
 typedef struct		s_camera
@@ -178,15 +179,15 @@ typedef struct		s_map
 */
 char				*skip_space(char *str);
 void				check_line(char *line, t_map *map);
-int					check_last_line(char *line);
 void				print_map(t_map *map);
 void				parsing(char *str, t_map *map, t_list **list);
 int					get_map(char *file_name, t_map *map);
 void				check_map(t_map *map);
 void				open_window(t_map *map);
-unsigned int		conv_color(char *str, t_map *map);
 void				get_all_texture(t_map *map);
-void				free_struct(t_map *map);
+unsigned int		conv_color(char *str, t_map *map);
+void				check_outline(t_map *map, char **plan);
+int					get_plan(char *str, t_list **list);
 /*
 ** ----- Raycasting ----
 */
@@ -219,7 +220,6 @@ void				complete_sprite(t_map *map);
 void				get_sprite_color(t_map *map, t_image *texture,
 	t_sprite *sprite);
 void				register_sprite(t_map *map, int x, int y);
-int					close_window(t_map *map);
 void				sprite_render(t_map *map,
 	float buffer[map->resolution.x_res]);
 void				ft_put_pixel(t_map *map, int x, int y, unsigned int color);
@@ -229,9 +229,12 @@ void				respaw_sprite(t_map *map);
 ** ----- Other -----
 */
 void				get_image(t_map *map);
+int					close_window(t_map *map);
 void				exit_prog(t_map *map);
 void				del_mlx_data(t_map *map, int option);
 void				change_map(t_map *map);
-void				check_outline(t_map *map, char **plan);
-
+void				correct_map(char **plan);
+void				ask_for_perm(t_map *map);
+void				mark_error(char **plan, int i, int j, int *error);
+void				handle_map_error(t_map *map);
 #endif
