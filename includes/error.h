@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 09:27:17 by thomasgerma       #+#    #+#             */
-/*   Updated: 2020/02/23 19:58:01 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 22:41:26 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,6 @@
 # define ERR_DOUBLE_DEF "Error\nMultiple definition in .cub\n"
 # define ERR_COLOR_FORMAT "Error\nWrong format for color R,G,B [0, 255]\n"
 # define ERR_COLOR_MISS "Error\nColor is missing in .cub file\n"
+# define ERR_SHORT_LINE "Error\nLine %i is too shot (minimun 3 char)\n"
+
 #endif

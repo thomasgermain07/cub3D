@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 18:54:31 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 22:09:15 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,9 @@ typedef struct		s_map
 ** ---- Parsing ----
 */
 char				*skip_space(char *str);
-void				check_line(char *line, t_map *map);
+void				check_sprite(char *line, t_map *map);
 void				print_map(t_map *map);
+void				check_spawn(char *line, t_map *map, int i);
 void				parsing(char *str, t_map *map, t_list **list);
 int					get_map(char *file_name, t_map *map);
 void				check_map(t_map *map);

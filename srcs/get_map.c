@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 16:25:19 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 22:40:19 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void		convert_lst_to_tab(t_map *map, t_list *lst)
 	{
 		map->plan.plan[i] = ft_add_ptr(ft_strdup(lst->content),
 			map->ptr_lst, &free);
+		check_spawn(lst->content, map, map->plan.current_line);
+		map->plan.current_line++;
 		lst = lst->next;
 		i++;
 	}
@@ -60,6 +62,7 @@ void		read_file(int fd, t_map *map)
 		free(temp);
 	map->plan.current_line = 0;
 	convert_lst_to_tab(map, *list);
+	map->plan.current_line = 0;
 	ft_lstclear(list, free);
 	free(list);
 }
@@ -84,7 +87,7 @@ int			get_map(char *file_name, t_map *map)
 	*map->sprite = NULL;
 	read_file(fd, map);
 	while (map->plan.plan[++i])
-		check_line(map->plan.plan[i], map);
+		check_sprite(map->plan.plan[i], map);
 	check_map(map);
 	map->plan.sprite_nb = ft_lstsize(*map->sprite);
 	close(fd);

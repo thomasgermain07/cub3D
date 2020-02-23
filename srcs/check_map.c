@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:18:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 11:03:55 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 22:41:49 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,20 @@ void		check_spawn(char *line, t_map *map, int i)
 	}
 }
 
-void		check_line(char *line, t_map *map)
+void		check_sprite(char *line, t_map *map)
 {
 	int				j;
 
 	j = -1;
 	while (line[++j])
+	{
 		if (line[j] == '2')
 			register_sprite(map, map->plan.current_line, j);
-	check_spawn(line, map, map->plan.current_line);
+	}
+	if (j < 3)
+	{
+		ft_printf(ERR_SHORT_LINE, map->plan.current_line);
+		exit_prog(map);
+	}
 	map->plan.current_line++;
 }
