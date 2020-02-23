@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 16:07:15 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 19:47:56 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 void			get_resolution(char *str, t_map *map)
 {
 	int		i;
-	char	*temp;
 
-	i = ft_find_in(str, 'R');
-	temp = skip_space(str + i + 1);
-	free(str);
-	map->resolution.x_res = ft_atoi(temp);
 	i = 0;
-	while (ft_isalnum(temp[i]))
+	map->resolution.x_res = ft_atoi(str);
+	while (str[i] && str[i] == ' ')
 		i++;
-	str = skip_space(temp + i);
-	free(temp);
-	map->resolution.y_res = ft_atoi(str);
+	while (str[i] && ft_isdigit(str[i]))
+		i++;
+	map->resolution.y_res = ft_atoi(str + i);
+	while (str[i] && str[i] == ' ')
+		i++;
+	while (str[i] && ft_isdigit(str[i]))
+		i++;
+	if (str[i])
+	{
+		ft_printf(ERR_RES_ARG);
+		exit_prog(map);
+	}
 }
 
 void			register_texture(t_map *map, t_image *texture, char *str)
@@ -34,6 +39,11 @@ void			register_texture(t_map *map, t_image *texture, char *str)
 	char		*temp;
 
 	temp = skip_space(str);
+	if (texture->name)
+	{
+		ft_printf(ERR_DOUBLE_DEF);
+		exit_prog(map);
+	}
 	texture->name = ft_add_ptr(temp, map->ptr_lst, &free);
 }
 
@@ -47,14 +57,14 @@ int				define_param(t_map *map, char *str)
 		register_texture(map, &map->texture.we, str + 2);
 	else if (str[0] == 'E' && str[1] == 'A')
 		register_texture(map, &map->texture.ea, str + 2);
-	else if (str[0] == 'S' && str[1] == ' ')
+	else if (str[0] == 'S')
 		register_texture(map, &map->texture.s, str + 1);
-	else if (str[0] == 'F' && str[1] == ' ')
+	else if (str[0] == 'F')
 		map->ground = conv_color(str + 1, map);
-	else if (str[0] == 'C' && str[1] == ' ')
+	else if (str[0] == 'C')
 		map->ceiling = conv_color(str + 1, map);
-	else if (str[0] == 'R' && str[1] == ' ')
-		get_resolution(str, map);
+	else if (str[0] == 'R')
+		get_resolution(str + 1, map);
 	else if (str[0] == 'N' && str[1] == 'X')
 		map->next_map = ft_add_ptr(skip_space(str + 2), map->ptr_lst, &free);
 	else

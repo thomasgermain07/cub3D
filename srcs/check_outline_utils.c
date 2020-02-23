@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 14:21:34 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 16:08:05 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 17:24:54 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		correct_map(char **plan)
 
 void		handle_map_error(t_map *map)
 {
-	ft_printf("Error\nMap has leaks\n");
+	ft_printf(ERR_MAP_LEAKS);
 	if (map->mlx_param.auto_correction)
 		correct_map(map->plan.plan);
 	else

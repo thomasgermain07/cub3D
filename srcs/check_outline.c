@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 16:26:37 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 16:03:02 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 17:19:30 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		check_outline(t_map *map, char **plan)
 		j = ft_strlen(plan[i]) - 1;
 		if (plan[i][0] != '1' || plan[i][j] != '1')
 		{
-			ft_printf(ERR_WRG_OUTLINE, map->plan.current_line, j, plan[i][j]);
+			ft_printf(ERR_WRG_OUTLINE, i, j, plan[i][j]);
 			exit_prog(map);
 		}
 		diff = (ft_strlen(plan[i - 1]) - 1) - j;

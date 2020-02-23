@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 16:05:33 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 18:54:31 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,11 @@ void				get_all_texture(t_map *map);
 unsigned int		conv_color(char *str, t_map *map);
 void				check_outline(t_map *map, char **plan);
 int					get_plan(char *str, t_list **list);
+char				*del_plan_space(char *str);
+void				correct_map(char **plan);
+void				ask_for_perm(t_map *map);
+void				mark_error(char **plan, int i, int j, int *error);
+void				handle_map_error(t_map *map);
 /*
 ** ----- Raycasting ----
 */
@@ -222,19 +227,19 @@ void				get_sprite_color(t_map *map, t_image *texture,
 void				register_sprite(t_map *map, int x, int y);
 void				sprite_render(t_map *map,
 	float buffer[map->resolution.x_res]);
-void				ft_put_pixel(t_map *map, int x, int y, unsigned int color);
 void				pick_up_sprite(t_map *map);
 void				respaw_sprite(t_map *map);
 /*
-** ----- Other -----
+** ----- Leaving prog -----
 */
-void				get_image(t_map *map);
+void				del_mlx_data(t_map *map, int option);
 int					close_window(t_map *map);
 void				exit_prog(t_map *map);
-void				del_mlx_data(t_map *map, int option);
 void				change_map(t_map *map);
-void				correct_map(char **plan);
-void				ask_for_perm(t_map *map);
-void				mark_error(char **plan, int i, int j, int *error);
-void				handle_map_error(t_map *map);
+/*
+** ----- Other -----
+*/
+void				ft_put_pixel(t_map *map, int x, int y, unsigned int color);
+void				get_image(t_map *map);
+
 #endif

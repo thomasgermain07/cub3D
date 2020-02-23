@@ -6,11 +6,58 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:04:51 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 16:05:40 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 19:48:23 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int				test_format(char *temp)
+{
+	int		i;
+	int		coma;
+	int		error;
+
+	i = -1;
+	error = 0;
+	coma = 0;
+	while (temp[++i])
+	{
+		if (temp[i] == ',')
+			coma++;
+		if (!ft_isdigit(temp[i]) && temp[i] != ',')
+			error = 1;
+		if (temp[i] == ',' && (!temp[i + 1] || !temp[i - 1]))
+			error = 1;
+		if (temp[i] == ',' && temp[i + 1] && temp[i - 1])
+			if (!ft_isdigit(temp[i + 1]) || !ft_isdigit(temp[i - 1]))
+				error = 1;
+	}
+	if (coma != 2)
+		error = 1;
+	return (error);
+}
+
+void			check_color_format(char *str, t_map *map)
+{
+	char	*temp;
+	int		error;
+
+	error = 0;
+	if (!(temp = del_plan_space(str)))
+	{
+		ft_printf(ERR_COLOR_MISS);
+		exit_prog(map);
+	}
+	if (test_format(temp))
+		error = 1;
+	free(temp);
+	if (error)
+	{
+		ft_printf(ERR_COLOR_FORMAT);
+		exit_prog(map);
+	}
+}
 
 unsigned int	conv_color(char *str, t_map *map)
 {
@@ -19,6 +66,7 @@ unsigned int	conv_color(char *str, t_map *map)
 	unsigned int	g;
 	unsigned int	b;
 
+	check_color_format(str, map);
 	i = 0;
 	r = ft_atoi(str);
 	while (ft_isdigit(str[i]) || str[i] == ' ')
@@ -30,7 +78,7 @@ unsigned int	conv_color(char *str, t_map *map)
 	b = ft_atoi(str + i + 1);
 	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
 	{
-		ft_printf(ERR_COLOR);
+		ft_printf(ERR_COLOR_FORMAT);
 		exit_prog(map);
 	}
 	r = (int)pow(256, 2) * r;
@@ -46,6 +94,8 @@ char			*del_plan_space(char *str)
 
 	j = 0;
 	i = -1;
+	if (!ft_strlen(str))
+		return (NULL);
 	while (str[++i])
 		if (str[i] == ' ')
 			j++;
