@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 19:47:56 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 20:07:33 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void			register_texture(t_map *map, t_image *texture, char *str)
 
 int				define_param(t_map *map, char *str)
 {
+
 	if (str[0] == 'N' && str[1] == 'O')
 		register_texture(map, &map->texture.no, str + 2);
 	else if (str[0] == 'S' && str[1] == 'O')

@@ -1,15 +1,14 @@
+C 14,77,146
 R  1514 750
-
+WE texture/brick_wall2.XPM
 NO ./texture/brick_wall.XPM
 SO ./texture/brick_wall.XPM
-WE ./texture/brick_wall2.XPM
+
 EA ./texture/brick_wall2.XPM
+
+
+F 11   ,   102,35
 S ./texture/frfrance.XPM
-
-F 11,102,35
-C 14,77,146
-
-NX maps/map2.cub
 
 1111111111111110011111111111111111111111111111111111111111111111111
 1000000000000000000000000000000000000000000011111111111000000000001

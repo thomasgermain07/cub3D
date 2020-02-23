@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 09:27:17 by thomasgerma       #+#    #+#             */
-/*   Updated: 2020/02/23 19:38:24 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/23 19:58:01 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 ** x %d, y %d
 */
 # define ERR_NEG_RES "Error\nResolution has '-' value: (x %d: y %d)\n"
-# define ERR_RES_ARG "Error\nToo much arguments for the resolution\n"
+# define ERR_RES_ARG "Error\nToo many arguments for the resolution\n"
 /*
 ** x %d, y %d
 */
@@ -53,7 +53,7 @@
 # define ERR_MAP_NAME "Error\n%s does not exist\n"
 # define ERR_PAR_AFTER_MAP "Error\nParameter after definition of the map\n"
 # define ERR_MAP_LEAKS "Error\nMaps has leaks\n"
-# define ERR_DOUBLE_DEF "Error\nDouble definition in .cub\n"
+# define ERR_DOUBLE_DEF "Error\nMultiple definition in .cub\n"
 # define ERR_COLOR_FORMAT "Error\nWrong format for color R,G,B [0, 255]\n"
 # define ERR_COLOR_MISS "Error\nColor is missing in .cub file\n"
 #endif
