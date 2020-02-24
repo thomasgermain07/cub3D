@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 15:05:11 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/24 11:13:39 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:32:11 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ void		check_map(t_map *map)
 {
 	check_resolution(map);
 	check_texture(map);
+	if (map->ceiling == -1 || map->ground == -1)
+	{
+		ft_printf_e(ERR_COLOR_MISS);
+		exit_prog(map);
+	}
 	if (!map->player.orientation)
 	{
 		ft_printf_e(ERR_PLAY_MISS);

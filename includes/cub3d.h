@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 22:09:15 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:47:18 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ void				correct_map(char **plan);
 void				ask_for_perm(t_map *map);
 void				mark_error(char **plan, int i, int j, int *error);
 void				handle_map_error(t_map *map);
+int					define_map(char *str, t_map *map);
 /*
 ** ----- Raycasting ----
 */

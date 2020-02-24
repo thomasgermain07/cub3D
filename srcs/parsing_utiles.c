@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:04:51 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/24 11:12:57 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:29:37 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ void			check_color_format(char *str, t_map *map)
 	int		error;
 
 	error = 0;
-	if (!(temp = del_plan_space(str)))
+	if (!ft_strlen(str))
 	{
 		ft_printf_e(ERR_COLOR_MISS);
 		exit_prog(map);
 	}
+	if (!(temp = del_plan_space(str)))
+		exit_prog(map);
 	if (test_format(temp))
 		error = 1;
 	free(temp);

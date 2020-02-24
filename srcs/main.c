@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:13:32 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/24 11:12:11 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:31:12 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int			main(int ac, char **av)
 	t_map	map;
 
 	ft_bzero(&map, sizeof(t_map));
+	map.ceiling = -1;
+	map.ground = -1;
 	if (ac == 1)
 	{
 		ft_printf_e(ERR_NO_ARG);

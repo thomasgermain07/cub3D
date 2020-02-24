@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/24 11:13:14 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:46:13 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void			get_resolution(char *str, t_map *map)
 	int		i;
 
 	i = 0;
+	if (map->resolution.y_res || map->resolution.x_res)
+	{
+		ft_printf_e(ERR_DOUBLE_DEF);
+		exit_prog(map);
+	}
 	map->resolution.x_res = ft_atoi(str);
 	while (str[i] && str[i] == ' ')
 		i++;
@@ -47,8 +52,36 @@ void			register_texture(t_map *map, t_image *texture, char *str)
 	texture->name = ft_add_ptr(temp, map->ptr_lst, &free);
 }
 
+int				check_rest(t_map *map, char *str)
+{
+	if (str[0] == 'F')
+	{
+		if (map->ground != -1)
+			return (-1);
+		map->ground = conv_color(str + 1, map);
+	}
+	else if (str[0] == 'C')
+	{
+		if (map->ceiling != -1)
+			return (-1);
+		map->ceiling = conv_color(str + 1, map);
+	}
+	else if (str[0] == 'N' && str[1] == 'X')
+	{
+		if (map->next_map)
+			return (-1);
+		map->next_map = ft_add_ptr(skip_space(str + 2), map->ptr_lst, &free);
+	}
+	else
+		return (0);
+	return (1);
+}
+
 int				define_param(t_map *map, char *str)
 {
+	int ret;
+
+	ret = 0;
 	if (str[0] == 'N' && str[1] == 'O')
 		register_texture(map, &map->texture.no, str + 2);
 	else if (str[0] == 'S' && str[1] == 'O')
@@ -57,43 +90,29 @@ int				define_param(t_map *map, char *str)
 		register_texture(map, &map->texture.we, str + 2);
 	else if (str[0] == 'E' && str[1] == 'A')
 		register_texture(map, &map->texture.ea, str + 2);
-	else if (str[0] == 'S')
+	else if (str[0] == 'S' && str[1] != 'O')
 		register_texture(map, &map->texture.s, str + 1);
-	else if (str[0] == 'F')
-		map->ground = conv_color(str + 1, map);
-	else if (str[0] == 'C')
-		map->ceiling = conv_color(str + 1, map);
 	else if (str[0] == 'R')
 		get_resolution(str + 1, map);
-	else if (str[0] == 'N' && str[1] == 'X')
-		map->next_map = ft_add_ptr(skip_space(str + 2), map->ptr_lst, &free);
 	else
-		return (0);
-	return (1);
-}
-
-int				define_map(char *str, t_map *map)
-{
-	int i;
-
-	i = -1;
-	while (str[++i])
 	{
-		if (ft_find_in("012NSEW ", str[i]) == -1)
+		if ((ret = check_rest(map, str)) == -1)
 		{
-			ft_printf_e(ERR_WRG_PAR, map->plan.current_line, i, str[i]);
+			ft_printf_e(ERR_DOUBLE_DEF);
 			exit_prog(map);
 		}
+		return (ret);
 	}
-	map->plan.current_line++;
 	return (1);
 }
 
 void			parsing(char *str, t_map *map, t_list **list)
 {
 	int		i;
+	int		error;
 
 	i = 0;
+	error = 0;
 	if (ft_strlen(str))
 	{
 		while (str[i] == ' ')

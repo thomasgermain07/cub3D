@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:24:19 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 22:13:48 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:45:21 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	change_map(t_map *map)
 	ft_bzero(map, sizeof(t_map));
 	del_mlx_data(map, 0);
 	map->mlx_param = save;
+	map->ceiling = -1;
+	map->ground = -1;
 	if (!get_map(next, map))
 	{
 		free(next);
