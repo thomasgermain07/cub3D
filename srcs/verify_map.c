@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 15:05:11 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 17:42:54 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:13:39 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void		check_resolution(t_map *map)
 		map->resolution.y_res = 1440;
 	if (error && (map->resolution.x_res < 0 || map->resolution.y_res < 0))
 	{
-		ft_printf(ERR_NEG_RES, map->resolution.x_res, map->resolution.y_res);
+		ft_printf_e(ERR_NEG_RES, map->resolution.x_res, map->resolution.y_res);
 		exit_prog(map);
 	}
 	else if (error)
 	{
-		ft_printf(ERR_RES, map->resolution.x_res, map->resolution.y_res);
+		ft_printf_e(ERR_RES, map->resolution.x_res, map->resolution.y_res);
 		exit_prog(map);
 	}
 }
@@ -54,27 +54,27 @@ void		check_texture(t_map *map)
 {
 	if (!map->texture.ea.name)
 	{
-		ft_printf(ERR_TEXTURE, "EA");
+		ft_printf_e(ERR_TEXTURE, "EA");
 		exit_prog(map);
 	}
 	else if (!map->texture.we.name)
 	{
-		ft_printf(ERR_TEXTURE, "WE");
+		ft_printf_e(ERR_TEXTURE, "WE");
 		exit_prog(map);
 	}
 	else if (!map->texture.no.name)
 	{
-		ft_printf(ERR_TEXTURE, "NO");
+		ft_printf_e(ERR_TEXTURE, "NO");
 		exit_prog(map);
 	}
 	else if (!map->texture.so.name)
 	{
-		ft_printf(ERR_TEXTURE, "SO");
+		ft_printf_e(ERR_TEXTURE, "SO");
 		exit_prog(map);
 	}
 	else if (!map->texture.s.name)
 	{
-		ft_printf(ERR_TEXTURE, "S");
+		ft_printf_e(ERR_TEXTURE, "S");
 		exit_prog(map);
 	}
 }
@@ -85,7 +85,7 @@ void		check_map(t_map *map)
 	check_texture(map);
 	if (!map->player.orientation)
 	{
-		ft_printf(ERR_PLAY_MISS);
+		ft_printf_e(ERR_PLAY_MISS);
 		exit_prog(map);
 	}
 }

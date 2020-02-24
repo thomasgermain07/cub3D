@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 21:13:57 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 22:40:19 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:12:03 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		convert_lst_to_tab(t_map *map, t_list *lst)
 	i = 0;
 	if (!lst)
 	{
-		ft_printf(ERR_MAP_MISS);
+		ft_printf_e(ERR_MAP_MISS);
 		exit_prog(map);
 	}
 	if (!(map->plan.plan = ft_add_ptr(malloc(sizeof(char *) *
@@ -75,7 +75,7 @@ int			get_map(char *file_name, t_map *map)
 	i = -1;
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 	{
-		ft_printf(ERR_MAP_NAME, file_name);
+		ft_printf_e(ERR_MAP_NAME, file_name);
 		return (0);
 	}
 	if (!(map->ptr_lst = malloc(sizeof(t_list *) * 1)))

@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/03 14:34:05 by thgermai          #+#    #+#              #
-#    Updated: 2020/02/15 18:18:57 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/24 10:54:56 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,9 @@ SRCS = ./get_next_line.c\
 	./ft_printf/pf_parsing.c\
 	./ft_printf/pf_precision.c\
 	./ft_printf/pf_width.c\
+	./ft_printf_e/ft_printf_e.c\
+	./ft_printf_e/pf_fill_1_5_e.c\
+	./ft_printf_e/pf_fill_6_9_e.c\
 	./ft_ptr_lst.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = ./libft.h

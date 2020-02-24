@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:13:32 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 09:45:13 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:12:11 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			main(int ac, char **av)
 	ft_bzero(&map, sizeof(t_map));
 	if (ac == 1)
 	{
-		ft_printf(ERR_NO_ARG);
+		ft_printf_e(ERR_NO_ARG);
 		return (0);
 	}
 	if (!get_map(av[1], &map))
@@ -31,7 +31,7 @@ int			main(int ac, char **av)
 		if (!ft_strncmp("--save", av[2], ft_strlen(av[2])))
 			get_image(&map);
 		else
-			ft_printf("Error\nOption %s unkown\n", av[2]);
+			ft_printf_e("Error\nOption %s unkown\n", av[2]);
 	}
 	return (0);
 }

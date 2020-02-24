@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 21:37:05 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:13:14 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			get_resolution(char *str, t_map *map)
 		i++;
 	if (str[i])
 	{
-		ft_printf(ERR_RES_ARG);
+		ft_printf_e(ERR_RES_ARG);
 		exit_prog(map);
 	}
 }
@@ -41,7 +41,7 @@ void			register_texture(t_map *map, t_image *texture, char *str)
 	temp = skip_space(str);
 	if (texture->name)
 	{
-		ft_printf(ERR_DOUBLE_DEF);
+		ft_printf_e(ERR_DOUBLE_DEF);
 		exit_prog(map);
 	}
 	texture->name = ft_add_ptr(temp, map->ptr_lst, &free);
@@ -81,7 +81,7 @@ int				define_map(char *str, t_map *map)
 	{
 		if (ft_find_in("012NSEW ", str[i]) == -1)
 		{
-			ft_printf(ERR_WRG_PAR, map->plan.current_line, i, str[i]);
+			ft_printf_e(ERR_WRG_PAR, map->plan.current_line, i, str[i]);
 			exit_prog(map);
 		}
 	}
@@ -108,7 +108,7 @@ void			parsing(char *str, t_map *map, t_list **list)
 	}
 	else if (*list)
 	{
-		ft_printf(ERR_PAR_AFTER_MAP);
+		ft_printf_e(ERR_PAR_AFTER_MAP);
 		exit_prog(map);
 	}
 }

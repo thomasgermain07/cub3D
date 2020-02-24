@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 09:27:17 by thomasgerma       #+#    #+#             */
-/*   Updated: 2020/02/23 22:41:26 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:42:53 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@
 # define ERR_COLOR_FORMAT "Error\nWrong format for color R,G,B [0, 255]\n"
 # define ERR_COLOR_MISS "Error\nColor is missing in .cub file\n"
 # define ERR_SHORT_LINE "Error\nLine %i is too shot (minimun 3 char)\n"
-
+# define MSG1 "\nDo you want to correct the map : 'yes' or 'no'\n"
+# define MSG2 "If you accept, the next maps will be automatically corrected\n"
+# define MSG3 "'yes' or 'no' only\n"
 #endif

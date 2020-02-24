@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:20:16 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/18 17:47:00 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:11:12 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	get_image(t_map *map)
 	raycasting(map);
 	if ((fd = open("image.bmp", O_RDWR | O_CREAT, S_IRWXU)) == -1)
 	{
-		ft_printf(ERR_CRT_IMG);
+		ft_printf_e(ERR_CRT_IMG);
 		exit_prog(map);
 	}
 	get_file_header(map, fd);

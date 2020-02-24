@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 22:48:31 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:13:25 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void		print_map(t_map *map)
 
 	i = -1;
 	while (map->plan.plan[++i])
-		ft_printf("[%i]\t-> %s\n", i, map->plan.plan[i]);
+		ft_printf_e("[%i]\t-> %s\n", i, map->plan.plan[i]);
 }

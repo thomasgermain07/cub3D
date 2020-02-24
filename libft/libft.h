@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 10:28:33 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/15 18:29:27 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:16:27 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-
 /*
 ** ft_printf
 */
@@ -130,7 +129,19 @@ char				*fill_width_right(char *str, t_param *param);
 char				*check_width_num(char *str, t_param *param);
 char				*check_precision_num(char *str, t_param *param);
 char				*fill_precision(char *str, t_param *param);
-
+int					ft_printf_e(const char *str, ...);
+int					pf_fill_char_e(va_list args, t_param *param);
+int					pf_fill_str_e(va_list args, t_param *param);
+int					pf_fill_add_e(va_list args, t_param *param);
+int					pf_fill_deci_e(va_list args, t_param *param);
+int					pf_fill_int_e(va_list args, t_param *param);
+int					pf_fill_unsi_e(va_list args, t_param *param);
+int					pf_fill_hexa_e(va_list args, t_param *param);
+int					pf_fill_hexa_caps_e(va_list args, t_param *param);
+int					pf_fill_modulo_e(va_list args, t_param *param);
+/*
+**	garbage collector ptr
+*/
 void				ft_free_ptrlst(t_list **lst);
 void				ft_del_ptr(t_list **lst, void *to_del);
 void				*ft_add_ptr(void *ptr, t_list **lst, void (*fptr)(void *));

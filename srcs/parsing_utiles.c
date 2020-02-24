@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:04:51 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/23 20:55:35 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:12:57 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void			check_color_format(char *str, t_map *map)
 	error = 0;
 	if (!(temp = del_plan_space(str)))
 	{
-		ft_printf(ERR_COLOR_MISS);
+		ft_printf_e(ERR_COLOR_MISS);
 		exit_prog(map);
 	}
 	if (test_format(temp))
@@ -54,7 +54,7 @@ void			check_color_format(char *str, t_map *map)
 	free(temp);
 	if (error)
 	{
-		ft_printf(ERR_COLOR_FORMAT);
+		ft_printf_e(ERR_COLOR_FORMAT);
 		exit_prog(map);
 	}
 }
@@ -78,7 +78,7 @@ unsigned int	conv_color(char *str, t_map *map)
 	b = ft_atoi(str + i + 1);
 	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
 	{
-		ft_printf(ERR_COLOR_FORMAT);
+		ft_printf_e(ERR_COLOR_FORMAT);
 		exit_prog(map);
 	}
 	r = (int)pow(256, 2) * r;
