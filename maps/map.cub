@@ -1,9 +1,9 @@
-R  1000 750
+R  1500 750
 
-NO ./texture/grey_wall.XPM
-SO ./texture/grey_wall.XPM
-WE ./texture/grey_wall.XPM
-EA./texture/grey_wall.XPM
+NO ./texture/brick_wall.XPM
+SO ./texture/red_wall.XPM
+WE ./texture/blue_wall.XPM
+EA ./texture/green_wall.XPM
 S ./texture/frfrance.XPM
 
 F 86,125,70

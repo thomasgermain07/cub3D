@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/25 14:06:31 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/25 19:44:09 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void			parsing(char *str, t_map *map, t_list **list)
 			if (!*list)
 				ft_printf_e(ERR_UNKNOW_PARAM, str);
 			else
-				ft_printf_e(ERR_PARAM_IN_MAP);
+				ft_printf_e(ERR_WRG_PAR);
 			exit_prog(map);
 		}
 	}

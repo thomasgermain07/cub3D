@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 08:24:46 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/25 14:39:08 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/25 19:40:16 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ void				open_window(t_map *map);
 void				get_all_texture(t_map *map);
 unsigned int		conv_color(char *str, t_map *map);
 void				check_outline(t_map *map, char **plan);
+void				check_charset(t_map *map, char *line, int i);
 int					get_plan(char *str, t_list **list);
 char				*del_plan_space(char *str);
 void				correct_map(char **plan);

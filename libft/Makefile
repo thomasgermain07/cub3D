@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/03 14:34:05 by thgermai          #+#    #+#              #
-#    Updated: 2020/02/25 18:05:18 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/25 19:28:19 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,22 +68,19 @@ SRCS = get_next_line.c\
 	ft_itoa_address.c\
 	ft_str_toupper.c\
 	ft_str_tolower.c\
-	ft_ptr_lst.c
-PRINTF_DIR = ft_printf
-PRINTF = ft_printf.c\
-			pf_arg.c\
-			pf_fill_1_5.c\
-			pf_fill_6_9.c\
-			pf_parsing.c\
-			pf_precision.c\
-			pf_width.c\
-			ft_printf_e.c\
-			pf_fill_1_5_e.c\
-			pf_fill_6_9_e.c
-PRINTF_SRCS = $(addprefix $(PRINTF_DIR)/, $(PRINTF))
+	ft_ptr_lst.c\
+	ft_printf/ft_printf.c\
+	ft_printf/pf_arg.c\
+	ft_printf/pf_fill_1_5.c\
+	ft_printf/pf_fill_6_9.c\
+	ft_printf/pf_parsing.c\
+	ft_printf/pf_precision.c\
+	ft_printf/pf_width.c\
+	ft_printf/ft_printf_e.c\
+	ft_printf/pf_fill_1_5_e.c\
+	ft_printf/pf_fill_6_9_e.c
 
 OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
-PRINTF_OBJS = $(addprefix $(OBJSDIR)/, $(PRINTF_SRCS:.c=.o))
 
 DPDCS = $(OBJS:.o=.d)
 
@@ -98,8 +95,8 @@ opti :
 
 -include $(DPDCS)
 
-$(NAME) : $(OBJS) $(PRINTF_OBJS)
-	@(ar rcs $(NAME) $(OBJS) $(PRINTF_OBJS))
+$(NAME) : $(OBJS)
+	@(ar rcs $(NAME) $(OBJS))
 	@(echo "Libft created")
 
 $(OBJSDIR)/%.o : %.c | $(OBJSDIR)
