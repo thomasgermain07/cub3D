@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 08:53:15 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/25 17:01:49 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/25 18:56:03 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	get_the_color(t_map *map)
 	if (map->camera.hit == 2)
 		map->camera.color = 0x000000;
 	else if (!map->camera.side && map->camera.ray_dir_x > 0)
-		get_tex_color(map, &map->texture.ea);
-	else if (!map->camera.side && map->camera.ray_dir_x < 0)
-		get_tex_color(map, &map->texture.we);
-	else if (map->camera.side && map->camera.ray_dir_y > 0)
 		get_tex_color(map, &map->texture.no);
-	else if (map->camera.side && map->camera.ray_dir_y < 0)
+	else if (!map->camera.side && map->camera.ray_dir_x < 0)
 		get_tex_color(map, &map->texture.so);
+	else if (map->camera.side && map->camera.ray_dir_y > 0)
+		get_tex_color(map, &map->texture.we);
+	else if (map->camera.side && map->camera.ray_dir_y < 0)
+		get_tex_color(map, &map->texture.ea);
 }
 
 void	get_texture(t_image *texture, t_map *map)
