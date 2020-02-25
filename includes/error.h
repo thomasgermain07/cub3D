@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 09:27:17 by thomasgerma       #+#    #+#             */
-/*   Updated: 2020/02/24 11:42:53 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:25:37 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@
 */
 # define ERR_WRG_OUTLINE "Error\nBad outline in map: (l %d: c %d: '%c')\n"
 /*
-**  column %d, char %c
-*/
-# define ERR_WRG_LST_LINE "Error\nBad outline in map: (last line: c %d: '%c')\n"
-/*
 ** line %d, column %d, char %c
 */
 # define ERR_SPAWN_EXIST "Error\nSpawn already exist: (l %d: c %d: %c)\n"
@@ -33,7 +29,7 @@
 ** x %d, y %d
 */
 # define ERR_NEG_RES "Error\nResolution has '-' value: (x %d: y %d)\n"
-# define ERR_RES_ARG "Error\nToo many arguments for the resolution\n"
+# define ERR_RES_ARG "Error\nWrong resolution format: X, Y [Int, Int]\n"
 /*
 ** x %d, y %d
 */
@@ -60,4 +56,7 @@
 # define MSG1 "\nDo you want to correct the map : 'yes' or 'no'\n"
 # define MSG2 "If you accept, the next maps will be automatically corrected\n"
 # define MSG3 "'yes' or 'no' only\n"
+# define ERR_UNKNOW_PARAM "Error\nUnkown parameter '%s'\n"
+# define ERR_PARAM_IN_MAP "Error\nParamater declarated inside the map\n"
+
 #endif

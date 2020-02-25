@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/24 12:46:48 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/25 11:42:23 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		print_map(t_map *map)
 		ft_printf_e("[%i]\t-> %s\n", i, map->plan.plan[i]);
 }
 
-int				define_map(char *str, t_map *map)
+int			define_map(char *str, t_map *map)
 {
 	int i;
 
@@ -73,10 +73,7 @@ int				define_map(char *str, t_map *map)
 	while (str[++i])
 	{
 		if (ft_find_in("012NSEW ", str[i]) == -1)
-		{
-			ft_printf_e(ERR_WRG_PAR, map->plan.current_line, i, str[i]);
-			exit_prog(map);
-		}
+			return (0);
 	}
 	map->plan.current_line++;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:56:40 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/24 13:46:13 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:06:31 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void			get_resolution(char *str, t_map *map)
 		exit_prog(map);
 	}
 	map->resolution.x_res = ft_atoi(str);
-	while (str[i] && str[i] == ' ')
+	while (str[i] && (str[i] == ' ' || str[i] == '-'))
 		i++;
 	while (str[i] && ft_isdigit(str[i]))
 		i++;
 	map->resolution.y_res = ft_atoi(str + i);
-	while (str[i] && str[i] == ' ')
+	while (str[i] && (str[i] == ' ' || str[i] == '-'))
 		i++;
 	while (str[i] && ft_isdigit(str[i]))
 		i++;
@@ -90,7 +90,7 @@ int				define_param(t_map *map, char *str)
 		register_texture(map, &map->texture.we, str + 2);
 	else if (str[0] == 'E' && str[1] == 'A')
 		register_texture(map, &map->texture.ea, str + 2);
-	else if (str[0] == 'S' && str[1] != 'O')
+	else if (str[0] == 'S' && (!str[1] || str[1] == ' '))
 		register_texture(map, &map->texture.s, str + 1);
 	else if (str[0] == 'R')
 		get_resolution(str + 1, map);
@@ -108,21 +108,24 @@ int				define_param(t_map *map, char *str)
 
 void			parsing(char *str, t_map *map, t_list **list)
 {
-	int		i;
-	int		error;
-
-	i = 0;
-	error = 0;
 	if (ft_strlen(str))
 	{
-		while (str[i] == ' ')
-			i++;
-		if (define_param(map, str + i))
+		while (*str == ' ')
+			str++;
+		if (!*list && define_param(map, str))
 			return ;
-		else if (define_map(str + i, map))
+		else if (define_map(str, map))
 		{
-			if (!get_plan(str + i, list))
+			if (!get_plan(str, list))
 				exit_prog(map);
+		}
+		else
+		{
+			if (!*list)
+				ft_printf_e(ERR_UNKNOW_PARAM, str);
+			else
+				ft_printf_e(ERR_PARAM_IN_MAP);
+			exit_prog(map);
 		}
 	}
 	else if (*list)

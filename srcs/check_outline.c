@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 16:26:37 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/24 11:11:54 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/25 11:39:00 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,21 @@ int			check_diff(char **plan, int i, int j, int diff)
 	return (error);
 }
 
+void		check_charset(t_map *map, char *line, int i)
+{
+	int j;
+
+	j = -1;
+	while (line[++j])
+	{
+		if (ft_find_in("012NSEW", line[j]) == -1)
+		{
+			ft_printf_e(ERR_WRG_PAR, i, j, line[j]);
+			exit_prog(map);
+		}
+	}
+}
+
 void		check_outline(t_map *map, char **plan)
 {
 	int		i;
@@ -75,10 +90,12 @@ void		check_outline(t_map *map, char **plan)
 	int		diff;
 	int		error;
 
+	check_charset(map, plan[0], 0);
 	error = check_first_line(plan[0]);
 	i = 0;
 	while (plan[++i])
 	{
+		check_charset(map, plan[i], i);
 		j = ft_strlen(plan[i]) - 1;
 		if (plan[i][0] != '1' || plan[i][j] != '1')
 		{
