@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/02/25 18:05:23 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/25 18:18:05 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS = check_outline_utils.c\
 		verify_map.c
 OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 DPDCS = $(OBJS:.o=.d)
-INCLUDES = -I includes/ -I libft/includes/
+INCLUDES = -I includes/ -I libft/
 LIB = -Llibft -lft
 CFLAGS = -Wall -Wextra -Werror
 MLX = -lmlx -framework OpenGL -framework AppKit
