@@ -6,47 +6,62 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/02/23 17:33:46 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/25 18:05:23 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
-SRCS = ./srcs/check_outline_utils.c\
-		./srcs/check_map.c\
-		./srcs/bmp_image.c\
-		./srcs/check_outline.c\
-		./srcs/main.c\
-		./srcs/get_map.c\
-		./srcs/get_texture.c\
-		./srcs/parsing_utiles.c\
-		./srcs/parsing.c\
-		./srcs/open_window.c\
-		./srcs/moving.c\
-		./srcs/raycasting_utiles.c\
-		./srcs/rotating.c\
-		./srcs/sprite_utiles.c\
-		./srcs/raycasting_calcul.c\
-		./srcs/raycasting.c\
-		./srcs/utiles.c\
-		./srcs/sprite.c\
-		./srcs/verify_map.c
-INCLUDES = ./includes/cub3d.h
-LIB = ./libft/libft.a
+SRCSDIR = srcs
+OBJSDIR = .objs
+SRCS = check_outline_utils.c\
+		check_map.c\
+		bmp_image.c\
+		check_outline.c\
+		main.c\
+		get_map.c\
+		get_texture.c\
+		parsing_utiles.c\
+		parsing.c\
+		open_window.c\
+		moving.c\
+		raycasting_utiles.c\
+		rotating.c\
+		sprite_utiles.c\
+		raycasting_calcul.c\
+		raycasting.c\
+		utiles.c\
+		sprite.c\
+		verify_map.c
+OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
+DPDCS = $(OBJS:.o=.d)
+INCLUDES = -I includes/ -I libft/includes/
+LIB = -Llibft -lft
 CFLAGS = -Wall -Wextra -Werror
 MLX = -lmlx -framework OpenGL -framework AppKit
 LOGFILE = $(LOGPATH) `date +'%y.%m.%d %H:%M:%S'`
-MAP = maps/map1.cub
 MSG = ---
+
+
+opti :
+	@(make -j all)
 
 all : $(NAME)
 
-$(NAME) : $(LIB)
-	@(gcc $(MLX) $(CFLAGS) $(SRCS) $(LIB) -I $(INCLUDES) -o $(NAME))
+-include $(DPDCS)
+
+$(NAME) : $(LIB) $(OBJS)
+	@(gcc $(MLX) $(CFLAGS) $(OBJS) $(LIB) $(INCLUDES) -o $(NAME))
 	@(echo "cub3D created")
 
 $(LIB) :
-	make -C libft
-	make clean -C libft
+	@(make -C libft)
+
+$(OBJSDIR)/%.o : $(SRCSDIR)/%.c | $(OBJSDIR)
+	@(echo "Compiling -> $^")
+	@(gcc $(CFLAGS) $(INCLUDES) -MMD -c $< -o $@)
+
+$(OBJSDIR) :
+	@(mkdir -p .objs)
 
 clean :
 	@(rm -f $(NAME))
@@ -54,10 +69,11 @@ clean :
 	@(rm -rf cub3d.dSYM)
 
 fclean : clean
+	@(rm -rf $(OBJSDIR))
 
 git : fclean
-	git add *
-	git commit -m "$(LOGFILE) : $(MSG)"
-	git push
+	@(git add *)
+	@(git commit -m "$(LOGFILE) : $(MSG)")
+	@(git push)
 
 re : fclean all
