@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/02/25 18:18:05 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/25 18:20:35 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ fclean : clean
 	@(rm -rf $(OBJSDIR))
 
 git : fclean
+	@(make fclean -C libft)
 	@(git add *)
 	@(git commit -m "$(LOGFILE) : $(MSG)")
 	@(git push)
