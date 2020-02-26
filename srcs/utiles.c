@@ -6,7 +6,7 @@
 /*   By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:57:23 by thgermai          #+#    #+#             */
-/*   Updated: 2020/02/25 11:42:23 by thgermai         ###   ########.fr       */
+/*   Updated: 2020/02/26 13:12:24 by thgermai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void		exit_prog(t_map *map)
 	if (*map->sprite)
 		ft_lstclear(map->sprite, free);
 	ft_free_ptrlst(map->ptr_lst);
-	system("leaks cub3D");
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/02/25 19:23:09 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/26 10:58:32 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ $(NAME) : $(LIB) $(OBJS)
 	@(echo "cub3D created")
 
 $(LIB) :
-	@(make all -C libft)
+	@(make -C libft)
 
 $(OBJSDIR)/%.o : $(SRCSDIR)/%.c | $(OBJSDIR)
 	@(echo "Compiling -> $^")
