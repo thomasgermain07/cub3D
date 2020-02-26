@@ -6,11 +6,11 @@
 #    By: thgermai <thgermai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/09 08:26:20 by thgermai          #+#    #+#              #
-#    Updated: 2020/02/26 10:58:32 by thgermai         ###   ########.fr        #
+#    Updated: 2020/02/26 13:30:52 by thgermai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3D
+NAME = Cub3D
 SRCSDIR = srcs
 OBJSDIR = .objs
 SRCS = check_outline_utils.c\
