@@ -1,4 +1,4 @@
-R  1500 750
+R                   1500 750
 
 NO ./texture/grey_wall.XPM
 SO ./texture/red_wall.XPM
